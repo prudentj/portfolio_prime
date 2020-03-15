@@ -1,34 +1,47 @@
 {
-  "name": "portfolio_prime",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "portfolio_prime",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@testing-library/jest-dom": "^4.2.4",
+		"@testing-library/react": "^9.3.2",
+		"@testing-library/user-event": "^7.1.2",
+		"antd": "^4.0.2",
+		"autoprefixer": "^9.7.4",
+		"babel-plugin-import": "^1.13.0",
+		"customize-cra": "^0.9.1",
+		"less": "^3.11.1",
+		"less-loader": "^5.0.0",
+		"postcss-cli": "^7.1.0",
+		"react": "^16.13.0",
+		"react-app-rewired": "^2.1.5",
+		"react-dom": "^16.13.0",
+		"react-scripts": "3.4.0"
+	},
+	"scripts": {
+		"start": "npm run build:css && react-app-rewired start",
+		"build": "npm run build:css && react-app-rewired build",
+		"test": "react-app-rewired test",
+		"eject": "react-app-rewired eject",
+		"build:css": "postcss src/styles/tailwind.css -o src/styles/app.css",
+		"watch:css": "postcss src/styles/tailwind.css -o src/styles/app.css -w"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"tailwindcss": "^1.2.0"
+	}
 }
