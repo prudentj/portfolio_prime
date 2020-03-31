@@ -16,6 +16,7 @@ with an animation that shows
 https://www.creativepark.fr/
 Blacks that I like
 #0F1014
+#0C1010
 Uses true white against it which I love
 I also love the user flow
 
@@ -23,6 +24,8 @@ I think I want my accent color to be copper gradient that moves with a light sou
 Maybe add a settings page that tranforms the site to set the time of day, metal
 water oxidizes the copper
 maybe on a separate page
+
+icons-icons.com
 
 https://crescentcitycopper.com/why-does-copper-turn-green/
 https://en.wikipedia.org/wiki/Basic_copper_carbonate Its green color
