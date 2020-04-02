@@ -12,6 +12,7 @@ module.exports = {
 		},
 		colors: {
 			primary: '#0F1014',
+			// primary: '#14110f',
 			secondary: colors.white,
 
 			transparent: 'transparent',

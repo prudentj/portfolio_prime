@@ -3,23 +3,27 @@ import './styles/app.css';
 import Tutorial from './components/Tutorial';
 import Header from './components/Header';
 import Landing from './components/Landing';
-
+import Portfolio from './components/Portfolio';
 function App() {
 	return (
 		<>
-			{/* <Tutorial /> */}
-			<Header />
-			<Landing />
-			{/* <section className="w-3/6 m-auto flex bg-primary flex-wrap mt-20">
+			<Portfolio />
+			<Tutorial />
+			{/* <div className="max-h-screen">
+				<Header />
+				<Landing />
+			</div> */}
+
+			{/* <section className="flex flex-wrap w-3/6 m-auto mt-20 bg-primary">
 				<div className="flex flex-wrap">
-					<div className="w-full mb- p-10 bg-gray relative rounded shadow">
-						<span className="text-gray-300 text-6xl absolute italic right-10">
+					<div className="relative w-full p-10 rounded shadow mb- bg-gray">
+						<span className="absolute text-6xl italic text-gray-300 right-10">
 							01
 						</span>
-						<h2 className="z-10 relative text-2xl text-gray-900 absolute">
+						<h2 className="absolute relative z-10 text-2xl text-gray-900">
 							Prudent
 						</h2>
-						<hr className="block mb-6 mt-5 w- border-red-500 h-0 border-t-2" />
+						<hr className="block h-0 mt-5 mb-6 border-t-2 border-red-500 w-" />
 						<p className="text-gray-700">
 							Beautiful is better than ugly. Explicit is better than implicit.
 							Simple is better than complex. Complex is better than complicated.

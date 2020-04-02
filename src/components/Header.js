@@ -8,15 +8,8 @@ const Header = () => {
 		console.log('The app was toggled');
 	};
 	return (
-		<nav
-			class="flex
-			 items-center
-			 justify-between
-			 p-6 
-			 bg-blue-500"
-		>
+		<nav class="flex items-center justify-between p-6 bg-primary">
 			<span class="font-semibold text-secondary text-xl ">Prudent</span>
-			<ToggleButton></ToggleButton>
 		</nav>
 	);
 };
@@ -27,6 +20,9 @@ export default Header;
 	/* <MenuButton class="toggled" onClick={toggle}>
 				<span></span>
 			</MenuButton> */
+}
+{
+	/* <ToggleButton></ToggleButton> */
 }
 /* <a href="#" class=".relative .inline-block w-30 h-30 m-30">
 				<span class=".m-auto .relative .top-12"></span>
