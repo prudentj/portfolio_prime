@@ -10,14 +10,17 @@
 		"autoprefixer": "^9.7.4",
 		"babel-plugin-import": "^1.13.0",
 		"customize-cra": "^0.9.1",
-		"gsap": "^3.2.4",
+		"gsap": "^3.2.6",
 		"less": "^3.11.1",
 		"less-loader": "^5.0.0",
 		"postcss-cli": "^7.1.0",
 		"react": "^16.13.0",
 		"react-app-rewired": "^2.1.5",
+		"react-content-loader": "^5.0.2",
 		"react-dom": "^16.13.0",
+		"react-image": "^2.4.0",
 		"react-scripts": "3.4.0",
+		"react-visibility-sensor": "^5.1.1",
 		"styled-components": "^5.0.1"
 	},
 	"scripts": {

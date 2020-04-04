@@ -8,7 +8,7 @@ function App() {
 	return (
 		<>
 			<Portfolio />
-			<Tutorial />
+			{/* <Tutorial /> */}
 			{/* <div className="max-h-screen">
 				<Header />
 				<Landing />
