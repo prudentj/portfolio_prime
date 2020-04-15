@@ -1,11 +1,10 @@
 import React, {useRef, useEffect, useState} from 'react';
-import Demo from './img/smallDemo.jpg';
 import Wall from './img/whitewall.jpg';
 import Lemmons from './img/lemmons.jpg';
 import Bridge from './img/bridge.jpg';
 import {TweenMax, Power1} from 'gsap';
-import logo from './icons/logo192.png';
 import VisibilitySensor from 'react-visibility-sensor';
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 //Visibility Sensor seems to have a conflict with GSAP Where the two fight and neither works I can place the sensor on something near by though which can help
 
@@ -14,9 +13,9 @@ import VisibilitySensor from 'react-visibility-sensor';
 //background-repeat: no-repeat;
 //bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded
 const CardGen =
-	'bg-black text-white w-2/3 flex flex-col relative justify-center px-20 border-solid border border-primary';
+	'bg-black text-white md:w-2/3 flex flex-col relative justify-center py-10 px-20 border-solid border border-primary';
 const ButtonGen =
-	'px-1 py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white w-1/3 text-lg';
+	'px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg';
 const HeaderGen = 'text-4xl text-white';
 
 const Portfolio = () => {
@@ -34,6 +33,10 @@ const Portfolio = () => {
 	let image3 = useRef(null);
 	let image4 = useRef(null);
 
+	const scrollTo=()=>{
+		scroller.scrollTo('')
+	}
+	
 	//Functions for animation
 	function onChange(isVisible, callback) {
 		console.log(isVisible);
@@ -46,14 +49,8 @@ const Portfolio = () => {
 			console.log(imageRef);
 			TweenMax.to(imageRef, 0.8, {
 				opacity: 1,
-				ease: Power1.easeOut
+				ease: Power1.easeOut,
 			});
-		} else {
-			// TweenMax.to(imageRef, 0.8, {
-			// 	opacity: 0,
-			// 	//x: 50,
-			// 	ease: Power1.easeOut
-			// });
 		}
 	}
 	useEffect(() => {
@@ -72,52 +69,47 @@ const Portfolio = () => {
 	return (
 		<div className="bg-primary">
 			{/*Landing Component*/}
-			<section className="bg-blue">
+			{/*Header Section*/}
+			<section className="sm:flex-col md:flex-row-reverse md:h-screen md:relative">
+				<img
+					className="md:z-0 max-full relative object-cover object-center md:h-screen md:max-h-screen lg:absolute lg:right-0"
+					src="https://images.unsplash.com/photo-1578836537282-3171d77f8632?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+					ref={(el) => {
+						image2 = el;
+					}}
+				/>
 				<div
-					className="flex bg-no-repeat bg-cover"
-					style={{
-						background:
-							"url('https://images.unsplash.com/photo-1578836537282-3171d77f8632?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')"
+					className="py-10 md:absolute md:top-0 md:left-0 flex flex-col justify-center md:z-10  md:w-1/2 md:h-screen px-10 md:px-20 text-white bg-black opacity-0"
+					ref={(el) => {
+						mainHeading = el;
 					}}
 				>
-					<div
-						className="relative flex flex-col justify-center w-1/2 h-screen px-10 text-white bg-black opacity-0"
-						ref={el => {
-							mainHeading = el;
-						}}
+					<h1 className="py-2 text-4xl md:text-6xl text-white">
+						Jacob Prudent
+					</h1>
+					<p className="py-2 text-3xl ">
+						I am a full stack developer, who loves mastering new skills and
+						discovering a challenge
+					</p>
+					<button
+						className="px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg"
+						onClick={}
 					>
-						<h1 className="py-2 text-6xl text-white">Jacob Prudent</h1>
-						<p className="py-2 text-3xl ">
-							I am a full stack developer, who loves mastering new skills and
-							discovering a challenge
-						</p>
-						<button
-							className={ButtonGen}
-							onClick={() => {
-								if (image2.current) {
-									image2.current.scrollIntoView({
-										behavior: 'smooth',
-										block: 'nearest'
-									});
-								}
-							}}
-						>
-							View My Project
-						</button>
-					</div>
+						View My Projects
+					</button>
 				</div>
 			</section>
-			<section>
-				<div className="flex flex-no-wrap">
+			<section className="bg-primary">
+				<div className="flex flex-col md:flex md:flex-row md:flex-no-wrap">
 					<img
-						className="w-1/3 opacity-0"
+						className="md:w-1/3 opacity-0 max-full relative object-cover object-center"
 						src={Bridge}
-						ref={el => {
+						ref={(el) => {
 							image2 = el;
 						}}
 					/>
 
-					<div className={CardGen}>
+					<div className="bg-black text-white md:w-2/3 flex flex-col relative justify-center py-10 px-20 border-solid border border-primary">
 						<h1 className={HeaderGen} id="project1">
 							Project 1
 						</h1>
@@ -129,11 +121,11 @@ const Portfolio = () => {
 				</div>
 			</section>
 			<section>
-				<div className="flex flex-row-reverse flex-no-wrap">
+				<div className="flex flex-col md:flex md:flex-row-reverse md:flex-no-wrap">
 					<img
-						className="w-1/3 opacity-0"
+						className="md:w-1/3 opacity-0 max-full relative object-cover object-center"
 						src={Wall}
-						ref={el => {
+						ref={(el) => {
 							image3 = el;
 						}}
 					/>
@@ -148,11 +140,11 @@ const Portfolio = () => {
 				</div>
 			</section>
 			<section>
-				<div className="flex flex-no-wrap">
+				<div className="flex flex-col md:flex md:flex-row md:flex-no-wrap">
 					<img
-						className="w-1/3 opacity-0"
+						className="md:w-1/3 opacity-0 max-full relative object-cover object-center"
 						src={Lemmons}
-						ref={el => {
+						ref={(el) => {
 							image4 = el;
 						}}
 					/>
