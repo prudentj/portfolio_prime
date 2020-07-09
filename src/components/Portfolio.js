@@ -1,8 +1,15 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Wall from './img/whitewall.jpg';
+
+//Images
 import Lemmons from './img/lemmons.jpg';
+import Witch from './img/witch_green_lg.jpg'
 import Bridge from './img/bridge.jpg';
-import {TweenMax, Power1} from 'gsap';
+import Twitter from './img/Twitter_Logo_WhiteOnImage.png'
+import Mist from './img/mist2.mp4'
+
+//Animations
+import { TweenMax, Power1 } from 'gsap';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
@@ -22,7 +29,7 @@ const Portfolio = () => {
 	//Contact Form State
 	const [emailVaild, setEmailVaild] = useState('');
 
-	//State for animation
+	//State for animation to reveal photos
 	const [iViz2, setIViz2] = useState(false);
 	const [iViz3, setIViz3] = useState(false);
 	const [iViz4, setIViz4] = useState(false);
@@ -33,10 +40,10 @@ const Portfolio = () => {
 	let image3 = useRef(null);
 	let image4 = useRef(null);
 
-	const scrollTo=()=>{
+	const scrollTo = () => {
 		scroller.scrollTo('')
 	}
-	
+
 	//Functions for animation
 	function onChange(isVisible, callback) {
 		console.log(isVisible);
@@ -68,8 +75,6 @@ const Portfolio = () => {
 
 	return (
 		<div className="bg-primary">
-			{/*Landing Component*/}
-			{/*Header Section*/}
 			<section className="sm:flex-col md:flex-row-reverse md:h-screen md:relative">
 				<img
 					className="md:z-0 max-full relative object-cover object-center md:h-screen md:max-h-screen lg:absolute lg:right-0"
@@ -78,6 +83,11 @@ const Portfolio = () => {
 						image2 = el;
 					}}
 				/>
+				{/* <video id="background-video" loop autoPlay className="md:z-0 max-full relative object-cover object-center md:h-screen md:max-h-screen lg:absolute lg:right-0">
+
+					<source src={Mist} type="video/mp4" />
+    				Your browser does not support the video tag.
+				</video> */}
 				<div
 					className="py-10 md:absolute md:top-0 md:left-0 flex flex-col justify-center md:z-10  md:w-1/2 md:h-screen px-10 md:px-20 text-white bg-black opacity-0"
 					ref={(el) => {
@@ -91,19 +101,24 @@ const Portfolio = () => {
 						I am a full stack developer, who loves mastering new skills and
 						discovering a challenge
 					</p>
+
 					<button
 						className="px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg"
-						onClick={}
+					// onClick={}
+					//I need to write a script to scroll to the first project
 					>
 						View My Projects
 					</button>
+					<div>
+						<img src={Twitter} />
+					</div>
 				</div>
 			</section>
 			<section className="bg-primary">
 				<div className="flex flex-col md:flex md:flex-row md:flex-no-wrap">
 					<img
 						className="md:w-1/3 opacity-0 max-full relative object-cover object-center"
-						src={Bridge}
+						src={Witch}
 						ref={(el) => {
 							image2 = el;
 						}}
@@ -111,12 +126,13 @@ const Portfolio = () => {
 
 					<div className="bg-black text-white md:w-2/3 flex flex-col relative justify-center py-10 px-20 border-solid border border-primary">
 						<h1 className={HeaderGen} id="project1">
-							Project 1
+							Sorting Hat
 						</h1>
-						<p className="py-2 text-xl">Great things coming Soon</p>
+						<p className="py-2 text-xl">Lambda Labs project where as a team we met with a stakeholder and built a tech quiz that met his expectations</p>
 						<VisibilitySensor onChange={(onChange, setIViz2)}>
 							<button className={ButtonGen}>View My Project</button>
 						</VisibilitySensor>
+
 					</div>
 				</div>
 			</section>
