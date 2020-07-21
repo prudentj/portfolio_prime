@@ -1,17 +1,27 @@
+//Libraries and Components
 import React, { useRef, useEffect, useState } from 'react';
-import Wall from './img/whitewall.jpg';
+import Contact from './Contact';
 
 //Images
 import Lemmons from './img/lemmons.jpg';
-import Witch from './img/witch_green_lg.jpg'
-import Bridge from './img/bridge.jpg';
-import Twitter from './img/Twitter_Logo_WhiteOnImage.png'
-import Mist from './img/mist2.mp4'
+import Witch from './img/witch_green_lg.jpg';
+import Wall from './img/whitewall.jpg';
+// import Bridge from './img/bridge.jpg';
+// import Mist from './img/mist2.mp4'
+
+//Icons
+import TwitterLogo from './icons/twitter.svg'
+import GithubLogo from './icons/github.svg'
+import LinkedInLogo from './icons/linkedin.svg'
+import ResumeLogo from './icons/paperclip.svg'
+import EmailLogo from './icons/email.svg'
+
 
 //Animations
 import { TweenMax, Power1 } from 'gsap';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { FormProvider } from 'antd/lib/form/context';
 
 //Visibility Sensor seems to have a conflict with GSAP Where the two fight and neither works I can place the sensor on something near by though which can help
 
@@ -34,6 +44,15 @@ const Portfolio = () => {
 	const [iViz3, setIViz3] = useState(false);
 	const [iViz4, setIViz4] = useState(false);
 
+	//State for rendering subcomponets
+	const [showContact, setShowContact] = useState(false)
+
+	//Functions for rendering subcomponents
+	const toggleContact = () => {
+		if (showContact) {
+			return
+		}
+	}
 	let mainHeading = useRef(null);
 	let image1 = useRef(null);
 	let image2 = useRef(null);
@@ -82,6 +101,7 @@ const Portfolio = () => {
 					ref={(el) => {
 						image2 = el;
 					}}
+					alt="Mountain in the clouds"
 				/>
 				{/* <video id="background-video" loop autoPlay className="md:z-0 max-full relative object-cover object-center md:h-screen md:max-h-screen lg:absolute lg:right-0">
 
@@ -104,14 +124,13 @@ const Portfolio = () => {
 
 					<button
 						className="px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg"
-					// onClick={}
 					//I need to write a script to scroll to the first project
+					// onClick={}
 					>
 						View My Projects
 					</button>
-					<div>
-						<img src={Twitter} />
-					</div>
+
+
 				</div>
 			</section>
 			<section className="bg-primary">
@@ -175,56 +194,32 @@ const Portfolio = () => {
 				</div>
 			</section>
 			<section className="flex justify-center p-10 align-middle bg-black">
-				<form className="w-full max-w-lg">
-					<h2 className="text-4xl text-center text-white">Message Me</h2>
-					<div className="flex flex-wrap mb-6 -mx-3">
-						<div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
-							<label
-								className="block w-full px-3 py-2 mb-2 mb-6 text-sm text-white md:w-1/2 md:mb-0"
-								htmlFor="name"
-							>
-								Name
-							</label>
-							<input
-								className="w-full px-3 py-2 leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-								id="name"
-								type="text"
-								placeholder="Name"
-							/>
-						</div>
-						<div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
-							<label
-								className="block w-full px-3 py-2 mb-2 mb-6 text-sm text-white md:w-1/2 md:mb-0"
-								htmlFor="email"
-							>
-								Email
-							</label>
-							<input
-								className="w-full px-3 py-2 leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-								id="email"
-								type="text"
-								placeholder="Email"
-							/>
-						</div>
+				<div className="w-full max-w-lg">
+					<h2 className="text-4xl text-center text-white">Contact</h2>
+					{showContact ? <Contact className="" /> : null}
+					<div className="flex flex-row justify-center md:z-10  md:w-full px-10 md:px-20 md:my-5">
+
+						<a href="https://www.linkedin.com/in/jacobprudent">
+							<img className="logo" src={LinkedInLogo} alt="LinkedIn" />
+						</a>
+						<a href="https://github.com/prudentj">
+							<img className="logo" src={GithubLogo} alt="GitHub" />
+						</a>
+						<a href="https://twitter.com/JacobPrudent">
+							<img className="logo" src={TwitterLogo} alt="Twitter" />
+						</a>
+						<button onClick={() => { showContact ? setShowContact(false) : setShowContact(true) }}>
+							<img className="logo" src={EmailLogo} alt="Email" />
+						</button>
+						{/* <a href="https://www.linkedin.com/in/jacob-prudent-a043a389/">
+							<img classN
+							ame="logo" src={ResumeLogo} alt="Resume" />
+						</a> */}
 					</div>
-					<div className="md:w-1/3">
-						<label className="py-1 text-white" htmlFor="message">
-							Message
-						</label>
-					</div>
-					<div className="mt-2 md:flex-1 mb:mt-0 md:px-3">
-						<textarea
-							className="block w-full h-48 px-4 py-3 mb-3 leading-tight border border-gray-200 rounded appearance-none resize-none no-resize focus:outline-none focus:bg-white focus:border-gray-500"
-							rows="6"
-						></textarea>
-						{/* "w-full shadow-inner p-4 border-0 my-5 "*/}
-					</div>
-					<button className="px-4 py-2 font-bold text-white bg-transparent border border-white rounded rounded-full shadow focus:shadow-outline focus:outline-none hover:bg-primary hover:text-white">
-						Send Message
-					</button>
-				</form>
+
+				</div>
 			</section>
-		</div>
+		</div >
 	);
 };
 

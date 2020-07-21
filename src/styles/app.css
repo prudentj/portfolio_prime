@@ -11000,15 +11000,9 @@ video {
   transition-duration: 1000ms;
 }
 
-.ant-carousel .slick-slide {
-  text-align: center;
-  line-height: 160px;
-  background: #14110f;
-  overflow: hidden;
-}
-
-.ant-carousel .slick-slide h3 {
-  color: #fff;
+.logo{
+  width: 32px;
+  height: 32px;
 }
 
 .fade-in {
