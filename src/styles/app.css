@@ -5312,6 +5312,10 @@ video {
   opacity: 0.75;
 }
 
+.opacity-90 {
+  opacity: 0.90;
+}
+
 .opacity-100 {
   opacity: 1;
 }
@@ -5332,6 +5336,10 @@ video {
   opacity: 0.75;
 }
 
+.hover\:opacity-90:hover {
+  opacity: 0.90;
+}
+
 .hover\:opacity-100:hover {
   opacity: 1;
 }
@@ -5350,6 +5358,10 @@ video {
 
 .focus\:opacity-75:focus {
   opacity: 0.75;
+}
+
+.focus\:opacity-90:focus {
+  opacity: 0.90;
 }
 
 .focus\:opacity-100:focus {
@@ -11000,6 +11012,21 @@ video {
   transition-duration: 1000ms;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+button:focus { outline: none;
+}
+
+/* The Overlay (background) */
+
+/* Position the content inside the overlay */
+
+.transBackground{
+  background-color: rgba(0, 0, 0, 0.75)
+}
+
 .logo{
   width: 32px;
   height: 32px;
@@ -15730,6 +15757,10 @@ video {
     opacity: 0.75;
   }
 
+  .sm\:opacity-90 {
+    opacity: 0.90;
+  }
+
   .sm\:opacity-100 {
     opacity: 1;
   }
@@ -15750,6 +15781,10 @@ video {
     opacity: 0.75;
   }
 
+  .sm\:hover\:opacity-90:hover {
+    opacity: 0.90;
+  }
+
   .sm\:hover\:opacity-100:hover {
     opacity: 1;
   }
@@ -15768,6 +15803,10 @@ video {
 
   .sm\:focus\:opacity-75:focus {
     opacity: 0.75;
+  }
+
+  .sm\:focus\:opacity-90:focus {
+    opacity: 0.90;
   }
 
   .sm\:focus\:opacity-100:focus {
@@ -26126,6 +26165,10 @@ video {
     opacity: 0.75;
   }
 
+  .md\:opacity-90 {
+    opacity: 0.90;
+  }
+
   .md\:opacity-100 {
     opacity: 1;
   }
@@ -26146,6 +26189,10 @@ video {
     opacity: 0.75;
   }
 
+  .md\:hover\:opacity-90:hover {
+    opacity: 0.90;
+  }
+
   .md\:hover\:opacity-100:hover {
     opacity: 1;
   }
@@ -26164,6 +26211,10 @@ video {
 
   .md\:focus\:opacity-75:focus {
     opacity: 0.75;
+  }
+
+  .md\:focus\:opacity-90:focus {
+    opacity: 0.90;
   }
 
   .md\:focus\:opacity-100:focus {
@@ -36522,6 +36573,10 @@ video {
     opacity: 0.75;
   }
 
+  .lg\:opacity-90 {
+    opacity: 0.90;
+  }
+
   .lg\:opacity-100 {
     opacity: 1;
   }
@@ -36542,6 +36597,10 @@ video {
     opacity: 0.75;
   }
 
+  .lg\:hover\:opacity-90:hover {
+    opacity: 0.90;
+  }
+
   .lg\:hover\:opacity-100:hover {
     opacity: 1;
   }
@@ -36560,6 +36619,10 @@ video {
 
   .lg\:focus\:opacity-75:focus {
     opacity: 0.75;
+  }
+
+  .lg\:focus\:opacity-90:focus {
+    opacity: 0.90;
   }
 
   .lg\:focus\:opacity-100:focus {
@@ -46918,6 +46981,10 @@ video {
     opacity: 0.75;
   }
 
+  .xl\:opacity-90 {
+    opacity: 0.90;
+  }
+
   .xl\:opacity-100 {
     opacity: 1;
   }
@@ -46938,6 +47005,10 @@ video {
     opacity: 0.75;
   }
 
+  .xl\:hover\:opacity-90:hover {
+    opacity: 0.90;
+  }
+
   .xl\:hover\:opacity-100:hover {
     opacity: 1;
   }
@@ -46956,6 +47027,10 @@ video {
 
   .xl\:focus\:opacity-75:focus {
     opacity: 0.75;
+  }
+
+  .xl\:focus\:opacity-90:focus {
+    opacity: 0.90;
   }
 
   .xl\:focus\:opacity-100:focus {

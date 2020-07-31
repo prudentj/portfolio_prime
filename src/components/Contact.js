@@ -6,14 +6,23 @@ const Contact = () => {
     const [userEmail, setUserEmail] = useState('');
     const [message, setMessage] = useState('');
 
-    //Form Handlechanges
-    const handleChange = () => {
+    //Form Handles changes
+    const handleNameChange = el => {
+        setUsername(el.target.value)
+    }
 
+    const handleEmailChange = el => {
+        setUserEmail(el.target.value)
+    }
+
+    const handleMessageChange = el => {
+        setMessage(el.target.value)
+        //Input Validation goes here
     }
 
     const handelSubmit = () => {
         const templateId = "template_HzFQaO9h"
-        sendFeedback(templateId, { message_html: this.state.feedback, from_name: this.state.name, reply_to: this.state.email })
+        sendFeedback(templateId, { message_html: message, from_name: username, reply_to: userEmail })
     }
     const sendFeedback = (templateId, variables) => {
         window.emailjs.send(
@@ -23,7 +32,7 @@ const Contact = () => {
             console.log('Email successfully sent!')
         })
             // Handle errors here however you like, or use a React error boundary
-            .catch(err => console.error('Oh well, you failed. Here some thoughts on the error that occured:', err))
+            .catch(err => console.error('Oh well, you failed. Here some thoughts on the error that occurred:', err))
     }
 
 
@@ -34,7 +43,7 @@ const Contact = () => {
             <div className="flex flex-wrap mb-6 -mx-3">
                 <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
                     <label
-                        className="block w-full px-3 py-2 mb-2 mb-6 text-sm text-white md:w-1/2 md:mb-0"
+                        className="block w-full px-3 py-2 mb-6 text-sm text-white md:w-1/2 md:mb-0"
                         htmlFor="name"
                     >
                         Name
@@ -44,11 +53,12 @@ const Contact = () => {
                         id="name"
                         type="text"
                         placeholder="Name"
+                        onChange={handleNameChange}
                     />
                 </div>
                 <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
                     <label
-                        className="block w-full px-3 py-2 mb-2 mb-6 text-sm text-white md:w-1/2 md:mb-0"
+                        className="block w-full px-3 py-2 mb-6 text-sm text-white md:w-1/2 md:mb-0"
                         htmlFor="email"
 
                     >
@@ -60,6 +70,8 @@ const Contact = () => {
                         type="text"
                         placeholder="Email"
                         maxLength="320"
+                        onChange={handleEmailChange}
+
                     />
                 </div>
             </div>
@@ -72,12 +84,15 @@ const Contact = () => {
                 <textarea
                     className="block w-full h-48 px-4 py-3 mb-3 leading-tight border border-gray-200 rounded appearance-none resize-none no-resize focus:outline-none focus:bg-white focus:border-gray-500"
                     rows="6"
+                    onChange={handleMessageChange}
                 ></textarea>
                 {/* "w-full shadow-inner p-4 border-0 my-5 "*/}
             </div>
-            <button className="px-4 py-2 font-bold text-white bg-transparent border border-white rounded rounded-full shadow focus:shadow-outline focus:outline-none hover:bg-primary hover:text-white">
+            <button className="px-4 py-2 font-bold text-white bg-transparent border border-white rounded-full shadow focus:shadow-outline focus:outline-none hover:bg-primary hover:text-white"
+                onClick={handelSubmit}
+            >
                 Send Message
-					</button>
+			</button>
         </form>
     )
 }

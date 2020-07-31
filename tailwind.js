@@ -1,4 +1,4 @@
-const {colors} = require('tailwindcss/defaultTheme');
+const { colors } = require('tailwindcss/defaultTheme');
 module.exports = {
 	prefix: '',
 	important: false,
@@ -319,7 +319,7 @@ module.exports = {
 			disc: 'disc',
 			decimal: 'decimal'
 		},
-		margin: (theme, {negative}) => ({
+		margin: (theme, { negative }) => ({
 			auto: 'auto',
 			...theme('spacing'),
 			...negative(theme('spacing'))
@@ -328,7 +328,7 @@ module.exports = {
 			full: '100%',
 			screen: '100vh'
 		},
-		maxWidth: (theme, {breakpoints}) => ({
+		maxWidth: (theme, { breakpoints }) => ({
 			none: 'none',
 			xs: '20rem',
 			sm: '24rem',
@@ -368,6 +368,7 @@ module.exports = {
 			'25': '0.25',
 			'50': '0.5',
 			'75': '0.75',
+			'90': '0.90',
 			'100': '1'
 		},
 		order: {
@@ -572,7 +573,7 @@ module.exports = {
 			'90': '90deg',
 			'180': '180deg'
 		},
-		translate: (theme, {negative}) => ({
+		translate: (theme, { negative }) => ({
 			...theme('spacing'),
 			...negative(theme('spacing')),
 			'-full': '-100%',
