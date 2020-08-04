@@ -39,12 +39,14 @@ const SortingHat = () => {
                         <div className="flex-row w-full justify-evenly">
                             <a href="https://www.sortinghat.tech/"
                                 target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 <button className={ButtonGen}>Live Project</button>
                             </a>
 
                             <a href="https://github.com/Lambda-School-Labs/sorting-hat-fe"
-                                target="_blank">
+                                target="_blank"
+                                rel="noopener noreferrer">
                                 <button className={ButtonGen}>Source Code</button>
                             </a>
                         </div>

@@ -3,7 +3,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import Contact from './Contact';
 
 //Images
-import Penguin from './img/penguins.jpg'
 import Zebra from './img/zebrastripes.jpg';
 import WhiteCat from './img/whitecat.jpg';
 import Wall from './img/whitewall.jpg';
@@ -33,15 +32,13 @@ const HeaderGen = 'text-4xl text-white';
 //Scroll Function
 
 const Portfolio = () => {
-	//Contact Form State
-	const [emailVaild, setEmailVaild] = useState('');
 
 	//State for animation to reveal photos
 	const [iViz2, setIViz2] = useState(false);
 	const [iViz3, setIViz3] = useState(false);
 	const [iViz4, setIViz4] = useState(false);
 
-	//State for rendering subcomponets
+	//State for rendering subcomponents
 	const [showContact, setShowContact] = useState(false)
 
 	//Functions for rendering subcomponents

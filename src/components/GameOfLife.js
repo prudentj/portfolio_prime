@@ -35,12 +35,14 @@ const GameOfLife = () => {
                         <div className="flex-row w-full justify-evenly">
                             <a href="https://conway-game-of-life.now.sh/"
                                 target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 <button className={ButtonGen}>Live Project</button>
                             </a>
 
                             <a href="https://github.com/prudentj/conway_game_of_life"
-                                target="_blank">
+                                target="_blank"
+                                rel="noopener noreferrer">
                                 <button className={ButtonGen}>Source Code</button>
                             </a>
                         </div>
