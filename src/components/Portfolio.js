@@ -3,9 +3,12 @@ import React, { useRef, useEffect, useState } from 'react';
 import Contact from './Contact';
 
 //Images
-import Lemmons from './img/lemmons.jpg';
-import Witch from './img/witch_green_lg.jpg';
+import Penguin from './img/penguins.jpg'
+import Zebra from './img/zebrastripes.jpg';
+import WhiteCat from './img/whitecat.jpg';
 import Wall from './img/whitewall.jpg';
+import Resume from './img/Resume.pdf';
+
 
 //Icons
 import TwitterLogo from './icons/twitter.svg'
@@ -14,7 +17,6 @@ import LinkedInLogo from './icons/linkedin.svg'
 import ResumeLogo from './icons/paperclip.svg'
 import EmailLogo from './icons/email.svg'
 
-// import SortingHat from './SortingHat'
 
 //Animations
 import { TweenMax, Power1 } from 'gsap';
@@ -44,8 +46,8 @@ const Portfolio = () => {
 
 	//Functions for rendering subcomponents
 
-	function openNav() {
-		document.getElementById("SortingHat").style.width = "100%";
+	function openNavById(el) {
+		document.getElementById(el).style.width = "100%";
 		document.body.className = "overflow-hidden";
 	}
 
@@ -125,7 +127,7 @@ const Portfolio = () => {
 				<div className="flex flex-col md:flex md:flex-row md:flex-no-wrap">
 					<img
 						className="md:w-1/3 opacity-0 max-full relative object-cover object-center"
-						src={Witch}
+						src={WhiteCat}
 						alt="Witch with pointy hat reading a book"
 						ref={(el) => {
 							image2 = el;
@@ -138,13 +140,33 @@ const Portfolio = () => {
 						</h1>
 						<p className="py-10 text-3xl">Lambda Labs project where as a team we met with a stakeholder and built a tech quiz that met his expectations</p>
 						<VisibilitySensor onChange={(onChange, setIViz2)}>
-							<button className={ButtonGen} onClick={openNav}>View My Project</button>
+							<button className={ButtonGen} onClick={() => { openNavById("SortingHat") }}>View My Project</button>
+						</VisibilitySensor>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div className="flex flex-col md:flex md:flex-row-reverse md:flex-no-wrap">
+					<img
+						className="md:w-1/3 opacity-0 max-full relative object-cover object-center"
+						src={Zebra}
+						alt=""
+						ref={(el) => {
+							image4 = el;
+						}}
+					/>
+
+					<div className={CardGen}>
+						<h1 className={HeaderGen}>African Market Place</h1>
+						<p className=" py-10 text-3xl">A simple small online marketplace for buying and selling wares. </p>
+						<VisibilitySensor onChange={(onChange, setIViz4)}>
+							<button className={ButtonGen} onClick={() => { openNavById("Market") }}>View My Project</button>
 						</VisibilitySensor>
 					</div>
 				</div>
 			</section>
 			<section >
-				<div className="flex flex-col md:flex md:flex-row-reverse md:flex-no-wrap ">
+				<div className="flex flex-col md:flex md:flex-row md:flex-no-wrap ">
 					<img
 						className="md:w-1/3 opacity-0 max-full relative object-cover object-center"
 						src={Wall}
@@ -155,40 +177,24 @@ const Portfolio = () => {
 					/>
 
 					<div className={CardGen}>
-						<h1 className={HeaderGen}>Project 2</h1>
-						<p className="py-10 text-3xl">Good things coming Soon</p>
+						<h1 className={HeaderGen}>Conway's Game of Life</h1>
+						<p className="py-10 text-3xl">Emergent order from simple rules. Conway's game of life show's the marvel of cellular automatons</p>
 						<VisibilitySensor onChange={(onChange, setIViz3)}>
-							<button className={ButtonGen}>View My Project</button>
+							<button className={ButtonGen} onClick={() => { openNavById("GameOfLife") }}>View My Project</button>
 						</VisibilitySensor>
 					</div>
 				</div>
 			</section>
-			<section>
-				<div className="flex flex-col md:flex md:flex-row md:flex-no-wrap">
-					<img
-						className="md:w-1/3 opacity-0 max-full relative object-cover object-center"
-						src={Lemmons}
-						alt=""
-						ref={(el) => {
-							image4 = el;
-						}}
-					/>
 
-					<div className={CardGen}>
-						<h1 className={HeaderGen}>Project 3</h1>
-						<p className=" py-10 text-3xl">Good things coming soon</p>
-						<VisibilitySensor onChange={(onChange, setIViz4)}>
-							<button className={ButtonGen}>View My Project</button>
-						</VisibilitySensor>
-					</div>
-				</div>
-			</section>
 			<section className="flex justify-center p-10 align-middle bg-black">
 				<div className="w-full max-w-lg">
 					<h2 className="text-4xl text-center text-white">Contact</h2>
 					{showContact ? <Contact className="" /> : null}
-					<div className="flex flex-row justify-center md:z-10  md:w-full px-10 md:px-20 md:my-5">
-
+					<div className="flex flex-row justify-between md:z-10  md:w-full px-10 md:px-20 my-2 md:my-5">
+						<a href={Resume}>
+							<img classN
+								ame="logo" src={ResumeLogo} alt="Resume" />
+						</a>
 						<a href="https://www.linkedin.com/in/jacobprudent">
 							<img className="logo" src={LinkedInLogo} alt="LinkedIn" />
 						</a>
@@ -201,10 +207,7 @@ const Portfolio = () => {
 						<button onClick={() => { showContact ? setShowContact(false) : setShowContact(true) }}>
 							<img className="logo" src={EmailLogo} alt="Email" />
 						</button>
-						{/* <a href="https://www.linkedin.com/in/jacob-prudent-a043a389/">
-							<img classN
-							ame="logo" src={ResumeLogo} alt="Resume" />
-						</a> */}
+
 					</div>
 
 				</div>

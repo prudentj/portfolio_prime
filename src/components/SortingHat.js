@@ -1,5 +1,5 @@
 import React from 'react';
-import PhonePhoto from './img/sortinghat.png'
+import PhonePhoto from './img/TechSortingHat.png'
 const SortingHat = () => {
 
     const ButtonGen =
@@ -16,7 +16,7 @@ const SortingHat = () => {
             <div className="max-h-screen">
                 <div className="flex flex-col md:flex md:flex-row md:flex-no-wrap my-1 mx-1">
                     <button className="absolute top-0 right-0 p-5 text-6xl text-white outline-none z-30" onClick={closeOverlay}>&times;</button>
-                    <a href="https://github.com/Lambda-School-Labs/sorting-hat-fe" className="w-0 lg:w-1/3 max-screen object-cover object-center">
+                    <a href="https://github.com/Lambda-School-Labs/sorting-hat-fe" className="w-0 lg:w-1/3 object-cover object-center bg-black">
                         <img
                             src={PhonePhoto}
                             alt="Tech Sorting Hat Questionnaire Application"
@@ -25,7 +25,7 @@ const SortingHat = () => {
                     </a>
 
 
-                    <div className="bg-black text-white lg:w-2/3 flex flex-col justify-center py-10 px-20 border-solid border border-primary">
+                    <div className="bg-black text-white lg:w-2/3 flex flex-col justify-center py-10 px-20 ">
                         <h1 className='text-4xl text-white bold' id="project1" >
                             Sorting Hat
 						</h1>
