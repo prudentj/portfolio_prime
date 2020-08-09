@@ -1,5 +1,7 @@
 This portfolio was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The primary and only contributer to this is Jacob Prudent [GitHub](http://github.com/prudentj)
+
 ## Available Scripts
 
 In the project directory, you can run:
