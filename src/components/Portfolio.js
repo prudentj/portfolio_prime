@@ -24,7 +24,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 
 //Repeated Tailwind
 const CardGen =
-	'bg-black text-white md:w-2/3 flex flex-col relative justify-center py-10 px-10 lg:px-20 border-solid border border-primary';
+	'bg-black text-white md:w-2/3 flex flex-col relative justify-center py-10 px-10 lg:px-20 ';
 const ButtonGen =
 	'px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg outline-none';
 const HeaderGen = 'text-4xl text-white';
@@ -105,17 +105,25 @@ const Portfolio = () => {
 						Jacob Prudent
 					</h1>
 					<p className="py-10 text-3xl ">
-						I am a full stack developer, who loves mastering new skills and
-						discovering a challenge
+						Adept with React and Node, I am a full stack developer, who loves mastering new skills and
+						discovering a challenge.
 					</p>
-
-					<button
-						className="px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg outline-none"
-						//I need to write a script to scroll to the first project
-						onClick={executeScroll}
-					>
-						View My Projects
+					<div className="display flex">
+						<button
+							className="px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg outline-none"
+							//I need to write a script to scroll to the first project
+							onClick={executeScroll}
+						>
+							View My Projects
 					</button>
+						{/* <button
+							className="px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg outline-none"
+							//I need to write a script to scroll to the first project
+							onClick={() => { openNavById("AboutMe") }}
+						>
+							About Me
+					</button> */}
+					</div>
 
 
 				</div>
@@ -135,7 +143,7 @@ const Portfolio = () => {
 						<h1 className={HeaderGen} id="project1" >
 							Sorting Hat
 						</h1>
-						<p className="py-10 text-3xl">Lambda Labs project where as a team we met with a stakeholder and built a tech quiz that met his expectations</p>
+						<p className="py-10 text-3xl">Quiz web application to sort prospective tech students into relevant tracks of education.</p>
 						<VisibilitySensor onChange={(onChange, setIViz2)}>
 							<button className={ButtonGen} onClick={() => { openNavById("SortingHat") }}>View My Project</button>
 						</VisibilitySensor>
@@ -155,7 +163,7 @@ const Portfolio = () => {
 
 					<div className={CardGen}>
 						<h1 className={HeaderGen}>African Market Place</h1>
-						<p className=" py-10 text-3xl">A simple small online marketplace for buying and selling wares. </p>
+						<p className=" py-10 text-3xl">A simple small online marketplace for buying and selling wares </p>
 						<VisibilitySensor onChange={(onChange, setIViz4)}>
 							<button className={ButtonGen} onClick={() => { openNavById("Market") }}>View My Project</button>
 						</VisibilitySensor>
@@ -190,7 +198,7 @@ const Portfolio = () => {
 					<div className="flex flex-row justify-between md:z-10  md:w-full px-10 md:px-20 my-2 md:my-5">
 						<a href={Resume}>
 							<img classN
-								ame="logo" src={ResumeLogo} alt="Resume" />
+								className="logo" src={ResumeLogo} alt="Resume" />
 						</a>
 						<a href="https://www.linkedin.com/in/jacobprudent">
 							<img className="logo" src={LinkedInLogo} alt="LinkedIn" />
@@ -206,7 +214,7 @@ const Portfolio = () => {
 						</button>
 
 					</div>
-
+					<a href="https://github.com/prudentj/portfolio_prime"><p>Source for this portfolio</p></a>
 				</div>
 			</section>
 		</div >

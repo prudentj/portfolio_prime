@@ -4,6 +4,7 @@ import Portfolio from './components/Portfolio';
 import SortingHat from './components/SortingHat'
 import GameOfLife from './components/GameOfLife';
 import Market from './components/Market';
+import AboutMe from './components/AboutMe';
 function App() {
 	return (
 		<>
@@ -11,6 +12,7 @@ function App() {
 			<SortingHat />
 			<GameOfLife />
 			<Market />
+			<AboutMe />
 		</>
 	);
 }
