@@ -1,21 +1,19 @@
 import React from 'react';
 import Photo from './img/Heart2.png'
+import closeOverlay from '../utilities/closeOverlay'
+
 const GameOfLife = () => {
 
     const ButtonGen =
         'px-1 py-2 md:py-4 m-6 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white w-full md:w-1/3 lg:w-1/3 text-lg outline-none';
     /* Close when someone clicks on the "x" symbol inside the overlay */
-    function closeOverlay() {
-        document.getElementById("GameOfLife").style.width = "0%";
-        document.body.className = "overflow-x-hidden overflow-y-scroll";
-    }
     return (
         <div id="GameOfLife" className="h-full transBackground w-0 fixed z-20 left-0 top-0 overflow-x-hidden duration-500 flex justify-center align-center">
 
             {/* <!-- Button to close the overlay navigation --> */}
             <div className="max-h-screen">
                 <div className="flex flex-col md:flex md:flex-row md:flex-no-wrap my-1 mx-1">
-                    <button className="absolute top-0 right-0 p-5 text-6xl text-white outline-none z-30" onClick={closeOverlay}>&times;</button>
+                    <button className="absolute top-0 right-0 p-5 text-6xl text-white outline-none z-30" onClick={() => closeOverlay("GameofLife")}>&times;</button>
                     <a href="https://github.com/Lambda-School-Labs/sorting-hat-fe" className="w-0 lg:w-1/3 max-screen object-cover object-center bg-black">
                         <img
                             src={Photo}
