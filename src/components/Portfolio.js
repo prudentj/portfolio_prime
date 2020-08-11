@@ -116,13 +116,13 @@ const Portfolio = () => {
 						>
 							View My Projects
 					</button>
-						{/* <button
+						<button
 							className="px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg outline-none"
 							//I need to write a script to scroll to the first project
 							onClick={() => { openNavById("AboutMe") }}
 						>
 							About Me
-					</button> */}
+					</button>
 					</div>
 
 

@@ -29,15 +29,20 @@ const AboutMe = () => {
 
                     <div className="bg-black text-white lg:w-2/3 flex flex-col justify-center py-10 px-20 ">
                         <h1 className='text-4xl text-white bold' id="project1" >
-                            Sorting Hat
+                            About Me
 						</h1>
-                        <p className="py-10 text-2xl">Tech Sorting Hat is a questionnaire application for suggesting possible
-                    technology fields that the user might find interesting. <br /><br />
-                    Following an agile product cycle, over four weeks our team met all the objectives set out by our stakeholders.
-                    Our team was comprised of several full stack engineers and  UX designers.
-                    Serving primarily as one the teams frontend engineers, I assisted in the pixel perfect implementation of our UX Designer's vision.
-                    I using responsive techniques I saw that the sight looked excellent on all screen sizes</p>
-                        <div><strong>React</strong>&nbsp; · &nbsp;<strong>Redux</strong>&nbsp; · &nbsp;<strong>Express</strong> + <strong>Knex</strong>&nbsp; · &nbsp;<strong>NodeJS</strong> + <strong>Postgres</strong>&nbsp; · &nbsp;<strong>Jest</strong>&nbsp; · &nbsp;<strong>Cypress</strong>&nbsp; · &nbsp;<strong>Tailwind.css</strong>&nbsp; · &nbsp;<strong>AWS Amplify</strong> </div>
+                        <p className="py-10 text-2xl"> I am a web developer who loves working in Javascript and Python.
+                        I am always looking for an excuse to pick up a new framework or language. Recently I have been working on this portfolio,
+                        which is built using Tailwind and React. I strive to use responsive techniques to make my work excellent on all screen sizes</p>
+                        <div><strong>Javascript</strong>&nbsp; · &nbsp;<strong>NodeJS</strong>&nbsp;
+                        · &nbsp;<strong>React</strong> &nbsp; ·  &nbsp; <strong>Knex</strong>&nbsp;
+                        · &nbsp; <strong>SQLite3</strong>&nbsp;
+                        · &nbsp;<strong>Jest</strong>&nbsp; · &nbsp;<strong>HTML/CSS</strong>&nbsp;
+                        · &nbsp;<strong>Tailwind.css</strong>&nbsp;
+                        · &nbsp;<strong>LESS</strong>&nbsp; · &nbsp;<strong> Global State Management</strong>&nbsp;
+                        · &nbsp;<strong>Material-UI</strong>&nbsp; · &nbsp;<strong>Git</strong>&nbsp;
+                        · &nbsp;<strong>Express</strong>&nbsp;
+                        · &nbsp;<strong>AWS Amplify</strong> · &nbsp;<strong>Heroku</strong>&nbsp; </div>
                         <div className="flex-row w-full justify-evenly">
                             <a href="https://www.sortinghat.tech/"
                                 target="_blank"
