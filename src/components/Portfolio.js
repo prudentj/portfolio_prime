@@ -1,26 +1,18 @@
 //Libraries and Components
 import React, { useRef, useEffect, useState } from 'react';
-import Contact from './Contact';
+import openOverlay from '../utilities/openOverlay';
+import ContactNav from './ContactNav';
 
 //Images
 import Zebra from './img/zebrastripes.jpg';
 import WhiteCat from './img/whitecat.jpg';
 import Wall from './img/whitewall.jpg';
-import Resume from './img/Resume.pdf';
-
-
-//Icons
-import TwitterLogo from './icons/twitter.svg'
-import GithubLogo from './icons/github.svg'
-import LinkedInLogo from './icons/linkedin.svg'
-import ResumeLogo from './icons/paperclip.svg'
-import EmailLogo from './icons/email.svg'
-
 
 //Animations
 import { TweenMax, Power1 } from 'gsap';
+import gsaper from '../utilities/gsaper';
 import VisibilitySensor from 'react-visibility-sensor';
-//Visibility Sensor seems to have a conflict with GSAP Where the two fight and neither works I can place the sensor on something near by though which can help
+//Visibility Sensor seems to have a conflict with GSAP Where the two fight and neither works. I can place the sensor on something near by though which can help
 
 //Repeated Tailwind
 const CardGen =
@@ -39,14 +31,9 @@ const Portfolio = () => {
 	const [iViz4, setIViz4] = useState(false);
 
 	//State for rendering subcomponents
-	const [showContact, setShowContact] = useState(false)
+
 
 	//Functions for rendering subcomponents
-
-	function openNavById(el) {
-		document.getElementById(el).style.width = "100%";
-		document.body.className = "overflow-hidden";
-	}
 
 	let mainHeading = useRef(null);
 	let image2 = useRef(null);
@@ -62,14 +49,7 @@ const Portfolio = () => {
 		callback(isVisible);
 	}
 
-	function gsaper(state, imageRef) {
-		if (state) {
-			TweenMax.to(imageRef, 0.8, {
-				opacity: 1,
-				ease: Power1.easeOut,
-			});
-		}
-	}
+
 	useEffect(() => {
 		gsaper(true, mainHeading);
 	}, []);
@@ -116,13 +96,13 @@ const Portfolio = () => {
 						>
 							View My Projects
 					</button>
-						<button
+						{/* <button
 							className="px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg outline-none"
 							//I need to write a script to scroll to the first project
-							onClick={() => { openNavById("AboutMe") }}
+							onClick={() => { openOverlay("AboutMe") }}
 						>
 							About Me
-					</button>
+					</button> */}
 					</div>
 
 
@@ -145,7 +125,7 @@ const Portfolio = () => {
 						</h1>
 						<p className="py-10 text-3xl">Quiz web application to sort prospective tech students into relevant tracks of education.</p>
 						<VisibilitySensor onChange={(onChange, setIViz2)}>
-							<button className={ButtonGen} onClick={() => { openNavById("SortingHat") }}>View My Project</button>
+							<button className={ButtonGen} onClick={() => { openOverlay("SortingHat") }}>View My Project</button>
 						</VisibilitySensor>
 					</div>
 				</div>
@@ -165,7 +145,7 @@ const Portfolio = () => {
 						<h1 className={HeaderGen}>African Market Place</h1>
 						<p className=" py-10 text-3xl">A simple small online marketplace for buying and selling wares </p>
 						<VisibilitySensor onChange={(onChange, setIViz4)}>
-							<button className={ButtonGen} onClick={() => { openNavById("Market") }}>View My Project</button>
+							<button className={ButtonGen} onClick={() => { openOverlay("Market") }}>View My Project</button>
 						</VisibilitySensor>
 					</div>
 				</div>
@@ -185,38 +165,13 @@ const Portfolio = () => {
 						<h1 className={HeaderGen}>Conway's Game of Life</h1>
 						<p className="py-10 text-3xl">Emergent order from simple rules. Conway's game of life show's the marvel of cellular automatons</p>
 						<VisibilitySensor onChange={(onChange, setIViz3)}>
-							<button className={ButtonGen} onClick={() => { openNavById("GameOfLife") }}>View My Project</button>
+							<button className={ButtonGen} onClick={() => { openOverlay("GameOfLife") }}>View My Project</button>
 						</VisibilitySensor>
 					</div>
 				</div>
 			</section>
+			<ContactNav />
 
-			<section className="flex justify-center p-10 align-middle bg-black">
-				<div className="w-full max-w-lg">
-					<h2 className="text-4xl text-center text-white">Contact</h2>
-					{showContact ? <Contact className="" /> : null}
-					<div className="flex flex-row justify-between md:z-10  md:w-full px-10 md:px-20 my-2 md:my-5">
-						<a href={Resume}>
-							<img classN
-								className="logo" src={ResumeLogo} alt="Resume" />
-						</a>
-						<a href="https://www.linkedin.com/in/jacobprudent">
-							<img className="logo" src={LinkedInLogo} alt="LinkedIn" />
-						</a>
-						<a href="https://github.com/prudentj">
-							<img className="logo" src={GithubLogo} alt="GitHub" />
-						</a>
-						<a href="https://twitter.com/JacobPrudent">
-							<img className="logo" src={TwitterLogo} alt="Twitter" />
-						</a>
-						<button onClick={() => { showContact ? setShowContact(false) : setShowContact(true) }}>
-							<img className="logo" src={EmailLogo} alt="Email" />
-						</button>
-
-					</div>
-					<a href="https://github.com/prudentj/portfolio_prime"><p>Source for this portfolio</p></a>
-				</div>
-			</section>
 		</div >
 	);
 };
