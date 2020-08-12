@@ -1,6 +1,5 @@
 import React from 'react';
 import closeOverlay from '../utilities/closeOverlay'
-import GameOfLife from './GameOfLife';
 
 const Overlay = props => {
 
