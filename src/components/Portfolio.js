@@ -17,8 +17,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 //Repeated Tailwind
 const CardGen =
 	'bg-black text-white md:w-2/3 flex flex-col relative justify-center py-10 px-10 lg:px-20 ';
-const ButtonGen =
-	'px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg outline-none';
+const ButtonGen = 'px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg outline-none';
 const HeaderGen = 'text-4xl text-white';
 
 //Scroll Function
@@ -175,5 +174,4 @@ const Portfolio = () => {
 		</div >
 	);
 };
-
 export default Portfolio;
