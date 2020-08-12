@@ -6,7 +6,7 @@ const ButtonGen = props => {
         <a href={props.link}
             target="_blank"
             rel="noopener noreferrer">
-            <button className={ButtonGenStyle}>Source Code</button>
+            <button className={ButtonGenStyle}>{props.buttonText}</button>
         </a>
     )
 }

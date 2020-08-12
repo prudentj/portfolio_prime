@@ -8,6 +8,7 @@ const GameOfLife = () => {
             overlayId="GameOfLife"
             photo={Photo}
             liveProjLink={"https://conway-game-of-life.now.sh/"}
+            photoAltText="A game board, in the shape of a heart."
             sourceCodeLink={"https://github.com/prudentj/conway_game_of_life"}
             title={"Game Of Life"}
             description={<>Conway's Game of Life, a simulation made of very simple rules, exemplifies how very complex systems emerge from simple rule sets. <br /> <br/> Built for a Lambda School Computer Science build week, this project allowed me to practice writing a simple algorithm to meet an end goal. This is a desktop only application. </>}

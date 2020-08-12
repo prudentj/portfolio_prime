@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Contact = () => {
+const Contact = props => {
     //State
     const [username, setUsername] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -37,7 +37,7 @@ const Contact = () => {
 
 
     return (
-        <form className="w-full max-w-lg">
+        <form id={props.overlayId} className="w-full max-w-lg ease-in-out my-5">
             <p className="text-xl text-center text-white">Email: jake.prudent@gmail.com</p>
             <p className="text-2xl text-center text-white my-2 py-2 border-t-2 ">or</p>
             <div className="flex flex-wrap mb-6 -mx-3">
