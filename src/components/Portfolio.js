@@ -64,7 +64,7 @@ const Portfolio = () => {
 				<ProjectCard
 					pic={WhiteCat}
 					picOnLeft={false}
-					picAlt="Vines growing on a white wall"
+					picAlt="Mischievous Magical Cat"
 					cardTitle="Sorting Hat"
 					cardDesc="Quiz web application to sort prospective tech students into relevant tracks of education."
 					overlayName="SortingHat"
@@ -74,7 +74,7 @@ const Portfolio = () => {
 				<ProjectCard
 					pic={Zebra}
 					picOnLeft={true}
-					picAlt="Vines growing on a white wall"
+					picAlt="Zebra Hide Closeup"
 					cardTitle="Africa Connected"
 					cardDesc="A simple small online marketplace for posting and viewing wares"
 					overlayName="Market"
