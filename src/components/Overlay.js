@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import closeOverlay from '../utilities/closeOverlay'
+import ButtonGen from './ButtonGen'
 
 const Overlay = props => {
 
-    const ButtonGen =
-        'px-1 py-2 md:py-4 m-6 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white w-full md:w-1/3 lg:w-1/3 text-lg outline-none';
+
     /* Close when someone clicks on the "x" symbol inside the overlay */
 
     return (
@@ -30,18 +30,8 @@ const Overlay = props => {
                         <p className="py-10 text-2xl">{props.description}</p>
                         <div>{props.techs}</div>
                         <div className="flex-row w-full justify-evenly">
-                            <a href={props.liveProjLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <button className={ButtonGen}>Live Project</button>
-                            </a>
-
-                            <a href={props.sourceCodeLink}
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                <button className={ButtonGen}>Source Code</button>
-                            </a>
+                            <ButtonGen link={props.liveProjLink} />
+                            <ButtonGen link={props.sourceCodeLink} />
                         </div>
                     </div>
                 </div>

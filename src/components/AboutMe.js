@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PhonePhoto from './img/TechSortingHat.png';
 import closeOverlay from '../utilities/closeOverlay';
 const AboutMe = () => {
@@ -25,24 +25,7 @@ const AboutMe = () => {
                         <p className="py-10 text-2xl"> I am a web developer who loves working in Javascript and Python.
                         I am always looking for an excuse to pick up a new framework or language. Recently I have been working on this portfolio,
                         which is built using Tailwind and React. I strive to use responsive techniques to make my work excellent on all screen sizes</p>
-                        <div>
-                            <strong>Javascript</strong>&nbsp;
-                            · &nbsp;<strong>NodeJS</strong>&nbsp;
-                            · &nbsp;<strong>React</strong> &nbsp;
-                            · &nbsp; <strong>Knex</strong>&nbsp;
-                            · &nbsp; <strong>SQLite3</strong>&nbsp;
-                            · &nbsp;<strong>Jest</strong>&nbsp;
-                            · &nbsp;<strong>HTML/CSS</strong>&nbsp;
-                            · &nbsp;<strong>Tailwind.css</strong>&nbsp;
-                            · &nbsp;<strong>LESS</strong>&nbsp;
-                            · &nbsp;<strong>UseContext</strong>&nbsp;
-                            · &nbsp;<strong>Redux</strong>&nbsp;
-                            · &nbsp;<strong>Material-UI</strong>&nbsp;
-                            · &nbsp;<strong>Git</strong>&nbsp;
-                            · &nbsp;<strong>Express</strong>&nbsp;
-                            · &nbsp;<strong>AWS Amplify</strong>
-                            · &nbsp;<strong>Heroku</strong>&nbsp;
-                        </div>
+                        <p><strong>Javascript</strong>&nbsp; · &nbsp;<strong>NodeJS</strong>&nbsp; · &nbsp;<strong>React</strong> &nbsp; · &nbsp; <strong>Knex</strong>&nbsp; · &nbsp; <strong>SQLite3</strong>&nbsp; · &nbsp;<strong>Jest</strong>&nbsp; · &nbsp;<strong>HTML/CSS</strong>&nbsp; · &nbsp;<strong>Tailwind.css</strong>&nbsp; · &nbsp;<strong>LESS</strong>&nbsp; · &nbsp;<strong>UseContext</strong>&nbsp; · &nbsp;<strong>Redux</strong>&nbsp; · &nbsp;<strong>Material-UI</strong>&nbsp; · &nbsp;<strong>Git</strong>&nbsp; · &nbsp;<strong>Express</strong>&nbsp; · &nbsp;<strong>AWS Amplify</strong> · &nbsp;<strong>Heroku</strong>&nbsp;</p>
                     </div>
                 </div>
             </div>
