@@ -7,6 +7,7 @@ const Market = () => {
         <Overlay
             overlayId="Market"
             photo={Photo}
+            photoAltText="Zebra with Intense Eyes"
             liveProjLink={"https://front-end-mu.now.sh/"}
             sourceCodeLink={"https://github.com/African-Market-Place-2/front-end"}
             title={"Africa Connected"}

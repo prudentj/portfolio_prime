@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import ContactNav from './ContactNav';
 import ProjectCard from './ProjectCard';
+import openOverlay from "../utilities/openOverlay"
 //Images
 import Zebra from './img/zebrastripes.jpg';
 import WhiteCat from './img/whitecat.jpg';
@@ -20,7 +21,7 @@ const Portfolio = () => {
 	}, []);
 	return (
 		<div className="bg-primary ">
-			<section className="sm:flex-col md:flex-row-reverse md:h-screen md:relative">
+			<section className="sm:flex-col lg:flex-row-reverse lg:h-screen lg:relative">
 				<img
 					className="md:z-0 max-full relative object-cover object-center md:h-screen md:max-h-screen lg:absolute lg:right-0"
 					src="https://images.unsplash.com/photo-1578836537282-3171d77f8632?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
@@ -50,13 +51,13 @@ const Portfolio = () => {
 						>
 							View My Projects
 					</button>
-						{/* <button
+						<button
 							className="px-1 py-2 md:py-4 mx-1 border border-white text-white bg-transparent rounded-full hover:bg-primary hover:text-white lg:w-1/2 text-lg outline-none"
 							//I need to write a script to scroll to the first project
 							onClick={() => { openOverlay("AboutMe") }}
 						>
 							About Me
-					</button> */}
+					</button>
 					</div>
 				</div>
 			</section>
