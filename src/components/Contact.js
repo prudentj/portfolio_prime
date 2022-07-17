@@ -39,7 +39,7 @@ const Contact = props => {
     return (
         <form id={props.overlayId} className="w-full max-w-lg ease-in-out my-5">
             <p className="text-xl text-center text-white">Email: jake.prudent@gmail.com</p>
-            <p className="text-2xl text-center text-white my-2 py-2 border-t-2 ">or</p>
+            {/* <p className="text-2xl text-center text-white my-2 py-2 border-t-2 ">or</p>
             <div className="flex flex-wrap mb-6 -mx-3">
                 <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
                     <label
@@ -86,13 +86,12 @@ const Contact = props => {
                     rows="6"
                     onChange={handleMessageChange}
                 ></textarea>
-                {/* "w-full shadow-inner p-4 border-0 my-5 "*/}
             </div>
             <button className="px-4 py-2 font-bold text-white bg-transparent border border-white rounded-full shadow focus:shadow-outline focus:outline-none hover:bg-primary hover:text-white"
                 onClick={handelSubmit}
             >
                 Send Message
-			</button>
+			</button> */}
         </form>
     )
 }

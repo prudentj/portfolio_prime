@@ -8,7 +8,7 @@ const Overlay = props => {
             <div className="max-h-screen">
                 <div className="flex flex-col md:flex md:flex-row md:flex-no-wrap my-1 mx-1">
                     <button className="absolute top-0 right-0 p-5 text-6xl text-white outline-none z-30" onClick={() => closeOverlay(props.overlayId)}>&times;</button>
-                    <a href={props.liveProjLink} className="w-0 lg:w-1/3 max-screen object-cover object-center bg-black">
+                    <a href={props.liveProjLink} className="w-0 lg:w-1/3 max-screen object-cover object-center bg-black flex flex-col justify-center">
                         <img src={props.photo} alt={props.photoAltText} className="max-screen" />
                     </a>
                     <div className="bg-black text-white lg:w-2/3 flex flex-col justify-center py-10 px-20">

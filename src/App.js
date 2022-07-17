@@ -7,13 +7,14 @@ import Market from './components/Market';
 import AboutMe from './components/AboutMe';
 function App() {
 	return (
-		<>
+		<div className='scrollbar'>
 			<Portfolio />
 			<SortingHat />
 			<GameOfLife />
 			<Market />
 			<AboutMe />
-		</>
+			
+		</div>
 	);
 }
 

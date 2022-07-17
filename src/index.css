@@ -1,3 +1,9 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +16,31 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+/* Tool bars attempts */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #0F1014;
+  /* margin-top: 5px;
+  margin-bottom: 10px; */
+}
+
+
+::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: black;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0F1014;
+  border-radius: 100vh;
+  border: 1px solid white;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0F1014;
 }
