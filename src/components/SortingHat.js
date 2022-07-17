@@ -7,7 +7,7 @@ const SortingHat = () => {
             overlayId="SortingHat"
             photo={Photo}
             photoAltText="Screenshot of our Sorting hat application in mobile"
-            liveProjLink={"sorting-hat-eyub1vwuy-jakeprudent1.vercel.app"}
+            liveProjLink={"https://sorting-hat-eyub1vwuy-jakeprudent1.vercel.app"}
             sourceCodeLink={"https://github.com/Lambda-School-Labs/sorting-hat-fe"}
             title={"Sorting Hat"}
             description={<> Tech Sorting Hat is a questionnaire application for suggesting possible
