@@ -37,7 +37,7 @@
 .pipeline span { color: var(--muted); font-size: 0.875rem; }
 .js-reveal .ex-pipe li::before { transition: background-color 0.3s, box-shadow 0.3s; transition-delay: calc(var(--d) * 1ms); }
 .js-reveal .ex-pipe li::after { transition: transform 0.4s ease; transition-delay: calc(var(--d) * 1ms + 200ms); }
-.pipeline li:nth-child(1) { --d: 200; } .pipeline li:nth-child(2) { --d: 700; } .pipeline li:nth-child(3) { --d: 1200; }
+.pipeline li:nth-child(1) { --d: 200; } .pipeline li:nth-child(2) { --d: 700; } .pipeline li:nth-child(3) { --d: 1200; } .pipeline li:nth-child(4) { --d: 1700; } .pipeline li:nth-child(5) { --d: 2200; }
 .js-reveal .ex-pipe:not(.in) li::before { background: var(--rule); box-shadow: 0 0 0 3px transparent; }
 .js-reveal .ex-pipe:not(.in) li::after { transform: scaleY(0); }
 

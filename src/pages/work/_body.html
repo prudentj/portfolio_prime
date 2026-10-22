@@ -51,7 +51,7 @@
       <article class="row reveal">
         <div class="row-side"><span class="role led">Led</span><span class="when">Apr–Jun 2026</span></div>
         <div class="row-main">
-          <h3>Replacing WooCommerce with an in-house commerce layer</h3>
+          <h3>Building an in-house commerce platform</h3>
           <dl class="facts">
             <div><dt>Context</dt><dd>The storefront ran on WooCommerce behind the scenes, and subscription renewals depended on its webhooks. The company wanted it gone without breaking live clinics.</dd></div>
             <div><dt>What I did</dt><dd>I specified the epic: a BullMQ renewal engine with its own scheduler, worker, failure alerts and daily recovery sweep, plus a way to migrate each clinic. One engineer on my team built most of it. I wrote the first client's subscription migration script and a migration playbook with import templates and a no-write dry run.</dd></div>

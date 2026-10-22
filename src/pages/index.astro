@@ -14,14 +14,14 @@ const figures = [
 const owns = [
   { k: 'Commerce', v: 'Storefront, one-page checkout and configurable patient journeys for clinic brands.' },
   { k: 'Payments and billing', v: 'Stripe, digital wallets, a new processor integration, subscription renewals and invoicing for clinic tenants.' },
-  { k: 'Production', v: 'Deploys, the dev → staging → production release process, incidents and data repairs.' },
+  { k: 'Production', v: 'Deploys, incidents and production data repairs.' },
   { k: 'Security', v: 'Technical lead for the company’s first SOC 2 Type II audit and its penetration test.' },
   { k: 'Team', v: 'Six offshore engineers and QA. I write the specs, plan the sprints, and review and merge the code.' },
 ];
 const principles = [
   { h: 'Specify before building', p: 'Product requirements become tickets the team can build without coming back with questions.', eg: '27 product requirement documents turned into epics this year.' },
   { h: 'Verify everything', p: 'Every number I report comes from a script I can rerun, never from a summary.', eg: 'A suspected cross-client data leak was disproved from delivery records before anyone escalated.' },
-  { h: 'Own production', p: 'Back up, dry run, guarded write, verify, keep a revert.', eg: 'Introduced a staging environment and a promotion rule when releases started affecting clients.' },
+  { h: 'Own production', p: 'Back up, dry run, guarded write, verify, keep a revert.', eg: 'A suspected incident gets evidence before it gets a fix: the blast radius is measured, not guessed.' },
   { h: 'AI writes, I answer for it', p: 'I write most of my code with Claude Code. I decide what gets built, review every change and own what ships.', eg: 'I also practise without it, so the underlying skills stay sharp.' },
 ];
 ---
@@ -61,9 +61,9 @@ const principles = [
         <h2 id="now-h"><span class="sec" aria-hidden="true">§1</span><Swap b="Now" p="Currently" /></h2>
       </div>
       <div class="now-copy">
-        <p>I led our migration off a WooCommerce plugin onto native software, and we’re now building the layer above it: a client-facing API, MCP servers and rebuilt patient intake. Everything our partners need to launch their own white-labelled telehealth service, end to end.</p>
+        <p>I lead the build-out of Telegra Commerce. Before, the platform relied on a WooCommerce plugin; now it has its own end-to-end e-commerce solution, with tracking from storefront to fulfilment. We’re now building the layer above it: a client-facing API, MCP servers and rebuilt patient intake. Everything our partners need to launch their own white-labelled telehealth service, end to end.</p>
         <p>My work has shifted from writing features to defining them and reviewing what ships. With a team moving at this pace, clear scoping and a firm quality bar matter more than they used to, especially in a regulated space where mistakes reach patients.</p>
-        <p class="stack-line">TypeScript · React · Node</p>
+        <p class="stack-line">MERN stack (MongoDB, Express, React, Node) · TypeScript</p>
       </div>
       <ul class="owns">
         {owns.map((o) => <li><b>{o.k}</b><span>{o.v}</span></li>)}
