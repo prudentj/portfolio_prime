@@ -2,7 +2,9 @@
 import '../styles/case-study.css';
 import '../styles/site.css';
 import '../styles/exhibits.css';
+import '../styles/timeline.css';
 import '../styles/party.css';
+import '../styles/print.css';
 import ModeSwitch from '../components/ModeSwitch.astro';
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
@@ -28,16 +30,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <!-- Applies the saved mode before first paint (no flash), and only hides reveal targets when JS and motion are available. -->
     <script is:inline>
       (function () {
-        var r = document.documentElement, m = null;
-        try { m = localStorage.getItem('jp-mode'); } catch (e) {}
+        var r = document.documentElement, m = null, c = null;
+        r.setAttribute('data-js', '');
+        try { m = localStorage.getItem('jp-mode'); c = localStorage.getItem('jp-cv'); } catch (e) {}
+        var cq = /[?&]cv=(concise|expanded)/.exec(location.search);
+        if (cq) c = cq[1];
+        r.setAttribute('data-cv', c === 'expanded' ? 'expanded' : 'concise');
         var q = /[?&]mode=(party|business)/.exec(location.search);
         if (q) m = q[1];
         if (m === 'party') {
           r.setAttribute('data-mode', 'party');
-          var l = document.createElement('link');
-          l.rel = 'stylesheet'; l.id = 'party-fonts';
-          l.href = 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap';
-          document.head.appendChild(l);
         }
         if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
           r.classList.add('js-reveal');
@@ -48,7 +50,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <div class="topbar">
-      <a class="rev" href="/"><span class="b">Rev. 2026.10<span class="rev-extra"> · Record JP-001</span></span><span class="p">JP · the remix</span></a>
+      <a class="rev" href="/"><span class="b">Rev. 2026.10<span class="rev-extra"> · Record JP-001</span></span><span class="p">flag: party_mode = true</span></a>
       <ModeSwitch />
     </div>
     <slot />

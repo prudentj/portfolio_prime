@@ -24,7 +24,7 @@
 .diff span { display: block; white-space: pre; }
 .diff .del { color: #A3322A; }
 .diff .add { color: var(--merged); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-mode="party"]) .diff .del { color: #F08A80; } }
+@media screen and (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-mode="party"]) .diff .del { color: #F08A80; } }
 :root[data-theme="dark"]:not([data-mode="party"]) .diff .del { color: #F08A80; }
 .comment { font-size: 0.875rem; border-left: 2px solid var(--merged); padding-left: 0.625rem; }
 

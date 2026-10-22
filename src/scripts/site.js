@@ -1,28 +1,42 @@
-// The only client JS: mode switch, scroll reveals, and (party mode only) a Game of Life background.
+// The only client JS: mode switch, CV view switch, scroll reveals, and (party mode only) a Game of Life background.
 const root = document.documentElement;
-const PARTY_FONTS = 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap';
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const isParty = () => root.dataset.mode === 'party';
+const save = (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* storage blocked: still works for this visit */ } };
 
-/* ---------- Mode switch ---------- */
-const switches = document.querySelectorAll('[data-mode-switch]');
-function sync() { switches.forEach((b) => b.setAttribute('aria-pressed', String(isParty()))); }
+/* ---------- Business / Party ---------- */
+const modeSwitches = document.querySelectorAll('[data-mode-switch]');
 function setMode(mode) {
-  if (mode === 'party') {
-    if (!document.getElementById('party-fonts')) {
-      const l = document.createElement('link');
-      l.rel = 'stylesheet'; l.id = 'party-fonts'; l.href = PARTY_FONTS;
-      document.head.appendChild(l);
-    }
-    root.dataset.mode = 'party';
-  } else {
-    delete root.dataset.mode;
-  }
-  try { localStorage.setItem('jp-mode', mode); } catch (e) { /* storage blocked: mode still works for this visit */ }
+  if (mode === 'party') root.dataset.mode = 'party'; else delete root.dataset.mode;
+  save('jp-mode', mode);
   sync();
   life.update();
 }
-switches.forEach((b) => b.addEventListener('click', () => setMode(isParty() ? 'business' : 'party')));
+modeSwitches.forEach((b) => b.addEventListener('click', () => setMode(isParty() ? 'business' : 'party')));
+
+/* ---------- Concise / Expanded CV ---------- */
+const cvSwitches = document.querySelectorAll('[data-cv-switch]');
+const isExpanded = () => root.dataset.cv === 'expanded';
+function setCv(view, remember = true) {
+  root.dataset.cv = view;
+  if (remember) save('jp-cv', view);
+  sync();
+}
+cvSwitches.forEach((b) => b.addEventListener('click', () => setCv(isExpanded() ? 'concise' : 'expanded')));
+document.querySelectorAll('[data-cv-open]').forEach((a) => a.addEventListener('click', (e) => {
+  const cv = document.getElementById('cv');
+  if (!cv) return;
+  e.preventDefault();
+  setCv('expanded');
+  cv.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth' });
+  history.replaceState(null, '', '#cv');
+}));
+document.querySelectorAll('[data-print]').forEach((b) => b.addEventListener('click', () => window.print()));
+
+function sync() {
+  modeSwitches.forEach((b) => b.setAttribute('aria-pressed', String(isParty())));
+  cvSwitches.forEach((b) => b.setAttribute('aria-pressed', String(isExpanded())));
+}
 
 /* ---------- Scroll reveals (progressive: content is visible unless .js-reveal is set) ---------- */
 window.__jpReveal = true;
@@ -37,7 +51,7 @@ if (root.classList.contains('js-reveal')) {
 
 /* ---------- Game of Life (party mode only; paused when hidden or reduced motion) ---------- */
 const life = (() => {
-  const CELL = 14, TICK = 160, hasLife = !!document.querySelector('[data-life]');
+  const CELL = 16, TICK = 170, hasLife = !!document.querySelector('[data-life]');
   let canvas, ctx, cols, rows, grid, next, raf = 0, last = 0, gen = 0, gliders = 0;
   const counter = document.querySelector('[data-glider-count]');
 
@@ -70,7 +84,7 @@ const life = (() => {
     for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
       if (!grid[y * cols + x]) continue;
       ctx.fillStyle = (x + y) % 2 ? a : b;
-      ctx.fillRect(x * CELL + 2, y * CELL + 2, CELL - 4, CELL - 4);
+      ctx.fillRect(x * CELL + 3, y * CELL + 3, CELL - 5, CELL - 5);
     }
   }
   function loop(t) {

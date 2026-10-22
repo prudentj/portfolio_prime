@@ -12,7 +12,7 @@
   --body: "Source Serif 4", Georgia, "Times New Roman", serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
-@media (prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #0E1215; --ink: #E7EBEE; --muted: #98A2AD; --rule: #27313A;
     --merged: #5FCB9C; --merged-soft: #15302A; --panel: #151B20;

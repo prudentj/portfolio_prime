@@ -1,0 +1,100 @@
+---
+// Career timeline: concise = résumé (role, org, dates, one line); expanded = full CV (bullets, stack, scope).
+// Facts: Jacob's 2020 résumé and the verified record on this site. Employer deliberately unnamed (stage 1).
+import Swap from './Swap.astro';
+type Job = { when: string; role: string; org: string; gist: string; bullets?: string[]; stack?: string; link?: string; draft?: boolean; tbc?: boolean; hash: string };
+const jobs: Job[] = [
+  {
+    hash: 'a4f1c2e', when: 'Apr 2026 – present', role: 'Team Lead, Commerce Platform', org: 'US telehealth startup',
+    gist: 'Lead a six-person offshore team building commerce, payments and billing for a telehealth platform, and own what reaches production.',
+    bullets: [
+      'Lead six offshore engineers and QA: write the specs, plan the sprints, and review and merge the code. 790+ tickets written, including 59 epics; 27 product requirement documents turned into epics.',
+      '451 pull requests merged of 622 opened, across 12 repositories; 270+ reviewed for the team (14 Apr – 22 Oct 2026).',
+      'Led the replacement of WooCommerce with an in-house commerce layer and renewal engine: 29 of 30 tickets delivered and the first client migrated.',
+      'Led the one-page checkout: split into 38 tickets, reviewed and released; review caught four release blockers, one of them a security issue.',
+      'Built a reprice-and-reissue tool for closed billing periods on Stripe Billing, so corrections no longer need a manual reissue.',
+      'Designed identity-verification billing and a 365-day reuse window; 97% of the client’s first 680 attempts verified.',
+      'Reconciled a client’s conversion funnel against their own data, restoring 4,870 missing events; figures matched to within 0.5%.',
+      'Technical lead for the company’s first SOC 2 Type II audit and its penetration test; wrote the penetration-test fixes across eleven repositories (in review) and ran a Node.js 24 upgrade across six.',
+      'Introduced a staging environment and a dev → staging → production promotion rule; run deploys, incidents and production data repairs.',
+    ],
+    stack: 'Node.js · TypeScript · React · Next.js · MongoDB · Redis · BullMQ · Stripe · AWS · Claude Code',
+    link: '/work/commerce',
+  },
+  { hash: '0000000', when: '2020 – Mar 2026', role: '[to fill in — confirm with Jacob]', org: '[organisation]', gist: '[One line on the role.]', draft: true },
+  {
+    hash: '7c3e9b1', when: 'Jun 2020 – [end date TBC]', role: 'Section Lead', org: 'Lambda School (remote)',
+    gist: 'Mentored eleven team leads, each overseeing 5–12 students, in a full-stack web development programme.',
+    bullets: [
+      'Mentored eleven team leads, each overseeing 5–12 students.',
+      'Gave troubleshooting support across student applications.',
+      'Guided students through Lambda Labs.',
+    ],
+  },
+  {
+    hash: '3b8d0f4', when: 'Sep 2018 – Sep 2019', role: 'Microbiologist', org: 'Tyson Foods, Richland, WA',
+    gist: 'Tested product and environmental samples for food-borne pathogens.',
+    bullets: [
+      'Tested product and environmental samples for food-borne pathogens (E. coli O157:H7, Listeria).',
+      'Recorded results in the laboratory information system and escalated positives to QC and plant management.',
+    ],
+  },
+  {
+    hash: 'e21a6d9', when: 'Aug 2017 – Aug 2018', role: 'Research Assistant', org: 'Santa Cruz Biotechnology, Ketchum, ID',
+    gist: 'Antibody screening, western blot development and assay design.',
+    bullets: [
+      'Micro-array screening of hybridomas for antibody production.',
+      'Western blot development.',
+      'Assay design and improvement.',
+    ],
+  },
+];
+const education = [
+  { when: '2019 – 2020', what: 'Full-stack web development', where: 'Lambda School' },
+  { when: '2016', what: 'BSc Biochemistry', where: 'Brigham Young University–Idaho' },
+];
+---
+<section id="cv" class="cv" data-file="career.log" aria-labelledby="cv-h">
+  <div class="cv-head">
+    <h2 id="cv-h"><span class="sec" aria-hidden="true">§2</span><Swap b="Career" p="Career log" /></h2>
+    <div class="cv-tools">
+      <button type="button" class="switch cv-switch" data-cv-switch aria-pressed="false" aria-label="Expanded CV">
+        <span class="ms-label ms-b" aria-hidden="true">Concise</span>
+        <span class="ms-track" aria-hidden="true"><span class="ms-knob"></span></span>
+        <span class="ms-label ms-p" aria-hidden="true">Expanded</span>
+      </button>
+      <button type="button" class="print-btn" data-print>Print / save as PDF</button>
+    </div>
+  </div>
+  <p class="p-only cv-joke">cv.pdf was moved to the Trash. This page is the CV now.</p>
+
+  <ol class="timeline">
+    {jobs.map((j) => (
+      <li class:list={['job', { 'job-draft': j.draft }]}>
+        <div class="job-side">
+          <span class="hash" aria-hidden="true">{j.hash}</span>
+          <span class="when">{j.when}</span>
+        </div>
+        <div class="job-main">
+          <h3>{j.role}</h3>
+          <p class="org">{j.org}{j.draft && <span class="label tag-draft">Draft</span>}{j.tbc && <span class="label tag-draft">End date TBC</span>}</p>
+          <p class="gist">{j.gist}</p>
+          {j.bullets && (
+            <div class="cv-more">
+              <ul>{j.bullets.map((b) => <li>{b}</li>)}</ul>
+              {j.stack && <p class="stack">{j.stack}</p>}
+              {j.link && <p class="more"><a href={j.link}>Read the case study →</a></p>}
+            </div>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <div class="edu">
+    <h3 class="label">Education</h3>
+    <ul>
+      {education.map((e) => <li><span class="when">{e.when}</span><span><b>{e.what}</b>, {e.where}</span></li>)}
+    </ul>
+  </div>
+</section>

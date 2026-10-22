@@ -37,7 +37,7 @@
 
 /* ---------- Shared chrome: topbar + mode switch ---------- */
 :root { --grid: rgba(18, 23, 29, 0.055); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --grid: rgba(231, 235, 238, 0.05); } }
+@media screen and (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --grid: rgba(231, 235, 238, 0.05); } }
 :root[data-theme="dark"] { --grid: rgba(231, 235, 238, 0.05); }
 html, body { overflow-x: clip; }
 
@@ -50,14 +50,14 @@ html, body { overflow-x: clip; }
 .rev:hover { color: var(--ink); }
 @media (max-width: 480px) { .rev-extra { display: none; } }
 
-.mode-switch {
+.switch {
   /* Fixed font and size in both modes so the control never moves. */
   font: 600 0.75rem/1 "JetBrains Mono", ui-monospace, Menlo, monospace; letter-spacing: 0.02em;
   display: inline-flex; align-items: center; gap: 0.5rem; flex: none;
   padding: 0.5rem 0.25rem; margin: -0.5rem -0.25rem; background: none; border: 0; border-radius: 4px;
   color: var(--muted); cursor: pointer;
 }
-.mode-switch:focus-visible { outline: 2px solid var(--merged); outline-offset: 2px; }
+.switch:focus-visible { outline: 2px solid var(--merged); outline-offset: 2px; }
 .ms-track {
   width: 2.125rem; height: 1.125rem; border-radius: 999px; border: 1px solid var(--muted);
   position: relative; display: inline-block; transition: background-color 0.2s, border-color 0.2s;
@@ -67,17 +67,23 @@ html, body { overflow-x: clip; }
   background: var(--ink); transition: transform 0.25s cubic-bezier(.3, 1.4, .5, 1);
 }
 .ms-b { color: var(--ink); }
-.mode-switch[aria-pressed="true"] .ms-b { color: var(--muted); }
-.mode-switch[aria-pressed="true"] .ms-p { color: var(--ink); }
-.mode-switch[aria-pressed="true"] .ms-track { background: var(--merged); border-color: var(--merged); }
-.mode-switch[aria-pressed="true"] .ms-knob { transform: translateX(1rem); background: var(--paper); }
-.mode-switch:hover .ms-track { border-color: var(--merged); }
+.switch[aria-pressed="true"] .ms-b { color: var(--muted); }
+.switch[aria-pressed="true"] .ms-p { color: var(--ink); }
+.switch[aria-pressed="true"] .ms-track { background: var(--merged); border-color: var(--merged); }
+.switch[aria-pressed="true"] .ms-knob { transform: translateX(1rem); background: var(--paper); }
+.switch:hover .ms-track { border-color: var(--merged); }
 
 /* Mode-dependent copy and blocks. Business is the default and the no-JS state. */
-.p, .party-only { display: none; }
-:root[data-mode="party"] .b { display: none; }
-:root[data-mode="party"] .p { display: inline; }
-:root[data-mode="party"] .party-only { display: grid; }
+.p, .p-only, .party-only, .print-only { display: none; }
+@media screen {
+  :root[data-mode="party"] .b { display: none; }
+  :root[data-mode="party"] .p { display: inline; }
+  :root[data-mode="party"] .p-only { display: block; }
+  :root[data-mode="party"] .party-only { display: grid; }
+}
+/* Switches only do anything with JS, so they only appear with it. */
+:root:not([data-js]) .switch, :root:not([data-js]) [data-print] { display: none; }
+mark { background: none; color: inherit; }
 
 /* ---------- Business: lab-notebook furniture ---------- */
 main.wrap { position: relative; z-index: 1; padding-top: 2.5rem; }
@@ -102,3 +108,4 @@ h2 .sec { font-family: var(--mono); font-size: 0.75rem; font-weight: 600; color:
 .mark svg { width: 1.25rem; height: 1.25rem; fill: currentColor; flex: none; }
 .mark:hover { color: var(--ink); }
 .js-reveal .mark { transition-delay: calc(var(--i, 0) * 60ms); }
+.hero-text { display: grid; gap: 1.25rem; min-width: 0; }
