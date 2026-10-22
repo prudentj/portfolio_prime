@@ -21,19 +21,16 @@
 .job-main { display: grid; gap: 0.25rem; }
 .job h3 { font-size: 1.125rem; }
 .org { font-family: var(--display); font-weight: 500; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.75rem; }
-.tag-draft { color: var(--merged); border: 1px dashed var(--merged); border-radius: 3px; padding: 0 0.375rem; font-size: 0.6875rem; }
 .gist { font-size: 1rem; }
 .cv-more { display: grid; gap: 0.5rem; margin-top: 0.375rem; }
 .cv-more ul { margin: 0; padding-left: 1.125rem; display: grid; gap: 0.375rem; font-size: 0.9375rem; max-width: 70ch; }
 .cv-more .stack { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 .cv-more .more { font-family: var(--mono); font-size: 0.8125rem; }
-.job-draft .job-main, .job-draft .job-side { opacity: 1; }
-.job-draft { border: 1px dashed var(--muted); border-radius: 4px; padding-inline: 1rem; margin-block: 0.5rem; color: var(--muted); }
-.job-draft h3 { color: var(--muted); font-weight: 600; }
 
 /* Concise: hide the detail, keep the one-liner. Expanded: show detail, drop the one-liner where bullets restate it. */
 :root[data-cv="concise"] .cv-more { display: none; }
-:root[data-cv="expanded"] .job:has(.cv-more) .gist { display: none; }
+:root[data-cv="expanded"] .role-block:has(.cv-more) .gist { display: none; }
+:root[data-cv="concise"] .cv-only { display: none; }
 
 .edu { display: grid; gap: 0.5rem; }
 .edu h3 { font-size: 0.75rem; }
@@ -47,3 +44,15 @@
   .job, .edu li { grid-template-columns: minmax(0, 1fr); }
   .job-side { display: flex; gap: 0.75rem; }
 }
+
+.job h3 { font-size: 1.1875rem; }
+.role-block { display: grid; gap: 0.25rem; margin-top: 0.25rem; }
+.role-block h4 { margin: 0; font-family: var(--display); font-size: 1rem; font-weight: 700; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem; }
+.role-when { font-family: var(--mono); font-size: 0.75rem; font-weight: 400; color: var(--muted); }
+.tag-promo { color: var(--merged); border: 1px solid var(--merged); border-radius: 3px; padding: 0 0.375rem; font-size: 0.625rem; }
+/* Promotion: two roles under one employer, joined by a rule. */
+.role-multi { position: relative; padding-left: 1rem; }
+.role-multi::before { content: ""; position: absolute; left: 0; top: 0.5rem; width: 0.4375rem; height: 0.4375rem; border-radius: 50%; background: var(--merged); }
+.role-multi:not(:last-child)::after { content: ""; position: absolute; left: 0.1875rem; top: 1.125rem; bottom: -0.875rem; width: 1px; background: var(--merged); }
+.role-multi + .role-multi { margin-top: 0.75rem; }
+.role-multi:last-child::before { background: transparent; border: 1px solid var(--merged); }

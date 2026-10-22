@@ -109,3 +109,5 @@ h2 .sec { font-family: var(--mono); font-size: 0.75rem; font-weight: 600; color:
 .mark:hover { color: var(--ink); }
 .js-reveal .mark { transition-delay: calc(var(--i, 0) * 60ms); }
 .hero-text { display: grid; gap: 1.25rem; min-width: 0; }
+.now-copy { display: grid; gap: 0.875rem; max-width: 65ch; }
+.stack-line { font-family: var(--mono); font-size: 0.875rem; color: var(--muted); }

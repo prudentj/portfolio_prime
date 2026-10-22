@@ -25,12 +25,23 @@
   #cv { order: 2; gap: 6pt; }
   .cv-head h2 { font-size: 13pt; }
   .cv-more { display: grid !important; gap: 3pt; margin-top: 2pt; }
-  .job:has(.cv-more) .gist { display: none !important; }
+  .role-block:has(.cv-more) .gist { display: none !important; }
   .job { padding: 6pt 0; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0 14pt; break-inside: avoid; }
   .job:first-child { break-inside: auto; }
-  .job h3 { font-size: 11pt; }
-  .cv-more ul { font-size: 9pt; gap: 1.5pt; max-width: none; }
+  .cv-more ul { max-width: none; }
   .edu li { grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0 14pt; }
+  /* Tighten to two A4 pages: the 2016 internship stays on screen (expanded) but not on paper. */
+  .cv-only { display: none !important; }
+  body { line-height: 1.33; }
+  .job { padding: 4pt 0; }
+  .job h3 { font-size: 10.5pt; }
+  .org { font-size: 8.5pt; }
+  .role-block { gap: 1pt; margin-top: 1pt; }
+  .role-block h4 { font-size: 10pt; }
+  .role-multi + .role-multi { margin-top: 4pt; }
+  .gist { font-size: 9pt; }
+  .cv-more ul { font-size: 8.5pt; gap: 1pt; }
+  .cv-more .stack { font-size: 7.5pt; }
   .reveal { opacity: 1 !important; transform: none !important; }
   a { color: inherit; text-decoration: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; text-shadow: none !important; }

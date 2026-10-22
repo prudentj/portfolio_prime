@@ -98,8 +98,6 @@
 :root[data-mode="party"] .timeline { border-top: 1px solid var(--rule); }
 :root[data-mode="party"] .hash { display: block; color: var(--merged); }
 :root[data-mode="party"] .job h3 { font-weight: 700; }
-:root[data-mode="party"] .tag-draft { color: var(--merged); border-color: var(--merged); }
-:root[data-mode="party"] .job-draft { border-color: #55565C; }
 .cv-joke { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
 :root[data-mode="party"] .print-btn { border-radius: 8px; }
 

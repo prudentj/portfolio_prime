@@ -4,11 +4,12 @@ import Swap from '../components/Swap.astro';
 import StackStrip from '../components/StackStrip.astro';
 import Exhibits from '../components/Exhibits.astro';
 import Timeline from '../components/Timeline.astro';
-// GitHub figures 14 Apr – 22 Oct 2026; ticket count from Jira as of 14 Oct.
+// Scope facts only (Jacob, 22 Oct 2026): no PR or ticket counts on the home page.
 const figures = [
-  { n: '451', t: 'pull requests merged, of 622 opened, across 12 repositories' },
-  { n: '270+', t: 'pull requests reviewed for the team' },
-  { n: '790+', t: 'tickets written, including 59 epics (Jira count as of 14 Oct)' },
+  { n: '4 years', t: 'building telehealth commerce, since September 2022' },
+  { n: '2', t: 'telehealth platforms led: Invigor Medical and Telegra Commerce' },
+  { n: 'SOC 2', t: 'Type II: technical lead for the company’s first audit' },
+  { n: '6', t: 'engineers led' },
 ];
 const owns = [
   { k: 'Commerce', v: 'Storefront, one-page checkout and configurable patient journeys for clinic brands.' },
@@ -25,15 +26,15 @@ const principles = [
 ];
 ---
 <Base
-  title="Jacob Prudent · Engineering lead, regulated healthtech"
-  description="Engineering lead shipping payments, billing and patient-facing platforms in regulated healthtech, with a small team and an AI-native workflow.">
+  title="Jacob Prudent · Engineering lead for telehealth commerce"
+  description="I lead the Commerce team at Telegra, a telehealth platform: white-labelled storefronts, patient dashboards, checkout and subscriptions.">
   <main class="wrap" data-life>
 
     <header class="hero">
       <div class="hero-text">
         <div class="name">Jacob Prudent</div>
-        <h1>Engineering lead in regulated healthtech</h1>
-        <p class="lede">I lead a small team shipping payments, billing and patient-facing platforms, with an AI-native workflow, and I own <mark>what reaches production</mark>.</p>
+        <h1><Swap b="Engineering lead for telehealth commerce" p="Telehealth commerce lead, flag on" /></h1>
+        <p class="lede">I lead the Commerce team at Telegra, a telehealth platform, where I own <mark>the patient-facing experience</mark>: white-labelled storefronts, patient dashboards, checkout and subscriptions.</p>
         <nav class="links" aria-label="Contact and CV">
           <a class="primary" href="?cv=expanded#cv" data-cv-open>CV</a>
           <a href="#contact">Email</a>
@@ -48,6 +49,7 @@ const principles = [
           <div><dt>Serving</dt><dd><code>true</code> to 100% of visitors</dd></div>
           <div><dt>Rollout</dt><dd><span class="fc-bar"><span></span></span> 100%</dd></div>
           <div><dt>Targeting</dt><dd><span class="chip">recruiters</span><span class="chip">hiring managers</span><span class="chip">interviewers</span></dd></div>
+          <div><dt>Scope</dt><dd><span class="chip">4 yrs telehealth commerce</span><span class="chip">2 platforms led</span><span class="chip">SOC 2 Type II</span><span class="chip">6 engineers</span></dd></div>
           <div><dt>Fallback</dt><dd><code>business</code> · facts unchanged</dd></div>
         </dl>
         <p class="fc-foot">Flip it back any time: top right.</p>
@@ -57,7 +59,11 @@ const principles = [
     <section aria-labelledby="now-h" data-file="now.md">
       <div class="section-head">
         <h2 id="now-h"><span class="sec" aria-hidden="true">§1</span><Swap b="Now" p="Currently" /></h2>
-        <p>Team lead for the commerce platform at a US telehealth startup, since April 2026.</p>
+      </div>
+      <div class="now-copy">
+        <p>I led our migration off a WooCommerce plugin onto native software, and we’re now building the layer above it: a client-facing API, MCP servers and rebuilt patient intake. Everything our partners need to launch their own white-labelled telehealth service, end to end.</p>
+        <p>My work has shifted from writing features to defining them and reviewing what ships. With a team moving at this pace, clear scoping and a firm quality bar matter more than they used to, especially in a regulated space where mistakes reach patients.</p>
+        <p class="stack-line">TypeScript · React · Node</p>
       </div>
       <ul class="owns">
         {owns.map((o) => <li><b>{o.k}</b><span>{o.v}</span></li>)}
@@ -110,19 +116,14 @@ const principles = [
       <div class="section-head"><h2 id="story-h"><span class="sec" aria-hidden="true">§5</span><Swap b="The story so far" p="Origin story" /></h2></div>
       <div class="story">
         <div class="draft">
-          <span class="label">Draft · your narrative goes here</span>
-          <p>Lab scientist: a biochemistry degree, pathogen testing, assay work. Then a coding bootcamp and leading its team leads. [2020–2026 to fill in.] Now leading engineering in healthtech. The thread through all of it: a lab's standard of evidence, carried into software.</p>
+          <span class="label">Draft · Jacob to edit</span>
+          <p>I started in labs: a biochemistry degree, then assay work at a biotech company and pathogen testing at a food plant. In 2019 I retrained as a developer at Lambda School and stayed on as a section lead, mentoring team leads.</p>
+          <p>I worked as a contract developer and research assistant at Pathwright, then joined Invigor Medical, a telehealth e-commerce company, as a full-stack developer, and became its Director of Technology. Today I lead the Commerce team at Telegra.</p>
+          <p>The thread through all of it is a lab’s standard of evidence: don’t trust a result you can’t reproduce. I hold software to the same standard.</p>
         </div>
       </div>
     </section>
 
-    <section aria-labelledby="next-h" data-file="next.md">
-      <div class="section-head"><h2 id="next-h"><span class="sec" aria-hidden="true">§6</span><Swap b="What’s next" p="Next stop" /></h2></div>
-      <div class="draft">
-        <span class="label">Draft · goes live in stage 3 only</span>
-        <p>Two or three sentences on the roles, domain and location you’re looking for.</p>
-      </div>
-    </section>
 
     <footer id="contact" class="contact">
       <span class="label"><Swap b="Contact" p="Say hi" /></span>
