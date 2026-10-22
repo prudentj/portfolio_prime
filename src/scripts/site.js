@@ -11,6 +11,7 @@ function setMode(mode) {
   save('jp-mode', mode);
   sync();
   life.update();
+  document.dispatchEvent(new CustomEvent('jp:mode', { detail: mode }));
 }
 modeSwitches.forEach((b) => b.addEventListener('click', () => setMode(isParty() ? 'business' : 'party')));
 
@@ -133,26 +134,56 @@ const life = (() => {
 sync();
 life.update();
 
-/* ---------- Party-mode windows: minimise, expand (modal), close (restorable from the tray) ---------- */
+/* ---------- Party mode: windows, taskbar, confetti. All of it is hidden by CSS outside party mode. ---------- */
 (() => {
-  const wins = document.querySelectorAll('main > section[data-file]');
+  const wins = [...document.querySelectorAll('main > section[data-file]')];
   if (!wins.length) return;
-  const tray = document.createElement('div');
-  tray.className = 'win-tray'; tray.setAttribute('role', 'toolbar'); tray.setAttribute('aria-label', 'Closed windows');
-  document.body.append(tray);
-  let dialog, lastFocus;
+  const accents = ['#D4FF3A', '#B9A6FF', '#7CC4FF', '#FF7AB6', '#FFB86B', '#7DF0C0'];
+  const canDrag = matchMedia('(min-width: 900px) and (pointer: fine)');
+  let dialog, lastFocus, zTop = 5;
 
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
   const btn = (kind, label, glyph) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.className = 'win-btn'; b.dataset.win = kind;
-    b.setAttribute('aria-label', label); b.textContent = glyph;
+    const b = el('button', 'win-btn', glyph);
+    b.type = 'button'; b.dataset.win = kind; b.setAttribute('aria-label', label);
     return b;
   };
 
+  /* Taskbar: Start menu, one button per window, a clock. */
+  const bar = el('nav', 'taskbar'); bar.setAttribute('aria-label', 'Taskbar');
+  const start = el('button', 'tb-start', 'Start'); start.type = 'button';
+  start.setAttribute('aria-expanded', 'false'); start.setAttribute('aria-controls', 'start-menu');
+  const menu = el('div', 'start-menu'); menu.id = 'start-menu'; menu.hidden = true;
+  const list = el('div', 'tb-list');
+  const clock = el('span', 'tb-clock'); clock.setAttribute('aria-hidden', 'true');
+  bar.append(start, list, clock);
+  document.body.append(bar, menu);
+  const tick = () => { clock.textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); };
+  tick(); setInterval(tick, 30000);
+
+  const closeMenu = (focusStart) => { menu.hidden = true; start.setAttribute('aria-expanded', 'false'); if (focusStart) start.focus(); };
+  start.addEventListener('click', () => {
+    const open = menu.hidden;
+    menu.hidden = !open; start.setAttribute('aria-expanded', String(open));
+    if (open) menu.querySelector('button')?.focus();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) closeMenu(true); });
+  document.addEventListener('click', (e) => { if (!menu.hidden && !menu.contains(e.target) && e.target !== start) closeMenu(false); });
+  const menuItem = (label, fn) => { const b = el('button', 'sm-item', label); b.type = 'button'; b.addEventListener('click', () => { closeMenu(false); fn(); }); menu.append(b); return b; };
+  menu.append(el('p', 'sm-head', 'jacob@party ~'));
+
+  function show(win) {
+    win.classList.remove('win-closed', 'win-min');
+    win.querySelector('[data-win="min"]')?.setAttribute('aria-pressed', 'false');
+    win._tb?.classList.remove('is-closed');
+    win.style.zIndex = String(++zTop);
+    win.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' });
+    win.querySelector('[data-win="min"]')?.focus({ preventScroll: true });
+  }
+
   function openModal(win, name, trigger) {
     if (!dialog) {
-      dialog = document.createElement('dialog');
-      dialog.className = 'win-dialog';
+      dialog = el('dialog', 'win-dialog');
       dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); }); // backdrop
       dialog.addEventListener('close', () => {
         document.querySelectorAll('[data-win="expand"]').forEach((b) => b.setAttribute('aria-expanded', 'false'));
@@ -160,56 +191,114 @@ life.update();
       });
       document.body.append(dialog);
     }
-    const body = document.createElement('div');
-    body.className = 'win-body';
+    const body = el('div', 'win-body');
     [...win.children].filter((c) => !c.classList.contains('winbar')).forEach((c) => body.append(c.cloneNode(true)));
-    // The copy is for reading: no duplicate ids, no dead controls.
-    body.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
-    body.querySelectorAll('button').forEach((el) => el.remove());
-    const bar = document.createElement('div');
-    bar.className = 'winbar';
-    const title = document.createElement('span'); title.className = 'win-title'; title.textContent = name;
+    body.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id')); // no duplicate ids
+    body.querySelectorAll('button').forEach((n) => n.remove()); // no dead controls in the copy
+    const head = el('div', 'winbar');
+    head.style.setProperty('--accent', win.style.getPropertyValue('--accent'));
     const close = btn('dismiss', `Close ${name} pop-up`, '×');
     close.addEventListener('click', () => dialog.close());
-    bar.append(title, close);
-    dialog.replaceChildren(bar, body);
+    head.append(el('span', 'win-title', name), close);
+    dialog.replaceChildren(head, body);
     dialog.setAttribute('aria-label', name);
     lastFocus = trigger;
     trigger.setAttribute('aria-expanded', 'true');
-    dialog.showModal(); // modal: background is inert, Esc closes
+    dialog.showModal(); // modal: background inert, Esc closes
     close.focus();
     dialog.scrollTop = 0;
   }
 
-  wins.forEach((win) => {
+  wins.forEach((win, i) => {
     const name = win.dataset.file;
-    const bar = document.createElement('div');
-    bar.className = 'winbar';
-    const title = document.createElement('span'); title.className = 'win-title'; title.textContent = name;
-    const group = document.createElement('div'); group.className = 'win-btns';
+    win.style.setProperty('--accent', accents[i % accents.length]);
+    const head = el('div', 'winbar');
+    const title = el('span', 'win-title', name);
+    const group = el('div', 'win-btns');
     const min = btn('min', `Minimise ${name}`, '_');
     const max = btn('expand', `Expand ${name}`, '□');
     const cls = btn('close', `Close ${name}`, '×');
     min.setAttribute('aria-pressed', 'false');
     max.setAttribute('aria-haspopup', 'dialog'); max.setAttribute('aria-expanded', 'false');
     group.append(min, max, cls);
-    bar.append(title, group);
-    win.prepend(bar);
+    head.append(title, group);
+    win.prepend(head);
+
+    // Taskbar entry: restores a closed or minimised window and jumps to it.
+    const tb = el('button', 'tb-win', name); tb.type = 'button';
+    tb.style.setProperty('--accent', accents[i % accents.length]);
+    tb.addEventListener('click', () => show(win));
+    list.append(tb); win._tb = tb;
+    menuItem(`Open ${name}`, () => show(win));
 
     const setMin = (on) => { win.classList.toggle('win-min', on); min.setAttribute('aria-pressed', String(on)); };
     min.addEventListener('click', () => setMin(!win.classList.contains('win-min')));
-    bar.addEventListener('click', (e) => { if (e.target === bar || e.target === title) { if (win.classList.contains('win-min')) setMin(false); } });
+    head.addEventListener('click', (e) => { if ((e.target === head || e.target === title) && win.classList.contains('win-min') && !win._dragged) setMin(false); });
     max.addEventListener('click', () => openModal(win, name, max));
     cls.addEventListener('click', () => {
       win.classList.add('win-closed');
-      const r = document.createElement('button');
-      r.type = 'button'; r.textContent = `↺ ${name}`; r.setAttribute('aria-label', `Restore ${name}`);
-      r.addEventListener('click', () => {
-        win.classList.remove('win-closed'); r.remove();
-        min.focus();
-      });
-      tray.append(r);
-      r.focus();
+      tb.classList.add('is-closed'); tb.setAttribute('aria-label', `Restore ${name}`);
+      tb.focus();
     });
+
+    // Drag by the title bar on desktop; double-click the title to snap back.
+    head.addEventListener('pointerdown', (e) => {
+      if (!isParty() || !canDrag.matches || e.button !== 0 || e.target.closest('button')) return;
+      const sx = e.clientX, sy = e.clientY;
+      const [ox, oy] = (win.dataset.pos || '0,0').split(',').map(Number);
+      const rect = win.getBoundingClientRect(), base = rect.left - ox;
+      win._dragged = false;
+      win.style.zIndex = String(++zTop);
+      head.setPointerCapture(e.pointerId);
+      const move = (ev) => {
+        const dx = ev.clientX - sx, dy = ev.clientY - sy;
+        if (Math.abs(dx) + Math.abs(dy) > 4) win._dragged = true;
+        // Keep at least 120px of the title bar on screen so a window can't get lost.
+        const x = Math.max(-base - rect.width + 120, Math.min(ox + dx, innerWidth - base - 120));
+        const y = oy + dy;
+        win.dataset.pos = `${x},${y}`;
+        win.style.translate = `${x}px ${y}px`;
+        win.classList.add('is-dragging');
+      };
+      const up = () => { head.removeEventListener('pointermove', move); win.classList.remove('is-dragging'); setTimeout(() => { win._dragged = false; }, 0); };
+      head.addEventListener('pointermove', move);
+      head.addEventListener('pointerup', up, { once: true });
+      head.addEventListener('pointercancel', up, { once: true });
+    });
+    head.addEventListener('dblclick', (e) => { if (e.target.closest('button')) return; delete win.dataset.pos; win.style.translate = ''; });
+  });
+
+  menuItem('Launch a glider', () => document.querySelector('[data-launch-glider]')?.click());
+  menuItem('Tidy windows', () => wins.forEach((w) => { delete w.dataset.pos; w.style.translate = ''; w.classList.remove('win-min', 'win-closed'); w._tb?.classList.remove('is-closed'); }));
+  menuItem('Shut down (back to business)', () => document.querySelector('[data-mode-switch]')?.click());
+
+  /* Confetti when the flag flips on. Skipped under reduced motion. */
+  function confetti() {
+    if (reduce.matches) return;
+    const c = el('canvas', 'confetti'); c.setAttribute('aria-hidden', 'true');
+    document.body.append(c);
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    c.width = innerWidth * dpr; c.height = innerHeight * dpr;
+    const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+    const sw = document.querySelector('[data-mode-switch]')?.getBoundingClientRect();
+    const ox = sw ? sw.left + sw.width / 2 : innerWidth - 80, oy = sw ? sw.bottom : 40;
+    const bits = Array.from({ length: 140 }, () => ({
+      x: ox, y: oy, vx: (Math.random() - 0.65) * 14, vy: Math.random() * 6 + 2,
+      r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.4, w: 6 + Math.random() * 6, h: 3 + Math.random() * 4,
+      c: accents[Math.random() * accents.length | 0],
+    }));
+    const t0 = performance.now();
+    (function frame(t) {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      for (const b of bits) {
+        b.vy += 0.25; b.vx *= 0.99; b.x += b.vx; b.y += b.vy; b.r += b.vr;
+        ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(b.r); ctx.fillStyle = b.c; ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h); ctx.restore();
+      }
+      if (t - t0 < 2200) requestAnimationFrame(frame); else c.remove();
+    })(t0);
+  }
+  document.addEventListener('jp:mode', (e) => {
+    if (e.detail === 'party') confetti();
+    else { closeMenu(false); wins.forEach((w) => { delete w.dataset.pos; w.style.translate = ''; }); }
   });
 })();

@@ -4,6 +4,7 @@ import Swap from '../components/Swap.astro';
 import StackStrip from '../components/StackStrip.astro';
 import Exhibits from '../components/Exhibits.astro';
 import Timeline from '../components/Timeline.astro';
+import cv from '../data/cv.json';
 // Scope facts only (Jacob, 22 Oct 2026): no PR or ticket counts on the home page.
 const figures = [
   { n: '4 years', t: 'in telehealth commerce, since September 2022' },
@@ -33,12 +34,17 @@ const principles = [
         <h1 class="name-h">Jacob Prudent</h1>
         <p class="role-line"><Swap b="Engineering Lead, Telehealth Commerce" p="Engineering Lead, Telehealth Commerce · flag on" /></p>
         <p class="contact-line">
-          <span>Kennewick, WA</span>
-          <span class="reloc">Relocating to London or Manchester</span>
-          <a href="mailto:jake.prudent@gmail.com">jake.prudent@gmail.com</a>
-          <a href="https://www.linkedin.com/in/jacobprudent">LinkedIn</a>
-          <a href="https://github.com/prudentj">GitHub</a>
+          <span>{cv.location}</span>
+          <a href={`mailto:${cv.email}`}>{cv.email}</a>
+          <span class="cvdoc-only">{cv.phoneNote}</span>
+          <a href={cv.linkedin}><span class="scr-t">LinkedIn</span><span class="prn-t">linkedin.com/in/jacobprudent</span></a>
+          <a href={cv.github}><span class="scr-t">GitHub</span><span class="prn-t">github.com/prudentj</span></a>
+          <a href={cv.site}>jacobprudent.com</a>
+        </p>
+        <p class="reloc reloc-line">{cv.reloc}</p>
+        <p class="cv-links">
           <a class="cv-link" href="?cv=expanded#cv" data-cv-open>Full CV</a>
+          <span class="dl">Download CV (<a href="/Jacob-Prudent-CV.pdf" download aria-label="Download CV as PDF">PDF</a> · <a href="/Jacob-Prudent-CV.docx" download aria-label="Download CV as Word">Word</a>)</span>
         </p>
       </div>
       <!-- Party mode only: the page as a feature flag. Restates the page; no new facts. -->
@@ -53,9 +59,12 @@ const principles = [
       </div>
     </header>
 
+    <!-- Party mode only: a ticker of the same scope facts. Decorative (the facts are in the Profile), so hidden from screen readers. -->
+    <div class="ticker party-only" aria-hidden="true"><div class="ticker-track"><span>4 years in telehealth commerce</span><span class="tk-star">✦</span><span>2 telehealth platforms led</span><span class="tk-star">✦</span><span>6 years shipping production software</span><span class="tk-star">✦</span><span>6 engineers led</span><span class="tk-star">✦</span><span>Same facts, louder</span><span class="tk-star">✦</span><span>4 years in telehealth commerce</span><span class="tk-star">✦</span><span>2 telehealth platforms led</span><span class="tk-star">✦</span><span>6 years shipping production software</span><span class="tk-star">✦</span><span>6 engineers led</span><span class="tk-star">✦</span><span>Same facts, louder</span><span class="tk-star">✦</span></div></div>
+
     <section aria-labelledby="profile-h" data-file="profile.md">
       <h2 id="profile-h">Profile</h2>
-      <p class="profile">Engineering lead with four years in telehealth commerce and six years shipping production software. Lead the Commerce team at Telegra, responsible for the patient-facing experience: white-labelled storefronts, patient dashboards, checkout and subscriptions. Previously Director of Technology at Invigor Medical. Trained as a biochemist, and bring a laboratory’s standard of evidence to software.</p>
+      <p class="profile">{cv.profile} <span class="reloc">{cv.profileUk}</span></p>
       <div class="figures">
         {figures.map((f, i) => <div class="figure reveal" style={`--i:${i}`}><b>{f.n}</b><span>{f.t}</span></div>)}
       </div>

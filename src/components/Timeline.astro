@@ -1,101 +1,12 @@
 ---
 // Experience: Summary view (role, organisation, dates, one line) and Full CV view (bullets, stack). Internal values: concise / expanded.
-// Facts: Jacob's own career history (22 Oct 2026) and the verified record on this site. Don't add numbers.
+// Content lives in src/data/cv.json (shared with the downloadable CV).
 import Swap from './Swap.astro';
+import cv from '../data/cv.json';
 type Role = { title: string; when: string; place?: string; gist: string; bullets?: string[]; stack?: string; link?: string; promoted?: boolean };
-type Org = { hash: string; org: string; place: string; span: string; roles: Role[]; expandedOnly?: boolean };
-const orgs: Org[] = [
-  {
-    hash: 'a4f1c2e', org: 'Telegra', place: 'Remote / Kennewick, WA', span: '2026 – present',
-    roles: [{
-      title: 'Commerce Team Lead', when: '2026 – present',
-      gist: 'Lead the Commerce team and the build-out of Telegra Commerce, an end-to-end e-commerce solution that replaced reliance on a WooCommerce plugin.',
-      bullets: [
-        'Own the patient-facing experience: white-labelled storefronts, patient dashboards, checkout and subscriptions.',
-        'Led the build-out of Telegra Commerce: before, the platform relied on a WooCommerce plugin; now it has its own end-to-end solution with tracking from storefront to fulfilment. I specified the renewals engine (scheduler, worker, failure alerts, recovery sweep) and the team built it.',
-        'Led the one-page checkout from specification to release; review caught four release blockers, one of them a security issue.',
-        'Built a reprice-and-reissue tool for closed billing periods on Stripe Billing.',
-        'Contributed to the company’s first SOC 2 Type II audit: penetration-test fixes and dependency upgrades.',
-        'Own production: deploys, incidents and production data repairs.',
-        'Lead a six-person offshore team and QA: write the specs, plan the sprints, and review and merge the code.',
-        'Helped scale the team and establish an AI-assisted development workflow.',
-      ],
-      stack: 'MERN (MongoDB · Express · React · Node.js) · TypeScript · Next.js · Redis · BullMQ · Stripe · AWS · Claude Code',
-      link: '/work/commerce',
-    }],
-  },
-  {
-    hash: '9d27e40', org: 'Invigor Medical', place: '', span: 'Sep 2022 – Apr 2026',
-    roles: [
-      {
-        title: 'Director of Technology', when: 'Jan 2024 – Apr 2026', place: 'Pasco, WA', promoted: true,
-        gist: 'Technical owner of a multi-million-dollar telehealth e-commerce platform running high-volume prescription subscriptions.',
-        bullets: [
-          'Primary technical owner across WooCommerce, Zoho CRM, EHR, e-prescribing and payment systems.',
-          'Built and maintained 15+ production automations driving order routing, patient intake, billing triggers and cross-system status sync.',
-          'Implemented prescription routing by state, medication type and pharmacy capability.',
-          'Designed delayed-capture payment workflows tied to clinician approval.',
-          'Built subscription recovery and win-back automation.',
-          'Ran dual payment processors (Stripe and Authorize.Net) for resilience.',
-          'Led workflow transitions across clinician networks and pharmacy routing with minimal service disruption.',
-          'Delivered executive reporting on revenue, cancellations and fulfilment.',
-          'Co-led a React and Node.js prescription commerce platform integrating intake, payment and script routing.',
-        ],
-        stack: 'Zoho (Deluge, Flow) · WooCommerce · WordPress · React · Node.js · Stripe · Authorize.Net · EHR and e-prescribing integrations · Segment · Metorik',
-      },
-      {
-        title: 'Full Stack Developer', when: 'Sep 2022 – Jan 2024', place: 'Kennewick, WA',
-        gist: 'Automated operations in Zoho Deluge; built a React/Node patient dashboard.',
-      },
-    ],
-  },
-  {
-    hash: '5be03a1', org: 'Pathwright', place: 'Remote', span: 'Oct 2020 – Dec 2021',
-    roles: [{ title: 'Full Stack Developer (contract)', when: 'Oct 2020 – Dec 2021', gist: 'Developer and research assistant: prototyping, and a hypertext parser and text editor built with React, TypeScript and Slate.js.' }],
-  },
-  {
-    hash: '7c3e9b1', org: 'Lambda School', place: 'Remote', span: '2020',
-    roles: [{ title: 'Section Lead', when: '2020', gist: 'Mentored eleven team leads, each supporting 5–12 students.' }],
-  },
-  {
-    hash: '3b8d0f4', org: 'Tyson Foods', place: 'Kennewick area, WA', span: 'Sep 2018 – Sep 2019',
-    roles: [{
-      title: 'Microbiologist', when: 'Sep 2018 – Sep 2019',
-      gist: 'Tested product and environmental samples for food-borne pathogens.',
-      bullets: [
-        'Tested product and environmental samples for food-borne pathogens (E. coli O157:H7, Listeria).',
-        'Recorded results in the laboratory information system and escalated positives to QC and plant management.',
-      ],
-    }],
-  },
-  {
-    hash: 'e21a6d9', org: 'Santa Cruz Biotechnology', place: 'Sun Valley, ID', span: 'Aug 2017 – Aug 2018',
-    roles: [{
-      title: 'Research Assistant', when: 'Aug 2017 – Aug 2018',
-      gist: 'Antibody screening, western blot development and assay design.',
-      bullets: [
-        'Micro-array screening of hybridomas for antibody production.',
-        'Western blot development.',
-        'Assay design and improvement.',
-        'Maintained reagent and laboratory inventories.',
-      ],
-    }],
-  },
-  {
-    hash: '1f0c6b2', org: 'City of Blackfoot', place: 'Blackfoot, ID', span: 'Jun – Nov 2016', expandedOnly: true,
-    roles: [{ title: 'Lab Intern', when: 'Jun – Nov 2016', gist: 'EPA-compliance testing: suspended solids, and chemical and biological oxygen demand.' }],
-  },
-];
-const skills = [
-  { k: 'Languages and frameworks', v: 'TypeScript, JavaScript, React, Next.js, Node.js, Express' },
-  { k: 'Data', v: 'MongoDB, Redis, BullMQ, Segment' },
-  { k: 'Payments and integrations', v: 'Stripe, Authorize.Net, Apple Pay, Google Pay, WooCommerce, Zoho CRM, EHR and e-prescribing, webhooks' },
-  { k: 'Practices', v: 'Specification and sprint planning, code review, CI/CD (Jenkins, Docker, AWS), AI-assisted development (Claude Code)' },
-];
-const education = [
-  { when: '2019 – 2020', what: 'Full-stack web development', where: 'Lambda School' },
-  { when: '2016', what: 'BSc Biochemistry', where: 'Brigham Young University–Idaho' },
-];
+type Org = { hash: string; org: string; context: string; place: string; span: string; roles: Role[]; earlier?: boolean };
+const orgs = cv.orgs as Org[];
+const { skills, education } = cv;
 ---
 <section id="cv" class="cv" data-file="career.log" aria-labelledby="cv-h">
   <div class="cv-head">
@@ -106,24 +17,24 @@ const education = [
         <span class="ms-track" aria-hidden="true"><span class="ms-knob"></span></span>
         <span class="ms-label ms-p" aria-hidden="true">Full CV</span>
       </button>
-      <button type="button" class="print-btn" data-print>Print</button>
+      <span class="dl">Download CV (<a href="/Jacob-Prudent-CV.pdf" download aria-label="Download CV as PDF">PDF</a> · <a href="/Jacob-Prudent-CV.docx" download aria-label="Download CV as Word">Word</a>)</span>
     </div>
   </div>
   <p class="p-only cv-joke">cv.pdf was moved to the Trash. This page is the CV now.</p>
 
   <ol class="timeline">
     {orgs.map((o) => (
-      <li class:list={['job', { 'cv-only': o.expandedOnly }]}>
+      <li class:list={['job', { 'job-earlier': o.earlier }]}>
         <div class="job-side">
           <span class="hash" aria-hidden="true">{o.hash}</span>
           <span class="when">{o.span}</span>
         </div>
         <div class="job-main">
           <h3>{o.org}</h3>
-          {o.place && <p class="org">{o.place}</p>}
+          {(o.context || o.place) && <p class="org">{[o.context, o.place].filter(Boolean).join(' · ')}</p>}
           {o.roles.map((r) => (
             <div class:list={['role-block', { 'role-multi': o.roles.length > 1 }]}>
-              <h4>{r.title}{o.roles.length > 1 && <span class="role-when">{r.when}{r.place && ` · ${r.place}`}</span>}{r.promoted && <span class="label tag-promo">Promoted</span>}</h4>
+              {!o.earlier && <h4>{r.title}{o.roles.length > 1 && <span class="role-when">{r.when}{r.place && ` · ${r.place}`}</span>}{r.promoted && <span class="label tag-promo">Promoted</span>}</h4>}
               <p class="gist">{r.gist}</p>
               {r.bullets && (
                 <div class="cv-more">
@@ -142,7 +53,7 @@ const education = [
   <div class="edu">
     <h3 class="label">Education</h3>
     <ul>
-      {education.map((e) => <li><span class="when">{e.when}</span><span><b>{e.what}</b>, {e.where}</span></li>)}
+      {education.map((e) => <li><span class="when">{e.when}</span><span>{e.text}</span></li>)}
     </ul>
   </div>
 

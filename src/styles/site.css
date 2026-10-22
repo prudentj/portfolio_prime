@@ -100,3 +100,16 @@ mark { background: none; color: inherit; }
 /* Relocation line: hidden on the public page, shown only via ?uk=1 links. */
 .reloc { display: none; }
 :root[data-uk] .reloc { display: inline; }
+:root[data-uk] p.reloc { display: block; }
+.reloc-line { max-width: none; font-family: var(--mono); font-size: 0.8125rem; color: var(--ink); }
+.cvdoc-only { display: none; }
+:root[data-cvdoc] .cvdoc-only { display: inline; }
+.cv-links { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; font-family: var(--mono); font-size: 0.8125rem; margin-top: 0.25rem; }
+.cv-links a { color: var(--merged); text-decoration: none; border-bottom: 1px solid currentColor; }
+.cv-links .cv-link { margin-right: 0.75rem; }
+
+.job-earlier .gist { font-size: 0.9375rem; }
+.dl { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
+.dl a { color: var(--merged); text-decoration: none; border-bottom: 1px solid currentColor; }
+.prn-t { display: none; }
+@media print { .prn-t { display: inline; } .scr-t { display: none; } }

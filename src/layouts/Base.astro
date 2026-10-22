@@ -42,6 +42,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         var u = null;
         try { u = sessionStorage.getItem('jp-uk'); } catch (e) {}
         if (/[?&]uk=1/.test(location.search)) { u = '1'; try { sessionStorage.setItem('jp-uk', '1'); } catch (e) {} }
+        // ?cvdoc=1 is the downloadable-CV render (scripts/build-cv.mjs): no relocation line, phone note shown.
+        if (/[?&]cvdoc=1/.test(location.search)) { u = null; r.setAttribute('data-cvdoc', ''); }
         if (u === '1') r.setAttribute('data-uk', '');
         if (m === 'party') {
           r.setAttribute('data-mode', 'party');

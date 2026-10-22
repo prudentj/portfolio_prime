@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "cv": "astro build && node scripts/build-cv.mjs && python3 scripts/build-cv-docx.py"
   },
   "dependencies": {
     "astro": "5.18.2"

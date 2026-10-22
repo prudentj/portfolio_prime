@@ -10,7 +10,7 @@
   }
   html, body { background: #FFF !important; color: #000; }
   body { font-size: 9.5pt; line-height: 1.33; padding: 0; }
-  .topbar, .switch, .print-btn, .life, .party-only, .p-only, .cv-link, .winbar, .win-tray, dialog,
+  .topbar, .switch, .print-btn, .cv-links, .dl, .life, .party-only, .p-only, .cv-link, .winbar, .taskbar, .start-menu, .confetti, .ticker, dialog,
   main > section:not(#cv):not([aria-labelledby="profile-h"]), main > footer,
   .figures, .cv-more .more, .hash, .cv-only { display: none !important; }
   .wrap, main.wrap { padding: 0 !important; gap: 8pt; max-width: none; display: grid; }
@@ -21,6 +21,7 @@
   .role-line { font-size: 11pt; color: #000; }
   .contact-line { font-size: 8.5pt; margin-top: 2pt; color: #000; }
   .contact-line a { border: 0; color: #000; }
+  .reloc-line { font-size: 8.5pt; color: #000; margin-top: 1pt; }
   .profile { max-width: none; font-size: 9.5pt; }
   #cv { gap: 4pt; }
   .cv-more { display: grid !important; gap: 2pt; margin-top: 1pt; }
@@ -35,7 +36,7 @@
   .role-multi + .role-multi { margin-top: 4pt; }
   .role-multi::before, .role-multi::after { background: #000 !important; border-color: #000 !important; }
   .tag-promo { border-color: #000; color: #000; }
-  .gist { font-size: 9pt; }
+  .gist, .job-earlier .gist { font-size: 9pt; max-width: none; }
   .cv-more ul { font-size: 8.5pt; gap: 1pt; max-width: none; }
   .cv-more .stack { font-size: 7.5pt; color: #333; }
   .edu, .skills { break-inside: avoid; }
