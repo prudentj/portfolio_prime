@@ -1,0 +1,73 @@
+---
+// Five synthetic artifacts, one per working habit. Invented identifiers and code; no real company, client or patient data.
+import Swap from './Swap.astro';
+const steps = [
+  ['Back up', 'Copy every record the change will touch.'],
+  ['Dry run', 'Count what it would change, write nothing.'],
+  ['Guarded write', 'Only touch records still in the expected state.'],
+  ['Verify', 'Re-read and compare with the dry run.'],
+  ['Keep a revert', 'A tested script that restores the backup.'],
+];
+---
+<div class="exhibits">
+
+  <figure class="exhibit ex-ticket reveal">
+    <figcaption><span class="ex-tag">Exhibit A</span> <Swap b="A spec the team can build from" p="The ticket nobody had to ask questions about" /></figcaption>
+    <div class="card">
+      <div class="card-top"><span class="mono">SPEC-0142</span><span class="pill">Story · 3 pts</span></div>
+      <p class="card-title">Renewals: retry a failed charge with backoff, then alert</p>
+      <ul class="ac">
+        <li>Given a declined renewal, retry at 1, 3 and 7 days</li>
+        <li>Given three failures, mark past due and alert the clinic</li>
+        <li>No second charge if a retry and a manual payment overlap</li>
+      </ul>
+      <div class="card-foot mono">Epic: Subscription renewals · Ready for sprint</div>
+    </div>
+  </figure>
+
+  <figure class="exhibit ex-pr reveal">
+    <figcaption><span class="ex-tag">Exhibit B</span> <Swap b="A review that asks for evidence" p="Code review, but make it polite" /></figcaption>
+    <div class="card">
+      <div class="card-top"><span class="mono">#1287 repair: guard subscription fix</span><span class="pill ok">Checks passed</span></div>
+      <pre class="diff" aria-label="Two-line diff"><code><span class="del">- await subs.updateMany({'{'} _id: {'{'} $in: ids {'}'} {'}'}, patch)</span>
+<span class="add">+ await subs.updateMany({'{'} _id: {'{'} $in: ids {'}'}, status: 'past_due' {'}'}, patch)</span></code></pre>
+      <p class="comment"><b>Review:</b> Only write records that still match the expected state. The dry run counted 41; assert that before writing.</p>
+      <div class="card-foot mono">Approved after one round</div>
+    </div>
+  </figure>
+
+  <figure class="exhibit ex-pipe reveal">
+    <figcaption><span class="ex-tag">Exhibit C</span> <Swap b="Every change takes the same road" p="Dev, staging, prod: the tour bus" /></figcaption>
+    <div class="card">
+      <ol class="pipeline">
+        <li><b>dev</b><span>Merged, automated checks</span></li>
+        <li><b>staging</b><span>QA sign-off on real flows</span></li>
+        <li><b>prod</b><span>Promoted, watched, revertible</span></li>
+      </ol>
+    </div>
+  </figure>
+
+  <figure class="exhibit ex-check reveal">
+    <figcaption><span class="ex-tag">Exhibit D</span> <Swap b="How production data gets changed" p="The five-step checklist (non-negotiable, even here)" /></figcaption>
+    <div class="card">
+      <ol class="checklist">
+        {steps.map(([b, s], i) => <li style={`--i:${i}`}><span class="box" aria-hidden="true"></span><b>{b}</b><span>{s}</span></li>)}
+      </ol>
+    </div>
+  </figure>
+
+  <figure class="exhibit ex-spark reveal">
+    <figcaption><span class="ex-tag">Exhibit E</span> <Swap b="Reconcile until the numbers agree" p="Two lines walk into a funnel report" /></figcaption>
+    <div class="card">
+      <svg class="spark" viewBox="0 0 300 90" role="img" aria-label="Illustration: two lines that start apart and converge">
+        <path class="grid" d="M0 22H300M0 45H300M0 68H300" />
+        <path class="theirs" pathLength="1" d="M0 52 C40 50 70 40 100 44 S160 34 200 38 S260 30 300 28" />
+        <path class="ours" pathLength="1" d="M0 78 C40 74 70 64 100 60 S160 46 200 40 S260 31 300 29" />
+      </svg>
+      <div class="legend mono"><span class="k-ours">Ours</span><span class="k-theirs">Client's own data</span></div>
+      <p class="card-foot">Illustrative shape, not data. The real result: our figures matched the client's to within 0.5%.</p>
+    </div>
+  </figure>
+
+</div>
+<p class="note">Synthetic examples: invented identifiers and code, in the shape of real work. No company, client or patient data.</p>

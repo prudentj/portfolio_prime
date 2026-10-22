@@ -34,3 +34,71 @@
 
 .contact { display: grid; gap: 0.75rem; }
 .contact .email { font-family: var(--mono); font-size: 1.0625rem; user-select: all; }
+
+/* ---------- Shared chrome: topbar + mode switch ---------- */
+:root { --grid: rgba(18, 23, 29, 0.055); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --grid: rgba(231, 235, 238, 0.05); } }
+:root[data-theme="dark"] { --grid: rgba(231, 235, 238, 0.05); }
+html, body { overflow-x: clip; }
+
+.topbar {
+  max-width: 60rem; margin: 0 auto; padding-top: 1rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  position: relative; z-index: 1;
+}
+.rev { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.rev:hover { color: var(--ink); }
+@media (max-width: 480px) { .rev-extra { display: none; } }
+
+.mode-switch {
+  /* Fixed font and size in both modes so the control never moves. */
+  font: 600 0.75rem/1 "JetBrains Mono", ui-monospace, Menlo, monospace; letter-spacing: 0.02em;
+  display: inline-flex; align-items: center; gap: 0.5rem; flex: none;
+  padding: 0.5rem 0.25rem; margin: -0.5rem -0.25rem; background: none; border: 0; border-radius: 4px;
+  color: var(--muted); cursor: pointer;
+}
+.mode-switch:focus-visible { outline: 2px solid var(--merged); outline-offset: 2px; }
+.ms-track {
+  width: 2.125rem; height: 1.125rem; border-radius: 999px; border: 1px solid var(--muted);
+  position: relative; display: inline-block; transition: background-color 0.2s, border-color 0.2s;
+}
+.ms-knob {
+  position: absolute; top: 2px; left: 2px; width: 0.75rem; height: 0.75rem; border-radius: 50%;
+  background: var(--ink); transition: transform 0.25s cubic-bezier(.3, 1.4, .5, 1);
+}
+.ms-b { color: var(--ink); }
+.mode-switch[aria-pressed="true"] .ms-b { color: var(--muted); }
+.mode-switch[aria-pressed="true"] .ms-p { color: var(--ink); }
+.mode-switch[aria-pressed="true"] .ms-track { background: var(--merged); border-color: var(--merged); }
+.mode-switch[aria-pressed="true"] .ms-knob { transform: translateX(1rem); background: var(--paper); }
+.mode-switch:hover .ms-track { border-color: var(--merged); }
+
+/* Mode-dependent copy and blocks. Business is the default and the no-JS state. */
+.p, .party-only { display: none; }
+:root[data-mode="party"] .b { display: none; }
+:root[data-mode="party"] .p { display: inline; }
+:root[data-mode="party"] .party-only { display: grid; }
+
+/* ---------- Business: lab-notebook furniture ---------- */
+main.wrap { position: relative; z-index: 1; padding-top: 2.5rem; }
+.hero { position: relative; isolation: isolate; }
+.hero::before {
+  content: ""; position: absolute; inset: -2.5rem -16px -1rem; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
+  mask-image: linear-gradient(to bottom, #000 30%, transparent);
+}
+h2 .sec { font-family: var(--mono); font-size: 0.75rem; font-weight: 600; color: var(--merged); margin-right: 0.625rem; vertical-align: 0.3em; }
+.mode-hint { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+
+/* ---------- Scroll reveals (only hidden when JS + motion are available) ---------- */
+.js-reveal .reveal { transition: opacity 0.45s ease, transform 0.45s ease; transition-delay: calc(var(--i, 0) * 70ms); }
+.js-reveal .reveal:not(.in) { opacity: 0; transform: translateY(12px); }
+
+/* ---------- Stack strip ---------- */
+.stack-strip { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; border-block: 1px solid var(--rule); padding-block: 1rem; }
+.mark { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--muted); font-family: var(--mono); font-size: 0.75rem; }
+.mark svg { width: 1.25rem; height: 1.25rem; fill: currentColor; flex: none; }
+.mark:hover { color: var(--ink); }
+.js-reveal .mark { transition-delay: calc(var(--i, 0) * 60ms); }

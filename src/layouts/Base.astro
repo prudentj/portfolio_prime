@@ -1,6 +1,9 @@
 ---
 import '../styles/case-study.css';
 import '../styles/site.css';
+import '../styles/exhibits.css';
+import '../styles/party.css';
+import ModeSwitch from '../components/ModeSwitch.astro';
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -22,8 +25,35 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap" />
+    <!-- Applies the saved mode before first paint (no flash), and only hides reveal targets when JS and motion are available. -->
+    <script is:inline>
+      (function () {
+        var r = document.documentElement, m = null;
+        try { m = localStorage.getItem('jp-mode'); } catch (e) {}
+        var q = /[?&]mode=(party|business)/.exec(location.search);
+        if (q) m = q[1];
+        if (m === 'party') {
+          r.setAttribute('data-mode', 'party');
+          var l = document.createElement('link');
+          l.rel = 'stylesheet'; l.id = 'party-fonts';
+          l.href = 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap';
+          document.head.appendChild(l);
+        }
+        if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          r.classList.add('js-reveal');
+          setTimeout(function () { if (!window.__jpReveal) r.classList.remove('js-reveal'); }, 2500);
+        }
+      })();
+    </script>
   </head>
   <body>
+    <div class="topbar">
+      <a class="rev" href="/"><span class="b">Rev. 2026.10<span class="rev-extra"> · Record JP-001</span></span><span class="p">JP · the remix</span></a>
+      <ModeSwitch />
+    </div>
     <slot />
+    <script>
+      import '../scripts/site.js';
+    </script>
   </body>
 </html>

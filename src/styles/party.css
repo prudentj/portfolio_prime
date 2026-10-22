@@ -1,0 +1,82 @@
+/* Party mode: the same record as a risograph gig poster. Everything is scoped to :root[data-mode="party"]. */
+:root[data-mode="party"] {
+  --paper: #FFF1DC; --ink: #1D1B3A; --muted: #5A5470; --rule: #E9D3B4;
+  --merged: #B0126A; --merged-soft: #FFD6EA; --panel: #FFF9EF;
+  --blue: #0067A6; --pink: #FF48B0; --grid: transparent;
+  --life-a: #FF48B0; --life-b: #0078BF;
+  --display: "Bricolage Grotesque", "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "Bricolage Grotesque", "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+:root[data-mode="party"] body {
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(29, 27, 58, 0.07) 1px, transparent 1.2px);
+  background-size: 6px 6px;
+}
+.life { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.15; }
+
+:root[data-mode="party"] h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 0.98; letter-spacing: -0.03em; font-weight: 800;
+  text-shadow: 0.06em 0.05em 0 var(--pink);
+}
+:root[data-mode="party"] h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; }
+:root[data-mode="party"] h2 .sec { color: var(--blue); }
+:root[data-mode="party"] .hero .name { color: var(--ink); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+:root[data-mode="party"] .sticker {
+  display: inline-block; font-family: var(--mono); font-size: 0.75rem; font-weight: 600; letter-spacing: 0;
+  background: var(--pink); color: var(--ink); padding: 0.25rem 0.5rem; border-radius: 3px; transform: rotate(-3deg);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+:root[data-mode="party"] .lede { font-size: 1.375rem; line-height: 1.45; }
+
+:root[data-mode="party"] .links a { border-bottom: 2px solid var(--pink); }
+:root[data-mode="party"] .links a.primary { background: var(--ink); color: var(--paper); border: 0; padding: 0.25rem 0.625rem; border-radius: 3px; box-shadow: 3px 3px 0 var(--pink); }
+:root[data-mode="party"] .links a:hover { color: var(--merged); }
+:root[data-mode="party"] .links a.primary:hover { color: var(--paper); transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--pink); }
+
+:root[data-mode="party"] .figures { border-top: 3px solid var(--ink); }
+:root[data-mode="party"] .figure b { font-size: 3.25rem; color: var(--merged); letter-spacing: -0.04em; }
+:root[data-mode="party"] .figure:nth-child(2) b { color: var(--blue); }
+
+:root[data-mode="party"] .principle h3 span {
+  display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; flex: none; border-radius: 50%;
+  background: var(--blue); color: #FFF; font-size: 0.8125rem; transform: rotate(-8deg);
+}
+:root[data-mode="party"] .owns { border-top: 3px solid var(--ink); }
+
+:root[data-mode="party"] .card { border: 2px solid var(--ink); border-radius: 4px; box-shadow: 5px 5px 0 var(--ink); }
+:root[data-mode="party"] .exhibit:nth-child(odd) .card { transform: rotate(-1deg); }
+:root[data-mode="party"] .exhibit:nth-child(even) .card { transform: rotate(0.8deg); box-shadow: 5px 5px 0 var(--blue); }
+:root[data-mode="party"] .exhibit .card:hover { transform: rotate(0) translateY(-3px); box-shadow: 7px 8px 0 var(--pink); }
+:root[data-mode="party"] .ex-tag { color: var(--blue); }
+:root[data-mode="party"] .stack-strip { border-block: 3px solid var(--ink); }
+:root[data-mode="party"] .mark { color: var(--ink); }
+:root[data-mode="party"] .mark:nth-child(3n+1) svg { fill: var(--merged); }
+:root[data-mode="party"] .mark:nth-child(3n+2) svg { fill: var(--blue); }
+:root[data-mode="party"] .mark:hover svg { animation: wobble 0.5s ease; }
+@keyframes wobble { 30% { transform: rotate(-12deg) scale(1.15); } 60% { transform: rotate(8deg); } }
+
+:root[data-mode="party"] .draft { border: 2px dashed var(--ink); color: var(--muted); background: rgba(255, 249, 239, 0.85); }
+:root[data-mode="party"] .off-record .figure b { font-size: 2.5rem; }
+.life-note { font-size: 0.9375rem; color: var(--muted); }
+.glider-btn {
+  font: 600 0.8125rem/1 var(--mono); color: var(--paper); background: var(--ink); border: 0; border-radius: 3px;
+  padding: 0.4rem 0.625rem; cursor: pointer; box-shadow: 3px 3px 0 var(--pink);
+}
+.glider-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--pink); }
+.glider-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .glider-btn, .click-hint { display: none; } }
+
+:root[data-mode="party"] footer { border-top: 3px solid var(--ink); }
+:root[data-mode="party"] .contact .email { font-size: 1.25rem; font-weight: 600; }
+:root[data-mode="party"] .rev { color: var(--ink); font-weight: 600; }
+
+/* Case study in party mode: palette and type only. */
+:root[data-mode="party"] .role.built { background: var(--merged); color: #FFF; }
+:root[data-mode="party"] .routine li { border-top: 3px solid var(--merged); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-mode="party"] .exhibit .card, :root[data-mode="party"] .exhibit .card:hover { transition: none; }
+  :root[data-mode="party"] .mark:hover svg { animation: none; }
+  .ms-knob, .ms-track { transition: none; }
+}

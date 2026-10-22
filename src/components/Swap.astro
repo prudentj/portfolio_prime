@@ -1,0 +1,6 @@
+---
+// Microcopy that changes with the mode. Business text is the default (and the no-JS text); party text is hidden by CSS until data-mode="party".
+interface Props { b: string; p: string; }
+const { b, p } = Astro.props;
+---
+<span class="b">{b}</span><span class="p">{p}</span>

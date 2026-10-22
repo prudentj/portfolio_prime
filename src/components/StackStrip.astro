@@ -1,0 +1,12 @@
+---
+// Tools named in the case study, drawn from Simple Icons (CC0). Marks are used nominatively, to name the tools; no employer or client marks.
+import marks from '../data/marks.json';
+---
+<ul class="stack-strip" aria-label="Tools in daily use">
+  {marks.map((m, i) => (
+    <li class="mark reveal" style={`--i:${i}`}>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={m.d} /></svg>
+      <span>{m.name}</span>
+    </li>
+  ))}
+</ul>

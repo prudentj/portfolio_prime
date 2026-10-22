@@ -1,5 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import Swap from '../components/Swap.astro';
+import StackStrip from '../components/StackStrip.astro';
+import Exhibits from '../components/Exhibits.astro';
 // GitHub figures 14 Apr – 22 Oct 2026; ticket count from Jira as of 14 Oct (Jira re-check pending).
 const figures = [
   { n: '451', t: 'pull requests merged across 12 repositories' },
@@ -23,10 +26,10 @@ const principles = [
 <Base
   title="Jacob Prudent · Engineering lead, regulated healthtech"
   description="Engineering lead shipping payments, billing and patient-facing platforms in regulated healthtech, with a small team and an AI-native workflow.">
-  <div class="wrap">
+  <main class="wrap" data-life>
 
     <header class="hero">
-      <div class="name">Jacob Prudent</div>
+      <div class="name">Jacob Prudent<span class="p sticker" aria-hidden="true">Same facts. Louder fonts.</span></div>
       <h1>Engineering lead in regulated healthtech</h1>
       <p class="lede">I lead a small team shipping payments, billing and patient-facing platforms, with an AI-native workflow, and I own what reaches production.</p>
       <nav class="links" aria-label="Contact and CV">
@@ -39,23 +42,23 @@ const principles = [
 
     <section aria-labelledby="now-h">
       <div class="section-head">
-        <h2 id="now-h">Now</h2>
+        <h2 id="now-h"><span class="sec" aria-hidden="true">§1</span><Swap b="Now" p="Currently" /></h2>
         <p>Team lead for the commerce platform at a US telehealth startup, since April 2026.</p>
       </div>
       <ul class="owns">
         {owns.map((o) => <li><b>{o.k}</b><span>{o.v}</span></li>)}
       </ul>
       <div class="figures">
-        {figures.map((f) => <div class="figure"><b>{f.n}</b><span>{f.t}</span></div>)}
+        {figures.map((f, i) => <div class="figure reveal" style={`--i:${i}`}><b>{f.n}</b><span>{f.t}</span></div>)}
       </div>
-      <p class="more"><a href="/work/commerce">Read the full record →</a></p>
+      <p class="more"><a href="/work/commerce"><Swap b="Read the full record →" p="Read the full record (it’s good, promise) →" /></a></p>
     </section>
 
     <section aria-labelledby="how-h">
-      <div class="section-head"><h2 id="how-h">How I work</h2></div>
+      <div class="section-head"><h2 id="how-h"><span class="sec" aria-hidden="true">§2</span><Swap b="How I work" p="House rules" /></h2></div>
       <div class="principles">
         {principles.map((x, i) => (
-          <div class="principle">
+          <div class="principle reveal" style={`--i:${i}`}>
             <h3><span>{i + 1}</span>{x.h}</h3>
             <p>{x.p}</p>
             <p class="eg">{x.eg}</p>
@@ -64,8 +67,31 @@ const principles = [
       </div>
     </section>
 
+    <section aria-labelledby="ex-h">
+      <div class="section-head">
+        <h2 id="ex-h"><span class="sec" aria-hidden="true">§3</span><Swap b="Exhibits" p="Show and tell" /></h2>
+        <p><Swap b="The paperwork behind the work, and the tools it runs on." p="What the work actually looks like up close, plus the toolbox." /></p>
+      </div>
+      <StackStrip />
+      <Exhibits />
+    </section>
+
+    <section class="party-only off-record" aria-labelledby="off-h">
+      <div class="section-head"><h2 id="off-h">Off the record</h2></div>
+      <div class="figures party-stats">
+        <div class="figure"><b data-glider-count>0</b><span>gliders launched this visit (live count)</span></div>
+        <div class="figure"><b>n/a</b><span>cups of coffee. Not reported: there’s no script I can rerun.</span></div>
+        <div class="figure"><b>0</b><span>facts that changed when you flipped the switch</span></div>
+      </div>
+      <p class="life-note">The background is Conway’s Game of Life, a nod to a 2020 build-week project. <button type="button" class="glider-btn" data-launch-glider>Launch a glider</button> <span class="click-hint">or click the top of the page.</span></p>
+      <div class="draft">
+        <span class="label">Draft · confirm with Jacob</span>
+        <p>Outside work: built the website for RadCon, a convention, and writes fiction. [Confirm both, and whether they belong here.]</p>
+      </div>
+    </section>
+
     <section aria-labelledby="story-h">
-      <div class="section-head"><h2 id="story-h">The story so far</h2></div>
+      <div class="section-head"><h2 id="story-h"><span class="sec" aria-hidden="true">§4</span><Swap b="The story so far" p="Origin story" /></h2></div>
       <div class="story">
         <div class="draft">
           <span class="label">Draft · your narrative goes here</span>
@@ -75,7 +101,7 @@ const principles = [
     </section>
 
     <section aria-labelledby="next-h">
-      <div class="section-head"><h2 id="next-h">What’s next</h2></div>
+      <div class="section-head"><h2 id="next-h"><span class="sec" aria-hidden="true">§5</span><Swap b="What’s next" p="Next stop" /></h2></div>
       <div class="draft">
         <span class="label">Draft · goes live in stage 3 only</span>
         <p>Two or three sentences on the roles, domain and location you’re looking for.</p>
@@ -83,14 +109,15 @@ const principles = [
     </section>
 
     <footer id="contact" class="contact">
-      <span class="label">Contact</span>
+      <span class="label"><Swap b="Contact" p="Say hi" /></span>
       <span class="email">jake.prudent@gmail.com</span>
       <nav class="links" aria-label="Elsewhere">
         <a href="https://www.linkedin.com/in/jacobprudent">LinkedIn</a>
         <a href="https://github.com/prudentj">GitHub</a>
         <a href="/cv.pdf">CV (PDF)</a>
       </nav>
+      <p class="mode-hint"><Swap b="This page has a party mode, top right. Same facts." p="Back to business? Top right. Same facts." /></p>
     </footer>
 
-  </div>
+  </main>
 </Base>
