@@ -1,6 +1,5 @@
 ---
 // Five synthetic artifacts, one per working habit. Invented identifiers and code; no real company, client or patient data.
-import Swap from './Swap.astro';
 const steps = [
   ['Back up', 'Copy every record the change will touch.'],
   ['Dry run', 'Count what it would change, write nothing.'],
@@ -12,7 +11,7 @@ const steps = [
 <div class="exhibits">
 
   <figure class="exhibit ex-ticket reveal">
-    <figcaption><span class="ex-tag">Exhibit A</span> <Swap b="A spec the team can build from" p="The ticket nobody had to ask questions about" /></figcaption>
+    <figcaption><span class="ex-tag">Exhibit A</span> A ticket nobody had to ask questions about</figcaption>
     <div class="card">
       <div class="card-top"><span class="mono">SPEC-0142</span><span class="pill">Story · 3 pts</span></div>
       <p class="card-title">Renewals: retry a failed charge with backoff, then alert</p>
@@ -26,7 +25,7 @@ const steps = [
   </figure>
 
   <figure class="exhibit ex-pr reveal">
-    <figcaption><span class="ex-tag">Exhibit B</span> <Swap b="A review that asks for evidence" p="Code review, but make it polite" /></figcaption>
+    <figcaption><span class="ex-tag">Exhibit B</span> A review that asks for evidence</figcaption>
     <div class="card">
       <div class="card-top"><span class="mono">#1287 repair: guard subscription fix</span><span class="pill ok">Checks passed</span></div>
       <pre class="diff" aria-label="Two-line diff"><code><span class="del">- await subs.updateMany({'{'} _id: {'{'} $in: ids {'}'} {'}'}, patch)</span>
@@ -37,7 +36,7 @@ const steps = [
   </figure>
 
   <figure class="exhibit ex-pipe reveal">
-    <figcaption><span class="ex-tag">Exhibit C</span> <Swap b="One order, tracked end to end" p="Follow the parcel (synthetic, obviously)" /></figcaption>
+    <figcaption><span class="ex-tag">Exhibit C</span> One order, tracked end to end</figcaption>
     <div class="card">
       <ol class="pipeline">
         <li><b>checkout</b><span>Journey completed, payment authorised</span></li>
@@ -50,7 +49,7 @@ const steps = [
   </figure>
 
   <figure class="exhibit ex-check reveal">
-    <figcaption><span class="ex-tag">Exhibit D</span> <Swap b="How production data gets changed" p="The five-step checklist (non-negotiable, even here)" /></figcaption>
+    <figcaption><span class="ex-tag">Exhibit D</span> How production data gets changed</figcaption>
     <div class="card">
       <ol class="checklist">
         {steps.map(([b, s], i) => <li style={`--i:${i}`}><span class="box" aria-hidden="true"></span><b>{b}</b><span>{s}</span></li>)}
@@ -59,7 +58,7 @@ const steps = [
   </figure>
 
   <figure class="exhibit ex-spark reveal">
-    <figcaption><span class="ex-tag">Exhibit E</span> <Swap b="Reconcile until the numbers agree" p="Two lines walk into a funnel report" /></figcaption>
+    <figcaption><span class="ex-tag">Exhibit E</span> Reconcile until the numbers agree</figcaption>
     <div class="card">
       <svg class="spark" viewBox="0 0 300 90" role="img" aria-label="Illustration: two lines that start apart and converge">
         <path class="grid" d="M0 22H300M0 45H300M0 68H300" />

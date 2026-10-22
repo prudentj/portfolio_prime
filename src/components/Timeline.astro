@@ -1,5 +1,5 @@
 ---
-// Career timeline: concise = résumé (role, org, dates, one line); expanded = full CV (bullets, stack, scope).
+// Experience: Summary view (role, organisation, dates, one line) and Full CV view (bullets, stack). Internal values: concise / expanded.
 // Facts: Jacob's own career history (22 Oct 2026) and the verified record on this site. Don't add numbers.
 import Swap from './Swap.astro';
 type Role = { title: string; when: string; place?: string; gist: string; bullets?: string[]; stack?: string; link?: string; promoted?: boolean };
@@ -86,6 +86,12 @@ const orgs: Org[] = [
     roles: [{ title: 'Lab Intern', when: 'Jun – Nov 2016', gist: 'EPA-compliance testing: suspended solids, and chemical and biological oxygen demand.' }],
   },
 ];
+const skills = [
+  { k: 'Languages and frameworks', v: 'TypeScript, JavaScript, React, Next.js, Node.js, Express' },
+  { k: 'Data', v: 'MongoDB, Redis, BullMQ, Segment' },
+  { k: 'Payments and integrations', v: 'Stripe, Authorize.Net, Apple Pay, Google Pay, WooCommerce, Zoho CRM, EHR and e-prescribing, webhooks' },
+  { k: 'Practices', v: 'Specification and sprint planning, code review, CI/CD (Jenkins, Docker, AWS), AI-assisted development (Claude Code)' },
+];
 const education = [
   { when: '2019 – 2020', what: 'Full-stack web development', where: 'Lambda School' },
   { when: '2016', what: 'BSc Biochemistry', where: 'Brigham Young University–Idaho' },
@@ -93,14 +99,14 @@ const education = [
 ---
 <section id="cv" class="cv" data-file="career.log" aria-labelledby="cv-h">
   <div class="cv-head">
-    <h2 id="cv-h"><span class="sec" aria-hidden="true">§2</span><Swap b="Career" p="Career log" /></h2>
+    <h2 id="cv-h"><Swap b="Experience" p="Career log" /></h2>
     <div class="cv-tools">
-      <button type="button" class="switch cv-switch" data-cv-switch aria-pressed="false" aria-label="Expanded CV">
-        <span class="ms-label ms-b" aria-hidden="true">Concise</span>
+      <button type="button" class="switch cv-switch" data-cv-switch aria-pressed="false" aria-label="Full CV">
+        <span class="ms-label ms-b" aria-hidden="true">Summary</span>
         <span class="ms-track" aria-hidden="true"><span class="ms-knob"></span></span>
-        <span class="ms-label ms-p" aria-hidden="true">Expanded</span>
+        <span class="ms-label ms-p" aria-hidden="true">Full CV</span>
       </button>
-      <button type="button" class="print-btn" data-print>Print / save as PDF</button>
+      <button type="button" class="print-btn" data-print>Print</button>
     </div>
   </div>
   <p class="p-only cv-joke">cv.pdf was moved to the Trash. This page is the CV now.</p>
@@ -138,5 +144,12 @@ const education = [
     <ul>
       {education.map((e) => <li><span class="when">{e.when}</span><span><b>{e.what}</b>, {e.where}</span></li>)}
     </ul>
+  </div>
+
+  <div class="edu skills">
+    <h3 class="label">Skills</h3>
+    <dl>
+      {skills.map((x) => <div><dt>{x.k}</dt><dd>{x.v}</dd></div>)}
+    </dl>
   </div>
 </section>

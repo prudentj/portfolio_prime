@@ -132,3 +132,84 @@ const life = (() => {
 
 sync();
 life.update();
+
+/* ---------- Party-mode windows: minimise, expand (modal), close (restorable from the tray) ---------- */
+(() => {
+  const wins = document.querySelectorAll('main > section[data-file]');
+  if (!wins.length) return;
+  const tray = document.createElement('div');
+  tray.className = 'win-tray'; tray.setAttribute('role', 'toolbar'); tray.setAttribute('aria-label', 'Closed windows');
+  document.body.append(tray);
+  let dialog, lastFocus;
+
+  const btn = (kind, label, glyph) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'win-btn'; b.dataset.win = kind;
+    b.setAttribute('aria-label', label); b.textContent = glyph;
+    return b;
+  };
+
+  function openModal(win, name, trigger) {
+    if (!dialog) {
+      dialog = document.createElement('dialog');
+      dialog.className = 'win-dialog';
+      dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); }); // backdrop
+      dialog.addEventListener('close', () => {
+        document.querySelectorAll('[data-win="expand"]').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+        lastFocus?.focus();
+      });
+      document.body.append(dialog);
+    }
+    const body = document.createElement('div');
+    body.className = 'win-body';
+    [...win.children].filter((c) => !c.classList.contains('winbar')).forEach((c) => body.append(c.cloneNode(true)));
+    // The copy is for reading: no duplicate ids, no dead controls.
+    body.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+    body.querySelectorAll('button').forEach((el) => el.remove());
+    const bar = document.createElement('div');
+    bar.className = 'winbar';
+    const title = document.createElement('span'); title.className = 'win-title'; title.textContent = name;
+    const close = btn('dismiss', `Close ${name} pop-up`, '×');
+    close.addEventListener('click', () => dialog.close());
+    bar.append(title, close);
+    dialog.replaceChildren(bar, body);
+    dialog.setAttribute('aria-label', name);
+    lastFocus = trigger;
+    trigger.setAttribute('aria-expanded', 'true');
+    dialog.showModal(); // modal: background is inert, Esc closes
+    close.focus();
+    dialog.scrollTop = 0;
+  }
+
+  wins.forEach((win) => {
+    const name = win.dataset.file;
+    const bar = document.createElement('div');
+    bar.className = 'winbar';
+    const title = document.createElement('span'); title.className = 'win-title'; title.textContent = name;
+    const group = document.createElement('div'); group.className = 'win-btns';
+    const min = btn('min', `Minimise ${name}`, '_');
+    const max = btn('expand', `Expand ${name}`, '□');
+    const cls = btn('close', `Close ${name}`, '×');
+    min.setAttribute('aria-pressed', 'false');
+    max.setAttribute('aria-haspopup', 'dialog'); max.setAttribute('aria-expanded', 'false');
+    group.append(min, max, cls);
+    bar.append(title, group);
+    win.prepend(bar);
+
+    const setMin = (on) => { win.classList.toggle('win-min', on); min.setAttribute('aria-pressed', String(on)); };
+    min.addEventListener('click', () => setMin(!win.classList.contains('win-min')));
+    bar.addEventListener('click', (e) => { if (e.target === bar || e.target === title) { if (win.classList.contains('win-min')) setMin(false); } });
+    max.addEventListener('click', () => openModal(win, name, max));
+    cls.addEventListener('click', () => {
+      win.classList.add('win-closed');
+      const r = document.createElement('button');
+      r.type = 'button'; r.textContent = `↺ ${name}`; r.setAttribute('aria-label', `Restore ${name}`);
+      r.addEventListener('click', () => {
+        win.classList.remove('win-closed'); r.remove();
+        min.focus();
+      });
+      tray.append(r);
+      r.focus();
+    });
+  });
+})();

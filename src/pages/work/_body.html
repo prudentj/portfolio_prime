@@ -11,7 +11,7 @@
     <h2 id="figures-h" class="label">The record, 14 April to 22 October 2026</h2>
     <div class="figures">
       <div class="figure"><b>451</b><span>pull requests merged, of 622 opened, across 12 repositories</span></div>
-      <div class="figure"><b>260+</b><span>pull requests reviewed for the team</span></div>
+      <div class="figure"><b>270+</b><span>pull requests reviewed for the team</span></div>
       <div class="figure"><b>790+</b><span>tickets written, including 59 epics (Jira count as of 14 October)</span></div>
       <div class="figure"><b>6</b><span>engineers led, in an offshore team</span></div>
       <div class="figure"><b>180+</b><span>support escalations resolved</span></div>
@@ -120,7 +120,7 @@
           <h3>Payment-processor evaluation</h3>
           <dl class="facts">
             <div><dt>Context</dt><dd>The CEO wanted more payment options and was weighing a move to a different processor for better rates.</dd></div>
-            <div><dt>What I did</dt><dd>I took Apple Pay and Google Pay over the line on the existing processor, including finding why Google Pay wasn't appearing. I then wrote the technical assessment of the two candidates: what each lacked (merchant model, 3-D Secure, card updater) and what a move would cost in integration work. I split the chosen option into seven stories for the team.</dd></div>
+            <div><dt>What I did</dt><dd>I completed Apple Pay and Google Pay on the existing processor, including finding why Google Pay wasn't appearing. I then wrote the technical assessment of the two candidates: what each lacked (merchant model, 3-D Secure, card updater) and what a move would cost in integration work. I split the chosen option into seven stories for the team.</dd></div>
             <div><dt>Result</dt><dd>Wallets live. The assessment confirmed the CEO's preferred option was workable and set out what it would take; that integration is in progress.</dd></div>
           </dl>
           <div class="stack">Stripe · Payment APIs · Next.js</div>
@@ -143,7 +143,7 @@
       <article class="row reveal">
         <div class="row-side"><span class="role investigated">Investigated</span><span class="when">Jul–Oct 2026</span></div>
         <div class="row-main">
-          <h3>Analytics a client could check</h3>
+          <h3>Analytics reconciliation</h3>
           <dl class="facts">
             <div><dt>Context</dt><dd>A client questioned the numbers in their conversion funnel.</dd></div>
             <div><dt>What I did</dt><dd>I reconciled our funnel against the client's own data, removed events that should never have been recorded, and restored 4,870 missing events.</dd></div>
@@ -158,7 +158,7 @@
         <div class="row-main">
           <h3>Webhook and API documentation audit</h3>
           <dl class="facts">
-            <div><dt>Context</dt><dd>Partners build against the platform's webhooks and API docs, and the docs had drifted from what the system actually did.</dd></div>
+            <div><dt>Context</dt><dd>Partners build against the platform's webhooks and API docs, and the docs had drifted from the system.</dd></div>
             <div><dt>What I did</dt><dd>I traced all 53 webhook events through the code, recorded where the docs and the behaviour disagreed, and rewrote the docs. I also started a public changelog.</dd></div>
             <div><dt>Result</dt><dd>Corrections merged and a changelog added.</dd></div>
           </dl>

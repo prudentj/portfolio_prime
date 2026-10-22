@@ -27,7 +27,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap" />
-    <!-- Applies the saved mode before first paint (no flash), and only hides reveal targets when JS and motion are available. -->
+    <!-- Applies the saved mode and CV view before first paint, and only hides reveal targets when JS and motion are available. -->
     <script is:inline>
       (function () {
         var r = document.documentElement, m = null, c = null;
@@ -50,7 +50,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <div class="topbar">
-      <a class="rev" href="/"><span class="b">Rev. 2026.10<span class="rev-extra"> · Record JP-001</span></span><span class="p">flag: party_mode = true</span></a>
+      <span class="rev"><span class="p" aria-hidden="true">flag: party_mode = true</span></span>
       <ModeSwitch />
     </div>
     <slot />
