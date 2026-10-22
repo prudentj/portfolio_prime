@@ -1,0 +1,229 @@
+<div class="wrap">
+
+  <header>
+    <div class="label"><a href="/">← Jacob Prudent</a> · Case study · April to October 2026</div>
+    <h1>Six months as the working lead of a startup's commerce team</h1>
+    <p class="lede">Since April 2026 I have been team lead for the commerce product at a US telehealth startup. I led a six-person offshore engineering team, wrote most of the specifications they built from, and shipped and supported a large share of the code myself. This page sets out what the record shows.</p>
+    <div class="byline"><strong>Jacob Prudent</strong><span>Node.js · React · TypeScript · MongoDB · Stripe</span></div>
+  </header>
+
+  <section aria-labelledby="figures-h">
+    <h2 id="figures-h" class="label">The record, 14 April to 14 October 2026</h2>
+    <div class="figures">
+      <div class="figure"><b>358</b><span>pull requests merged, of 516 opened, across 12 repositories</span></div>
+      <div class="figure"><b>260+</b><span>pull requests reviewed for the team</span></div>
+      <div class="figure"><b>794</b><span>tickets written, including 59 epics</span></div>
+      <div class="figure"><b>6</b><span>engineers led, in an offshore team</span></div>
+      <div class="figure"><b>180+</b><span>support escalations resolved</span></div>
+    </div>
+    <p class="note">Figures come from GitHub and Jira. Many changes ship as two pull requests, one for each environment, so there are fewer distinct changes than the pull request count suggests.</p>
+  </section>
+
+  <section aria-labelledby="job-h">
+    <div class="section-head">
+      <h2 id="job-h">The job</h2>
+      <p>The company is a startup, so the role covered three kinds of work at once.</p>
+    </div>
+    <div class="parts">
+      <div class="part">
+        <span class="role led">Lead</span>
+        <p>I turned product requirement documents into epics and tickets the team could build from, ran estimation and sprint planning, and reviewed and merged the team's code.</p>
+      </div>
+      <div class="part">
+        <span class="role built">Build</span>
+        <p>I shipped my own features and fixes across the platform API, the patient storefront and the clinic admin app.</p>
+      </div>
+      <div class="part">
+        <span class="role investigated">Own production</span>
+        <p>I ran deploys, on-call and production data repairs, and found the root cause when something broke.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="work-h">
+    <div class="section-head">
+      <h2 id="work-h">Selected work</h2>
+      <p>Each item is marked <span class="role built">Built</span> where I wrote the code, <span class="role led">Led</span> where the team built it from my specification and review, and <span class="role investigated">Investigated</span> where I found the cause and directed the fix.</p>
+    </div>
+
+    <div class="record">
+
+      <article class="row">
+        <div class="row-side"><span class="role led">Led</span><span class="when">Apr–Jun 2026</span></div>
+        <div class="row-main">
+          <h3>Replacing WooCommerce with an in-house commerce layer</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>The storefront ran on WooCommerce behind the scenes, and subscription renewals depended on its webhooks. The company wanted it gone without breaking live clinics.</dd></div>
+            <div><dt>What I did</dt><dd>I specified the epic: a BullMQ renewal engine with its own scheduler, worker, failure alerts and daily recovery sweep, plus a way to migrate each clinic. One engineer on my team built most of it. I wrote the first client's subscription migration script and a migration playbook with import templates and a no-write dry run.</dd></div>
+            <div><dt>Result</dt><dd>29 of 30 tickets delivered, and the first client migrated with it.</dd></div>
+          </dl>
+          <div class="stack">Node.js · BullMQ · Redis · MongoDB · Stripe</div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-side"><span class="role led">Led</span><span class="when">Sep–Oct 2026</span></div>
+        <div class="row-main">
+          <h3>One-page checkout</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Checkout ran over several steps, and clinics wanted to configure their own patient journeys.</dd></div>
+            <div><dt>What I did</dt><dd>I split the work into 38 tickets for the team, reviewed the pull requests and ran the release. Review caught four release blockers, one of them a security issue. I built the journey configuration options myself.</dd></div>
+            <div><dt>Result</dt><dd>Live in production since October 2026.</dd></div>
+          </dl>
+          <div class="stack">Next.js 15 · React 19 · TypeScript · Node.js</div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-side"><span class="role built">Built</span><span class="when">Aug–Oct 2026</span></div>
+        <div class="row-main">
+          <h3>Billing correction tool</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Correcting an invoice in a closed billing period meant reissuing it by hand. In one month about 20 invoices across 16 clients were handled this way.</dd></div>
+            <div><dt>What I did</dt><dd>I built a reprice-and-reissue tool for closed periods on Stripe Billing over five review rounds, and reconciled platform invoices against Stripe's records.</dd></div>
+            <div><dt>Result</dt><dd>Shipped. Corrections no longer need a manual reissue.</dd></div>
+          </dl>
+          <div class="stack">Stripe Billing · Node.js · React</div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-side"><span class="role investigated">Investigated</span><span class="when">Jun–Oct 2026</span></div>
+        <div class="row-main">
+          <h3>Subscription renewals and payment reliability</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Some subscription renewals were failing without raising an error, and a race condition could create duplicate payment customers.</dd></div>
+            <div><dt>What I did</dt><dd>I traced the renewal fault in the worker, designed the fix the team built, and oversaw the repair of affected subscriptions in production. For the race I added distributed locks around customer and payment creation.</dd></div>
+            <div><dt>Result</dt><dd>Both fixed in production.</dd></div>
+          </dl>
+          <div class="stack">BullMQ · Redis · MongoDB · Stripe</div>
+        </div>
+      </article>
+
+
+      <article class="row">
+        <div class="row-side"><span class="role led">Led</span><span class="when">Jun–Oct 2026</span></div>
+        <div class="row-main">
+          <h3>Operator work queue for clinic staff</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Clinic staff worked orders, patient messages and support tickets in separate places, and the queue slowed down for the largest clinics.</dd></div>
+            <div><dt>What I did</dt><dd>I specified the queue and its messaging, and bridged support tickets into Jira Service Management. For the queue's performance work I rescoped a planned event-maintained read-model to server-side filtering and pagination in the database. I built the message-template overrides, and diagnosed a fault that hid conversations for a clinic with more than 2,000 open threads; the first fix is live and a follow-up is in review.</dd></div>
+            <div><dt>Result</dt><dd>Queue and ticket bridge live.</dd></div>
+          </dl>
+          <div class="stack">React 18 · Redux Toolkit · Node.js · MongoDB · Jira Service Management API</div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-side"><span class="role led">Led</span><span class="when">Aug–Oct 2026</span></div>
+        <div class="row-main">
+          <h3>Payment-processor evaluation</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>The CEO wanted more payment options and was weighing a move to a different processor for better rates.</dd></div>
+            <div><dt>What I did</dt><dd>I took Apple Pay and Google Pay over the line on the existing processor, including finding why Google Pay wasn't appearing. I then wrote the technical assessment of the two candidates: what each lacked (merchant model, 3-D Secure, card updater) and what a move would cost in integration work. I split the chosen option into seven stories for the team.</dd></div>
+            <div><dt>Result</dt><dd>Wallets live. The assessment confirmed the CEO's preferred option was workable and set out what it would take; that integration is in progress.</dd></div>
+          </dl>
+          <div class="stack">Stripe · Payment APIs · Next.js</div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-side"><span class="role built">Built</span><span class="when">Jul–Oct 2026</span></div>
+        <div class="row-main">
+          <h3>Identity-verification integration</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Some prescriptions need a verified ID. Each check costs money, and returning patients were being checked again.</dd></div>
+            <div><dt>What I did</dt><dd>I designed when a check is billed and added a 365-day reuse window for patients who had already passed. I ran the launch checks when a client went live.</dd></div>
+            <div><dt>Result</dt><dd>97% of the client's first 680 attempts verified.</dd></div>
+          </dl>
+          <div class="stack">Third-party identity API · Webhooks · Node.js</div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-side"><span class="role investigated">Investigated</span><span class="when">Jul–Oct 2026</span></div>
+        <div class="row-main">
+          <h3>Analytics a client could check</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>A client questioned the numbers in their conversion funnel.</dd></div>
+            <div><dt>What I did</dt><dd>I reconciled our funnel against the client's own data, removed events that should never have been recorded, and restored 4,870 missing events.</dd></div>
+            <div><dt>Result</dt><dd>Our figures matched the client's to within 0.5%.</dd></div>
+          </dl>
+          <div class="stack">MongoDB aggregation · UTM attribution</div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-side"><span class="role investigated">Investigated</span><span class="when">Jun–Oct 2026</span></div>
+        <div class="row-main">
+          <h3>Webhook and API documentation audit</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Partners build against the platform's webhooks and API docs, and the docs had drifted from what the system actually did.</dd></div>
+            <div><dt>What I did</dt><dd>I traced all 53 webhook events through the code, recorded where the docs and the behaviour disagreed, and rewrote the docs. I also started a public changelog.</dd></div>
+            <div><dt>Result</dt><dd>Corrections merged and a changelog added.</dd></div>
+          </dl>
+          <div class="stack">REST API · Webhooks · ReadMe</div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-side"><span class="role built">Built</span><span class="when">Sep–Oct 2026</span></div>
+        <div class="row-main">
+          <h3>Security and SOC 2 compliance</h3>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>The company was working towards a SOC 2 Type II audit.</dd></div>
+            <div><dt>What I did</dt><dd>I wrote the fixes for the penetration-test findings across eleven repositories, now in review, and run the dependency-security programme, including a Node.js 24 upgrade across six of them. I facilitated the company's incident-response tabletop exercise.</dd></div>
+            <div><dt>Result</dt><dd>In progress.</dd></div>
+          </dl>
+          <div class="stack">Node.js 24 · Dependabot</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section aria-labelledby="ai-h">
+    <div class="section-head">
+      <h2 id="ai-h">How I work with AI</h2>
+      <p>About 98% of my commits in this period were written with Claude Code. I use it as the implementation layer. Deciding what gets built, checking it and answering for what ships stays with me.</p>
+    </div>
+    <ul class="practices">
+      <li>I set the approach before any code is written, then review both the diff and the reasoning behind it.</li>
+      <li>Investigations get a second, independent pass before anyone acts on the findings.</li>
+      <li>Every number I report comes out of a script I can rerun, never from the model's summary.</li>
+      <li>AI code review runs on my pull requests, and I resolve its findings before a person reviews the code.</li>
+      <li>I built my own tooling on top of it: commands that turn a specification into tickets, trace a release across seven repositories, and triage support escalations, plus read-only agents that investigate in parallel.</li>
+    </ul>
+    <div class="section-head">
+      <h3>How I run production data changes</h3>
+    </div>
+    <ol class="routine">
+      <li><b>Back up</b><span>Copy every record the change will touch.</span></li>
+      <li><b>Dry run</b><span>Run the script without writing and count what it would change.</span></li>
+      <li><b>Guarded write</b><span>Write only records that still match the expected state.</span></li>
+      <li><b>Verify</b><span>Re-read the data and compare it with the dry run.</span></li>
+      <li><b>Keep a revert</b><span>Leave a tested script that restores the backup.</span></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="stack-h">
+    <h2 id="stack-h">Stack in daily use</h2>
+    <div class="stack-grid">
+      <div><span class="label">Backend</span><p>Node.js, Express, NestJS, MongoDB, Mongoose, Redis, BullMQ</p></div>
+      <div><span class="label">Frontend</span><p>React, Next.js, TypeScript, Vite, Tailwind CSS, Redux Toolkit</p></div>
+      <div><span class="label">Payments and integrations</span><p>Stripe, Authorize.Net, Apple Pay, Google Pay, SendGrid, Twilio, webhooks</p></div>
+      <div><span class="label">Delivery</span><p>Jenkins, Docker, Kubernetes (EKS), Helm, AWS, Jest, Vitest</p></div>
+      <div><span class="label">Tools</span><p>Claude Code, CodeRabbit, GitHub, Jira</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="label">About these figures</span>
+    <ul>
+      <li>Client names, internal system names and security details are left out on purpose.</li>
+      <li>Where the team built something, I mark it Led rather than claiming it.</li>
+      <li>The figures cover 14 April to 14 October 2026 and come from GitHub and Jira, not from estimates.</li>
+    </ul>
+  </footer>
+
+</div>

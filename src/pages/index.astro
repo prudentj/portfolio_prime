@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+// GitHub figures 14 Apr – 22 Oct 2026; ticket count from Jira as of 14 Oct (Jira re-check pending).
+const figures = [
+  { n: '451', t: 'pull requests merged across 12 repositories' },
+  { n: '270+', t: 'pull requests reviewed for the team' },
+  { n: '790+', t: 'tickets written, including 59 epics' },
+];
+const owns = [
+  { k: 'Commerce', v: 'Storefront, one-page checkout and configurable patient journeys for clinic brands.' },
+  { k: 'Payments and billing', v: 'Stripe, digital wallets, a new processor integration, subscription renewals and invoicing for clinic tenants.' },
+  { k: 'Production', v: 'Deploys, the dev → staging → production release process, incidents and data repairs.' },
+  { k: 'Security', v: 'Technical lead for the company’s first SOC 2 Type II audit and its penetration test.' },
+  { k: 'Team', v: 'Six offshore engineers and QA. I write the specs, plan the sprints, and review and merge the code.' },
+];
+const principles = [
+  { h: 'Specify before building', p: 'Product requirements become tickets the team can build without coming back with questions.', eg: '27 product requirement documents turned into epics this year.' },
+  { h: 'Verify everything', p: 'Every number I report comes from a script I can rerun, never from a summary.', eg: 'A suspected cross-client data leak was disproved from delivery records before anyone escalated.' },
+  { h: 'Own production', p: 'Back up, dry run, guarded write, verify, keep a revert.', eg: 'Introduced a staging environment and a promotion rule when releases started affecting clients.' },
+  { h: 'AI writes, I answer for it', p: 'I write most of my code with Claude Code. I decide what gets built, review every change and own what ships.', eg: 'I also practise without it, so the underlying skills stay sharp.' },
+];
+---
+<Base
+  title="Jacob Prudent · Engineering lead, regulated healthtech"
+  description="Engineering lead shipping payments, billing and patient-facing platforms in regulated healthtech, with a small team and an AI-native workflow.">
+  <div class="wrap">
+
+    <header class="hero">
+      <div class="name">Jacob Prudent</div>
+      <h1>Engineering lead in regulated healthtech</h1>
+      <p class="lede">I lead a small team shipping payments, billing and patient-facing platforms, with an AI-native workflow, and I own what reaches production.</p>
+      <nav class="links" aria-label="Contact and CV">
+        <a class="primary" href="/cv.pdf">CV</a>
+        <a href="#contact">Email</a>
+        <a href="https://www.linkedin.com/in/jacobprudent">LinkedIn</a>
+        <a href="https://github.com/prudentj">GitHub</a>
+      </nav>
+    </header>
+
+    <section aria-labelledby="now-h">
+      <div class="section-head">
+        <h2 id="now-h">Now</h2>
+        <p>Team lead for the commerce platform at a US telehealth startup, since April 2026.</p>
+      </div>
+      <ul class="owns">
+        {owns.map((o) => <li><b>{o.k}</b><span>{o.v}</span></li>)}
+      </ul>
+      <div class="figures">
+        {figures.map((f) => <div class="figure"><b>{f.n}</b><span>{f.t}</span></div>)}
+      </div>
+      <p class="more"><a href="/work/commerce">Read the full record →</a></p>
+    </section>
+
+    <section aria-labelledby="how-h">
+      <div class="section-head"><h2 id="how-h">How I work</h2></div>
+      <div class="principles">
+        {principles.map((x, i) => (
+          <div class="principle">
+            <h3><span>{i + 1}</span>{x.h}</h3>
+            <p>{x.p}</p>
+            <p class="eg">{x.eg}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="story-h">
+      <div class="section-head"><h2 id="story-h">The story so far</h2></div>
+      <div class="story">
+        <div class="draft">
+          <span class="label">Draft · your narrative goes here</span>
+          <p>Lab scientist: a biochemistry degree, pathogen testing, assay work. Then a coding bootcamp and leading its team leads. [2020–2026 to fill in.] Now leading engineering in healthtech. The thread through all of it: a lab's standard of evidence, carried into software.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="next-h">
+      <div class="section-head"><h2 id="next-h">What’s next</h2></div>
+      <div class="draft">
+        <span class="label">Draft · goes live in stage 3 only</span>
+        <p>Two or three sentences on the roles, domain and location you’re looking for.</p>
+      </div>
+    </section>
+
+    <footer id="contact" class="contact">
+      <span class="label">Contact</span>
+      <span class="email">jake.prudent@gmail.com</span>
+      <nav class="links" aria-label="Elsewhere">
+        <a href="https://www.linkedin.com/in/jacobprudent">LinkedIn</a>
+        <a href="https://github.com/prudentj">GitHub</a>
+        <a href="/cv.pdf">CV (PDF)</a>
+      </nav>
+    </footer>
+
+  </div>
+</Base>
