@@ -47,3 +47,25 @@
   a { color: inherit; text-decoration: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; text-shadow: none !important; }
 }
+
+/* Chrome's print fragmentation mis-places grid items that follow a page break (the next item keeps its
+   pre-break position and overlaps). So in print every container is block flow, and rows are flex rows
+   whose height comes from their content. */
+@media print {
+  .wrap, main.wrap, main.wrap > section, #cv, .cv-head, .hero, .hero-text, .job-main, .role-block, .cv-more { display: block !important; }
+  main.wrap > section { margin-bottom: 8pt; }
+  .cv-head h2, main.wrap > section > h2 { margin-bottom: 4pt; }
+  .hero { margin-bottom: 8pt; }
+  .hero-text > * + * { margin-top: 2pt; }
+  .role-block + .role-block, .cv-more ul, .cv-more .stack { margin-top: 2pt; }
+  .cv-more ul { display: block; }
+  .cv-more li + li { margin-top: 1pt; }
+  .timeline, .edu ul, .skills dl { display: block; }
+  .job, .edu li, .skills dl div { display: flex !important; align-items: flex-start; gap: 12pt; }
+  .job-side, .edu .when, .skills dt { flex: 0 0 8rem; }
+  .job-main, .edu li > span:last-child, .skills dd { flex: 1 1 auto; min-width: 0; }
+  .job-side { display: block; }
+  .edu li, .skills dl div { margin-bottom: 2pt; }
+  .edu, .skills { display: block; margin-top: 6pt; }
+  .edu h3, .skills h3 { margin-bottom: 3pt; }
+}
