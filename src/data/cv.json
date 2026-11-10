@@ -13,31 +13,44 @@
   "profileUk": "Seeking Tech Lead or Engineering Manager roles in London or Manchester.",
   "orgs": [
     {
-      "hash": "a4f1c2e", "org": "Telegra", "context": "US telehealth platform for clinics and brands", "place": "Remote / Kennewick, WA, USA", "span": "2026 – present",
-      "roles": [{
-        "title": "Commerce Team Lead", "when": "2026 – present",
-        "gist": "Lead the Commerce team of six engineers, with product responsibility for the patient-facing platform.",
-        "bullets": [
-          "Lead a six-person offshore team and QA: write the specs, plan the sprints, and review and merge the code. Helped scale the team.",
-          "Own the patient-facing experience: white-labelled storefronts, patient dashboards, checkout and subscriptions.",
-          "Own production: deploys, incidents and production data repairs.",
-          "Led the build-out of Telegra Commerce, replacing reliance on a WooCommerce plugin with an end-to-end solution tracked from storefront to fulfilment; specified the renewals engine the team built.",
-          "Led the one-page checkout from specification to release; review caught four release blockers, one of them a security issue.",
-          "Established the team’s AI-assisted development workflow: spec-first tickets and mandatory human review."
-        ],
-        "stack": "MERN (MongoDB · Express · React · Node.js) · TypeScript · Next.js · Redis · BullMQ · Stripe · AWS",
-        "link": "/work/commerce"
-      }]
-    },
-    {
-      "hash": "9d27e40", "org": "Invigor Medical", "context": "US telehealth e-commerce company", "place": "", "span": "Sep 2022 – Apr 2026",
+      "hash": "a4f1c2e",
+      "org": "Telegra",
+      "context": "US telehealth platform for clinics and brands",
+      "place": "Remote / Kennewick, WA, USA",
+      "span": "2026 – present",
       "roles": [
         {
-          "title": "Director of Technology", "when": "Jan 2024 – Apr 2026", "place": "Pasco, WA, USA", "promoted": true,
-          "gist": "Technical owner of a multi-million-dollar telehealth e-commerce platform running high-volume prescription subscriptions.",
+          "title": "Commerce Team Lead",
+          "when": "2026 – present",
+          "gist": "Lead the Commerce team of six engineers, with product responsibility for the patient-facing platform.",
+          "bullets": [
+            "Lead a six-person engineering team based in India, plus QA: write the specifications, plan the sprints, and review and merge all code.",
+            "Led the build-out of Telegra Commerce, replacing reliance on a WooCommerce plugin with an end-to-end platform tracked from storefront to fulfilment; specified the renewals engine the team built.",
+            "Led the one-page checkout from specification to release; review caught four release blockers, including a security issue.",
+            "Built a self-service tool to reprice and reissue invoices for closed billing periods, replacing manual corrections for clinic customers.",
+            "Responsible for production: releases, incidents and data fixes.",
+            "Established the team’s AI-assisted development workflow: specification-first tickets and mandatory human review."
+          ],
+          "stack": "MERN (MongoDB · Express · React · Node.js) · TypeScript · Next.js · Redis · BullMQ · Stripe · AWS",
+          "link": "/work/commerce"
+        }
+      ]
+    },
+    {
+      "hash": "9d27e40",
+      "org": "Invigor Medical",
+      "context": "US telehealth e-commerce company",
+      "place": "",
+      "span": "Sep 2022 – Apr 2026",
+      "roles": [
+        {
+          "title": "Director of Technology",
+          "when": "Jan 2024 – Apr 2026",
+          "place": "Pasco, WA, USA",
+          "gist": "Technical owner of a telehealth e-commerce platform running prescription subscriptions.",
           "bullets": [
             "Primary technical owner across WooCommerce, Zoho CRM, EHR, e-prescribing and payment systems.",
-            "Co-led a React and Node.js prescription commerce platform integrating intake, payment and script routing.",
+            "Co-led the build of a React and Node.js prescription commerce platform integrating intake, payment and prescription routing.",
             "Built and maintained 15+ production automations for order routing, patient intake, billing triggers, subscription recovery and cross-system status sync.",
             "Implemented prescription routing by state, medication type and pharmacy capability.",
             "Designed delayed-capture payment workflows tied to clinician approval, on dual processors (Stripe and Authorize.Net) for resilience.",
@@ -46,32 +59,83 @@
           "stack": "Zoho (Deluge, Flow) · WooCommerce · WordPress · React · Node.js · Stripe · Authorize.Net · Segment · Metorik"
         },
         {
-          "title": "Full Stack Developer", "when": "Sep 2022 – Jan 2024", "place": "Kennewick, WA, USA",
+          "title": "Full Stack Developer",
+          "when": "Sep 2022 – Jan 2024",
+          "place": "Kennewick, WA, USA",
           "gist": "Automated operations in Zoho Deluge; built a React/Node patient dashboard."
         }
       ]
     },
     {
-      "hash": "5be03a1", "org": "Pathwright", "context": "US online learning platform", "place": "Remote", "span": "Oct 2020 – Dec 2021",
-      "roles": [{ "title": "Full Stack Developer (contract)", "when": "Oct 2020 – Dec 2021", "gist": "Developer and research assistant: prototyping, and a hypertext parser and text editor built with React, TypeScript and Slate.js." }]
+      "hash": "5be03a1",
+      "org": "Pathwright",
+      "context": "US online learning platform",
+      "place": "Remote",
+      "span": "Oct 2020 – Dec 2021",
+      "roles": [
+        {
+          "title": "Full Stack Developer (contract)",
+          "when": "Oct 2020 – Dec 2021",
+          "gist": "Contract developer: built a hypertext parser and rich-text editor in React, TypeScript and Slate.js, and prototyped features for the product team."
+        }
+      ]
     },
     {
-      "hash": "7c3e9b1", "org": "Lambda School", "context": "", "place": "Remote", "span": "Jun 2020",
-      "roles": [{ "title": "Section Lead", "when": "Jun 2020", "gist": "Mentored eleven team leads, each supporting 5–12 students." }]
+      "hash": "7c3e9b1",
+      "org": "Lambda School",
+      "context": "US coding bootcamp",
+      "place": "Remote",
+      "span": "Jun 2020",
+      "roles": [
+        {
+          "title": "Section Lead",
+          "when": "Jun 2020",
+          "gist": "Mentored eleven team leads, each supporting 5–12 students."
+        }
+      ]
     },
     {
-      "hash": "3b8d0f4", "org": "Earlier career", "context": "", "place": "", "span": "Aug 2017 – Sep 2019", "earlier": true,
-      "roles": [{ "title": "Laboratory science", "when": "Aug 2017 – Sep 2019", "gist": "Microbiologist, Tyson Foods (Sep 2018 – Sep 2019); Research Assistant, Santa Cruz Biotechnology (Aug 2017 – Aug 2018)." }]
+      "hash": "3b8d0f4",
+      "org": "Earlier career",
+      "context": "",
+      "place": "",
+      "span": "Aug 2017 – Sep 2019",
+      "earlier": true,
+      "roles": [
+        {
+          "title": "Laboratory science",
+          "when": "Aug 2017 – Sep 2019",
+          "gist": "Microbiologist, Tyson Foods (Sep 2018 – Sep 2019); Research Assistant, Santa Cruz Biotechnology (Aug 2017 – Aug 2018)."
+        }
+      ]
     }
   ],
   "education": [
-    { "when": "2016", "text": "BSc Biochemistry, Brigham Young University–Idaho (US)" },
-    { "when": "Oct 2019 – 2020", "text": "Lambda School, full-stack web development" }
+    {
+      "when": "2016",
+      "text": "BSc Biochemistry, Brigham Young University–Idaho (US)"
+    },
+    {
+      "when": "Oct 2019 – 2020",
+      "text": "Lambda School (US coding bootcamp), full-stack web development"
+    }
   ],
   "skills": [
-    { "k": "Languages & frameworks", "v": "TypeScript, JavaScript, React, Next.js, Node.js, Express" },
-    { "k": "Data & infrastructure", "v": "MongoDB, Redis, BullMQ, AWS, Docker, Jenkins" },
-    { "k": "Payments & integrations", "v": "Stripe, Authorize.Net, EHR and e-prescribing, webhooks, REST APIs" },
-    { "k": "Leadership & delivery", "v": "Agile delivery, specification writing, code review, stakeholder management, roadmapping, incident management" }
+    {
+      "k": "Languages & frameworks",
+      "v": "TypeScript, JavaScript, React, Next.js, Node.js, Express"
+    },
+    {
+      "k": "Data & infrastructure",
+      "v": "MongoDB, Redis, BullMQ, AWS, Docker, Jenkins"
+    },
+    {
+      "k": "Payments & integrations",
+      "v": "Stripe, Authorize.Net, EHR and e-prescribing, webhooks, REST APIs"
+    },
+    {
+      "k": "Leadership & delivery",
+      "v": "Agile delivery, specification writing, code review, stakeholder management, roadmap planning, incident management"
+    }
   ]
 }
