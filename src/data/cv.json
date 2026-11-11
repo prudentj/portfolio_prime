@@ -140,6 +140,12 @@
   ],
   "file": "Jacob-Prudent-CV",
   "variants": {
+    "lead": {
+      "_note": "The main CV plus the relocation lines. Served at /cv/lead (unlinked, noindex). Shares the main CV's PDF and Word files.",
+      "path": "/cv/lead/",
+      "showReloc": true,
+      "sharedFiles": true
+    },
     "product": {
       "_note": "Hidden version for Technical PM / product-lead roles. Same facts; only headline, profile, skills order and Telegra bullet order differ. Served at /cv/product (unlinked, noindex).",
       "path": "/cv/product/",
@@ -172,7 +178,8 @@
           "k": "Engineering",
           "v": "TypeScript, JavaScript, React, Next.js, Node.js, Express, MongoDB, Redis, AWS, code review, AI-assisted development (Claude Code)"
         }
-      ]
+      ],
+      "showReloc": true
     }
   }
 }

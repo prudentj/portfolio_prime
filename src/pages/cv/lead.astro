@@ -1,0 +1,6 @@
+---
+// Hidden copy of the main CV with the relocation lines, for UK applications. Not linked anywhere; noindex.
+import Home from '../../components/Home.astro';
+import { cvFor } from '../../data/cv.js';
+---
+<Home cv={cvFor('lead')} noindex />

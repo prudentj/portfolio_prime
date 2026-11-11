@@ -7,6 +7,8 @@ import Exhibits from './Exhibits.astro';
 import Timeline from './Timeline.astro';
 interface Props { cv: any; noindex?: boolean }
 const { cv, noindex = false } = Astro.props;
+// Drafts render only in local dev, never in the deployed build.
+const showDrafts = import.meta.env.DEV;
 // Scope facts only (Jacob, 22 Oct 2026): no PR or ticket counts on the home page.
 const figures = [
   { n: '4 years', t: 'in telehealth commerce, since September 2022' },
@@ -44,7 +46,7 @@ const principles = [
           <a href={cv.github}><span class="scr-t">GitHub</span><span class="prn-t">github.com/prudentj</span></a>
           <a href={cv.site}>jacobprudent.com</a>
         </p>
-        <p class="reloc reloc-line">{cv.reloc}</p>
+        {cv.showReloc && <p class="reloc reloc-line">{cv.reloc}</p>}
         <p class="cv-links">
           <a class="cv-link" href="?cv=expanded#cv" data-cv-open>Full CV</a>
           <span class="dl">Download CV (<a href={`/${cv.file}.pdf`} download aria-label="Download CV as PDF">PDF</a> · <a href={`/${cv.file}.docx`} download aria-label="Download CV as Word">Word</a>)</span>
@@ -67,7 +69,7 @@ const principles = [
 
     <section aria-labelledby="profile-h" data-file="profile.md">
       <h2 id="profile-h">Profile</h2>
-      <p class="profile">{cv.profile} <span class="reloc">{cv.profileUk}</span></p>
+      <p class="profile">{cv.profile}{cv.showReloc && <span class="reloc"> {cv.profileUk}</span>}</p>
       <div class="figures">
         {figures.map((f, i) => <div class="figure reveal" style={`--i:${i}`}><b>{f.n}</b><span>{f.t}</span></div>)}
       </div>
@@ -122,13 +124,13 @@ const principles = [
         <div class="figure"><b>0</b><span>facts changed by this switch</span></div>
       </div>
       <p class="life-note">The background is Conway’s Game of Life, after a 2020 build-week project. <button type="button" class="glider-btn" data-launch-glider>Launch a glider</button></p>
-      <div class="draft">
+      {showDrafts && <div class="draft">
         <span class="label">Draft · unconfirmed, not live copy</span>
         <p>Outside work: built the website for RadCon, a convention, and writes fiction. [Jacob to confirm both, and whether they belong here.]</p>
-      </div>
+      </div>}
     </section>
 
-    <section aria-labelledby="story-h" data-file="background.md">
+    {showDrafts && <section aria-labelledby="story-h" data-file="background.md">
       <h2 id="story-h"><Swap b="Background" p="Origin story" /></h2>
       <div class="draft">
         <span class="label">Draft · Jacob to edit</span>
@@ -136,7 +138,7 @@ const principles = [
         <p>I then worked as a contract developer and research assistant at Pathwright, joined Invigor Medical as a full-stack developer and became its Director of Technology. I now lead the Commerce team at Telegra.</p>
         <p>The common thread is a laboratory’s standard of evidence: don’t trust a result you can’t reproduce.</p>
       </div>
-    </section>
+    </section>}
 
     <footer id="contact" class="contact">
       <h2 class="label"><Swap b="Contact" p="Say hi" /></h2>

@@ -9,7 +9,7 @@ export function cvFor(name) {
   if (!name) return cv;
   const v = base.variants[name];
   if (!v) throw new Error(`Unknown CV variant: ${name}`);
-  const { roles = {}, _note, ...top } = v;
+  const { roles = {}, _note, sharedFiles, ...top } = v;
   Object.assign(cv, top);
   for (const o of cv.orgs) if (roles[o.hash]) Object.assign(o.roles[0], roles[o.hash]);
   return cv;

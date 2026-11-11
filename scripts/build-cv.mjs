@@ -1,5 +1,5 @@
 // Builds public/Jacob-Prudent-CV.pdf from the site's print stylesheet using headless Chrome.
-// The ?cvdoc=1 render hides the relocation line and shows "Phone available on request".
+// The ?cvdoc=1 render hides the extra header line and shows "Phone available on request".
 // Usage: npm run cv   (set CHROME=/path/to/chrome if it isn't in the default macOS location)
 import { createServer } from 'node:http';
 import { readFile, copyFile, stat } from 'node:fs/promises';
@@ -20,7 +20,7 @@ await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const chrome = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 // One PDF per CV version: the main CV at / and each variant in cv.json at its hidden path.
 const cvData = JSON.parse(await readFile(resolve('src/data/cv.json'), 'utf8'));
-const versions = [{ path: '/', file: cvData.file }, ...Object.values(cvData.variants || {}).map((v) => ({ path: v.path, file: v.file }))];
+const versions = [{ path: '/', file: cvData.file }, ...Object.values(cvData.variants || {}).filter((v) => !v.sharedFiles).map((v) => ({ path: v.path, file: v.file }))];
 try {
   for (const v of versions) {
     const url = `http://127.0.0.1:${server.address().port}${v.path}?cvdoc=1&cv=expanded`;

@@ -38,13 +38,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         r.setAttribute('data-cv', c === 'expanded' ? 'expanded' : 'concise');
         var q = /[?&]mode=(party|business)/.exec(location.search);
         if (q) m = q[1];
-        // ?uk=1 reveals the relocation line for people Jacob sends the link to; remembered for the visit.
-        var u = null;
-        try { u = sessionStorage.getItem('jp-uk'); } catch (e) {}
-        if (/[?&]uk=1/.test(location.search)) { u = '1'; try { sessionStorage.setItem('jp-uk', '1'); } catch (e) {} }
-        // ?cvdoc=1 is the downloadable-CV render (scripts/build-cv.mjs): no relocation line, phone note shown.
-        if (/[?&]cvdoc=1/.test(location.search)) { u = null; r.setAttribute('data-cvdoc', ''); }
-        if (u === '1') r.setAttribute('data-uk', '');
+        // ?cvdoc=1 is the downloadable-CV render (scripts/build-cv.mjs).
+        if (/[?&]cvdoc=1/.test(location.search)) r.setAttribute('data-cvdoc', '');
         if (m === 'party') {
           r.setAttribute('data-mode', 'party');
         }

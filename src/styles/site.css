@@ -97,10 +97,8 @@ mark { background: none; color: inherit; }
 .mark { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--muted); font-family: var(--mono); font-size: 0.75rem; }
 .mark svg { width: 1.25rem; height: 1.25rem; fill: currentColor; flex: none; }
 
-/* Relocation line: hidden on the public page, shown only via ?uk=1 links. */
-.reloc { display: none; }
-:root[data-uk] .reloc { display: inline; }
-:root[data-uk] p.reloc { display: block; }
+/* Extra header line: rendered only on unlinked CV pages, and left out of the downloadable CV. */
+:root[data-cvdoc] .reloc { display: none; }
 .reloc-line { max-width: none; font-family: var(--mono); font-size: 0.8125rem; color: var(--ink); }
 .cvdoc-only { display: none; }
 :root[data-cvdoc] .cvdoc-only { display: inline; }

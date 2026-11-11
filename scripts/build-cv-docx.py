@@ -1,5 +1,5 @@
 """Builds public/Jacob-Prudent-CV.docx from src/data/cv.json: plain, single column, Arial 10.5pt.
-No relocation line; contact line says "Phone available on request". Requires python-docx."""
+No extra header line; contact line says "Phone available on request". Requires python-docx."""
 import json, shutil, pathlib
 from docx import Document
 from docx.shared import Pt, Mm, RGBColor
@@ -12,7 +12,7 @@ def cv_for(name=None):
     # Mirrors src/data/cv.js: a variant overrides top-level fields and, per org hash, the first role's bullets.
     cv = json.loads(json.dumps(BASE)); cv.pop('variants', None)
     if not name: return cv
-    v = dict(BASE['variants'][name]); roles = v.pop('roles', {}); v.pop('_note', None)
+    v = dict(BASE['variants'][name]); roles = v.pop('roles', {}); v.pop('_note', None); v.pop('sharedFiles', None)
     cv.update(v)
     for o in cv['orgs']:
         if o['hash'] in roles: o['roles'][0].update(roles[o['hash']])
@@ -89,5 +89,5 @@ def build(cv):
   if (root / 'build').exists(): shutil.copy(out, root / f"build/{cv['file']}.docx")
   print(f'Wrote {out}')
 
-for name in [None, *BASE.get('variants', {})]:
+for name in [None, *(k for k, v in BASE.get('variants', {}).items() if not v.get('sharedFiles'))]:
   build(cv_for(name))
