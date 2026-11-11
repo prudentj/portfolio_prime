@@ -17,15 +17,22 @@ const server = createServer(async (req, res) => {
   catch { res.writeHead(404); res.end(); }
 });
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
-const url = `http://127.0.0.1:${server.address().port}/?cvdoc=1&cv=expanded`;
 const chrome = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const out = resolve('public/Jacob-Prudent-CV.pdf');
-const profile = mkdtempSync(join(tmpdir(), 'cv-chrome-')); // separate profile so a running Chrome can't block it
+// One PDF per CV version: the main CV at / and each variant in cv.json at its hidden path.
+const cvData = JSON.parse(await readFile(resolve('src/data/cv.json'), 'utf8'));
+const versions = [{ path: '/', file: cvData.file }, ...Object.values(cvData.variants || {}).map((v) => ({ path: v.path, file: v.file }))];
 try {
-  // Async on purpose: a sync spawn would block this process's own static server.
-  await promisify(execFile)(chrome, ['--headless=new', '--disable-gpu', `--user-data-dir=${profile}`, '--no-first-run', '--no-default-browser-check', '--no-pdf-header-footer', '--virtual-time-budget=6000', `--print-to-pdf=${out}`, url], { timeout: 60000 });
-} finally { server.close(); rmSync(profile, { recursive: true, force: true }); }
-await copyFile(out, resolve('build/Jacob-Prudent-CV.pdf'));
-const pages = ((await readFile(out, 'latin1')).match(/\/Type\s*\/Page[^s]/g) || []).length;
-console.log(`Wrote ${out} (${pages} pages)`);
-if (pages !== 2) { console.error('Expected 2 pages: tighten src/styles/print.css'); process.exitCode = 1; }
+  for (const v of versions) {
+    const url = `http://127.0.0.1:${server.address().port}${v.path}?cvdoc=1&cv=expanded`;
+    const out = resolve(`public/${v.file}.pdf`);
+    const profile = mkdtempSync(join(tmpdir(), 'cv-chrome-')); // separate profile so a running Chrome can't block it
+    try {
+      // Async on purpose: a sync spawn would block this process's own static server.
+      await promisify(execFile)(chrome, ['--headless=new', '--disable-gpu', `--user-data-dir=${profile}`, '--no-first-run', '--no-default-browser-check', '--no-pdf-header-footer', '--virtual-time-budget=6000', `--print-to-pdf=${out}`, url], { timeout: 60000 });
+    } finally { rmSync(profile, { recursive: true, force: true }); }
+    await copyFile(out, resolve(`build/${v.file}.pdf`));
+    const pages = ((await readFile(out, 'latin1')).match(/\/Type\s*\/Page[^s]/g) || []).length;
+    console.log(`Wrote ${out} (${pages} pages)`);
+    if (pages !== 2) { console.error(`Expected 2 pages for ${v.file}: tighten src/styles/print.css`); process.exitCode = 1; }
+  }
+} finally { server.close(); }

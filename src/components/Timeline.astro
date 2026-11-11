@@ -2,7 +2,8 @@
 // Experience: Summary view (role, organisation, dates, one line) and Full CV view (bullets, stack). Internal values: concise / expanded.
 // Content lives in src/data/cv.json (shared with the downloadable CV).
 import Swap from './Swap.astro';
-import cv from '../data/cv.json';
+interface Props { cv: any }
+const { cv } = Astro.props;
 type Role = { title: string; when: string; place?: string; gist: string; bullets?: string[]; stack?: string; link?: string; promoted?: boolean };
 type Org = { hash: string; org: string; context: string; place: string; span: string; roles: Role[]; earlier?: boolean };
 const orgs = cv.orgs as Org[];
@@ -17,7 +18,7 @@ const { skills, education } = cv;
         <span class="ms-track" aria-hidden="true"><span class="ms-knob"></span></span>
         <span class="ms-label ms-p" aria-hidden="true">Full CV</span>
       </button>
-      <span class="dl">Download CV (<a href="/Jacob-Prudent-CV.pdf" download aria-label="Download CV as PDF">PDF</a> · <a href="/Jacob-Prudent-CV.docx" download aria-label="Download CV as Word">Word</a>)</span>
+      <span class="dl">Download CV (<a href={`/${cv.file}.pdf`} download aria-label="Download CV as PDF">PDF</a> · <a href={`/${cv.file}.docx`} download aria-label="Download CV as Word">Word</a>)</span>
     </div>
   </div>
   <p class="p-only cv-joke">cv.pdf was moved to the Trash. This page is the CV now.</p>

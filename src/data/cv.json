@@ -9,7 +9,7 @@
   "site": "https://jacobprudent.com",
   "phoneNote": "Phone available on request",
   "reloc": "Relocating to London or Manchester in 2027 · Requires visa sponsorship",
-  "profile": "Engineering lead with four years in telehealth commerce. Leads the Commerce team at Telegra (six engineers), with product responsibility for the patient-facing platform: white-labelled storefronts, checkout, subscriptions and patient dashboards. Previously Director of Technology at Invigor Medical, a telehealth e-commerce company. Works spec-first, with AI-assisted development and mandatory human review. Background in laboratory science.",
+  "profile": "Engineering lead with six years in software, four of them in telehealth commerce. Leads Telegra’s Commerce team of six engineers plus QA, with product responsibility for the patient-facing platform: white-labelled storefronts, checkout, subscriptions and patient dashboards. Previously Director of Technology at Invigor Medical, a telehealth e-commerce company. Works specification-first, using AI-assisted development with human review of every change. Came to software from laboratory science.",
   "profileUk": "Seeking Tech Lead or Engineering Manager roles in London or Manchester.",
   "orgs": [
     {
@@ -24,12 +24,12 @@
           "when": "2026 – present",
           "gist": "Lead the Commerce team of six engineers, with product responsibility for the patient-facing platform.",
           "bullets": [
-            "Lead a six-person engineering team based in India, plus QA: write the specifications, plan the sprints, and review and merge all code.",
+            "Lead a six-person engineering team based in India, plus QA: write the specifications, plan the sprints, review and merge all code, and sit on hiring panels.",
             "Led the build-out of Telegra Commerce, replacing reliance on a WooCommerce plugin with an end-to-end platform tracked from storefront to fulfilment; specified the renewals engine the team built.",
             "Led the one-page checkout from specification to release; review caught four release blockers, including a security issue.",
             "Built a self-service tool to reprice and reissue invoices for closed billing periods, replacing manual corrections for clinic customers.",
             "Responsible for production: releases, incidents and data fixes.",
-            "Established the team’s AI-assisted development workflow: specification-first tickets and mandatory human review."
+            "Set up the team’s AI-assisted development workflow: specification-first tickets, and no merge until a person has reviewed the full change."
           ],
           "stack": "MERN (MongoDB · Express · React · Node.js) · TypeScript · Next.js · Redis · BullMQ · Stripe · AWS",
           "link": "/work/commerce"
@@ -53,7 +53,7 @@
             "Co-led the build of a React and Node.js prescription commerce platform integrating intake, payment and prescription routing.",
             "Built and maintained 15+ production automations for order routing, patient intake, billing triggers, subscription recovery and cross-system status sync.",
             "Implemented prescription routing by state, medication type and pharmacy capability.",
-            "Designed delayed-capture payment workflows tied to clinician approval, on dual processors (Stripe and Authorize.Net) for resilience.",
+            "Designed delayed-capture payments so patients were charged only after a clinician approved the order, running Stripe and Authorize.Net side by side for resilience.",
             "Delivered executive reporting on revenue, cancellations and fulfilment."
           ],
           "stack": "Zoho (Deluge, Flow) · WooCommerce · WordPress · React · Node.js · Stripe · Authorize.Net · Segment · Metorik"
@@ -135,7 +135,44 @@
     },
     {
       "k": "Leadership & delivery",
-      "v": "Agile delivery, specification writing, code review, stakeholder management, roadmap planning, incident management"
+      "v": "Agile delivery, specification writing, code review, stakeholder management, roadmap planning, incident management, AI-assisted development (Claude Code)"
     }
-  ]
+  ],
+  "file": "Jacob-Prudent-CV",
+  "variants": {
+    "product": {
+      "_note": "Hidden version for Technical PM / product-lead roles. Same facts; only headline, profile, skills order and Telegra bullet order differ. Served at /cv/product (unlinked, noindex).",
+      "path": "/cv/product/",
+      "file": "Jacob-Prudent-CV-Product",
+      "title": "Technical Product Lead, Telehealth Commerce",
+      "profile": "Technical product and engineering lead with six years in software, four of them in telehealth commerce. Has product responsibility for Telegra’s patient-facing commerce platform (white-labelled storefronts, checkout, subscriptions and patient dashboards) and leads the team of six engineers plus QA that builds it. Turns client and operational requirements into specifications and sprint plans, and reviews everything that ships. Previously Director of Technology at Invigor Medical, a telehealth e-commerce company. Came to software from laboratory science.",
+      "profileUk": "Seeking Technical Product Manager or Tech Lead roles in London or Manchester.",
+      "roles": {
+        "a4f1c2e": {
+          "bullets": [
+            "Led the build-out of Telegra Commerce, replacing reliance on a WooCommerce plugin with an end-to-end platform tracked from storefront to fulfilment; specified the renewals engine the team built.",
+            "Led the one-page checkout from specification to release; review caught four release blockers, including a security issue.",
+            "Turn client and operational requirements into specifications, acceptance criteria and sprint plans for a six-person engineering team based in India, plus QA; review and merge all code, and sit on hiring panels.",
+            "Built a self-service tool to reprice and reissue invoices for closed billing periods, replacing manual corrections for clinic customers.",
+            "Responsible for production: releases, incidents and data fixes.",
+            "Set up the team’s AI-assisted development workflow: specification-first tickets, and no merge until a person has reviewed the full change."
+          ]
+        }
+      },
+      "skills": [
+        {
+          "k": "Product & delivery",
+          "v": "Specification writing, acceptance criteria, roadmap planning, prioritisation, sprint planning, release management, stakeholder management, incident management"
+        },
+        {
+          "k": "Payments & integrations",
+          "v": "Stripe, Authorize.Net, EHR and e-prescribing, webhooks, REST APIs"
+        },
+        {
+          "k": "Engineering",
+          "v": "TypeScript, JavaScript, React, Next.js, Node.js, Express, MongoDB, Redis, AWS, code review, AI-assisted development (Claude Code)"
+        }
+      ]
+    }
+  }
 }
